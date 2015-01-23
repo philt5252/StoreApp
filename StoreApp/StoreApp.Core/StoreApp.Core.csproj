@@ -39,8 +39,22 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Controllers\AppController.cs" />
+    <Compile Include="Factories\Models\ProductFactory.cs" />
+    <Compile Include="Factories\ViewModels\ProductEditViewModelFactory.cs" />
+    <Compile Include="Factories\ViewModels\ProductViewModelFactory.cs" />
+    <Compile Include="Models\Product.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ViewModels\ProductEditViewModel.cs" />
+    <Compile Include="ViewModels\ProductViewModel.cs" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\StoreApp.Foundation\StoreApp.Foundation.csproj">
+      <Project>{CC9B294B-B996-4AA9-9E88-BC31E37C9CB0}</Project>
+      <Name>StoreApp.Foundation</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

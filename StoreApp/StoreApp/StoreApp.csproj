@@ -34,6 +34,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Autofac">
+      <HintPath>..\packages\Autofac.3.5.2\lib\net40\Autofac.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
@@ -53,16 +56,8 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Page Include="MainWindow.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="MainWindow.xaml.cs">
-      <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
   </ItemGroup>
@@ -84,6 +79,7 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -92,6 +88,24 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\StoreApp.Core.Autofac\StoreApp.Core.Autofac.csproj">
+      <Project>{2CED8331-561B-4B35-B4AC-37D2154EC981}</Project>
+      <Name>StoreApp.Core.Autofac</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\StoreApp.Core.DataAccess.Autofac\StoreApp.Core.DataAccess.Autofac.csproj">
+      <Project>{06448600-EDFF-4A88-8F0E-708B0976172F}</Project>
+      <Name>StoreApp.Core.DataAccess.Autofac</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\StoreApp.Core.Views.Autofac\StoreApp.Core.Views.Autofac.csproj">
+      <Project>{D0C9FC06-121A-4B0E-B8C0-CDF252A02E90}</Project>
+      <Name>StoreApp.Core.Views.Autofac</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\StoreApp.Foundation\StoreApp.Foundation.csproj">
+      <Project>{CC9B294B-B996-4AA9-9E88-BC31E37C9CB0}</Project>
+      <Name>StoreApp.Foundation</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
