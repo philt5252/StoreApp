@@ -1,4 +1,5 @@
-﻿using StoreApp.Foundation.Controllers;
+﻿using System;
+using StoreApp.Foundation.Controllers;
 
 namespace StoreApp.Core.Controllers
 {
@@ -6,7 +7,7 @@ namespace StoreApp.Core.Controllers
     {
         public void Home()
         {
-            
+            throw new NotImplementedException();
         }
     }
 }
