@@ -5,6 +5,7 @@ using System.Data;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Controls;
 using Autofac;
 using StoreApp.Core.Autofac;
 using StoreApp.Core.DataAccess.Autofac;
