@@ -1,7 +1,10 @@
-﻿namespace StoreApp.Foundation.Controllers
+﻿using StoreApp.Foundation.Models;
+
+namespace StoreApp.Foundation.Controllers
 {
     public interface IBooksController
     {
         void Listing();
+        void Save(IBook book);
     }
 }

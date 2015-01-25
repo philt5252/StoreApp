@@ -2,7 +2,7 @@
 
 namespace StoreApp.Core.ViewModels
 {
-    public class BookEditViewModel : IBookEditViewModel
+    public class GameEditViewModel :IGameEditViewModel
     {
          
     }

@@ -63,15 +63,19 @@
   <ItemGroup>
     <Compile Include="Controllers\AppController.cs" />
     <Compile Include="Controllers\BooksController.cs" />
+    <Compile Include="Controllers\GamesController.cs" />
     <Compile Include="Factories\Models\BookFactory.cs" />
     <Compile Include="Factories\ViewModels\BookEditViewModelFactory.cs" />
     <Compile Include="Factories\ViewModels\BookListingViewModelFactory.cs" />
+    <Compile Include="Factories\ViewModels\GameListingViewModelFactory.cs" />
     <Compile Include="Factories\ViewModels\MainWindowViewModelFactory.cs" />
     <Compile Include="Factories\ViewModels\MenuViewModelFactory.cs" />
     <Compile Include="Models\Product.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ViewModels\BookListingViewModel.cs" />
-    <Compile Include="ViewModels\IBookEditViewModel.cs" />
+    <Compile Include="ViewModels\BookEditViewModel.cs" />
+    <Compile Include="ViewModels\GameEditViewModel.cs" />
+    <Compile Include="ViewModels\GameListingViewModel.cs" />
     <Compile Include="ViewModels\MainWindowViewModel.cs" />
     <Compile Include="ViewModels\MenuItems\BookMenuItemViewModel.cs" />
     <Compile Include="ViewModels\MenuItems\EmployeeMenuItemViewModel.cs" />
