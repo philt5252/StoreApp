@@ -8,7 +8,7 @@ namespace StoreApp.Core.Factories.Models
     {
         private readonly Func<IBook> createModelFunc;
 
-        public BookFactory(Func<IBook> createModelFunc )
+        public BookFactory(Func<IBook> createModelFunc)
         {
             this.createModelFunc = createModelFunc;
         }
