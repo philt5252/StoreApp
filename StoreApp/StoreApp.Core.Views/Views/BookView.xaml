@@ -18,7 +18,7 @@
             </StackPanel>
         </DataTemplate>
     </UserControl.Resources>
-    <Grid>
+    <Grid Background="Pink">
          <ListBox ItemsSource="{Binding Books}">
              <ListBox.ItemTemplate>
                  <DataTemplate>
