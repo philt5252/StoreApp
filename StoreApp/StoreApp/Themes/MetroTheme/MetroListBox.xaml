@@ -5,7 +5,7 @@
     <Style TargetType="{x:Type ListBox}">
         <Setter Property="Background" Value="Transparent"></Setter>
         <Setter Property="BorderBrush" Value="Transparent"></Setter>
-        <Setter Property="Foreground" Value="White"></Setter>
+        <Setter Property="Foreground" Value="{DynamicResource ListBox_Foreground}"></Setter>
     </Style>
     
     <Style TargetType="{x:Type ListBoxItem}">
@@ -20,25 +20,25 @@
                             <ColumnDefinition Width="*"></ColumnDefinition>
                             <ColumnDefinition Width="12"></ColumnDefinition>
                         </Grid.ColumnDefinitions>
-                        <Grid x:Name="grid" Grid.Column="0" Background="#FF323232">
+                        <Grid x:Name="grid" Grid.Column="0" Background="{DynamicResource ListBoxItem_Background}">
                             <Grid.RowDefinitions>
                                 <RowDefinition Height=".95*"></RowDefinition>
                                 <RowDefinition Height=".05*"></RowDefinition>
                             </Grid.RowDefinitions>
                             <ContentPresenter Margin="10,0,10,0" Grid.Row="0"  VerticalAlignment="Center" HorizontalAlignment="Left"  />
                         </Grid>
-                        <Polygon x:Name="triangle" Opacity="0" Grid.Column="1" Points="0,0 12,25, 0,50" Stroke="#FF212020" Fill="#FF212020" />
+                        <Polygon x:Name="triangle" Opacity="0" Grid.Column="1" Points="0,0 12,25, 0,50" Stroke="{DynamicResource ListBoxItem_BackgroundPressed}" Fill="{DynamicResource ListBoxItem_BackgroundPressed}" />
                     </Grid>
                   
                     <ControlTemplate.Triggers>
                         <Trigger Property="IsSelected" Value="true">
-                            <Setter TargetName="grid" Property="Background" Value="#FF212020"/>
+                            <Setter TargetName="grid" Property="Background" Value="{DynamicResource ListBoxItem_BackgroundPressed}"/>
                             <Setter TargetName="triangle" Property="Opacity" Value="1"></Setter>
                         </Trigger>
                         <Trigger Property="ListBoxItem.IsMouseOver" Value="true">
-                            <Setter TargetName="grid" Property="Background" Value="#FF515151"/>
-                            <Setter TargetName="triangle" Property="Fill" Value="#FF515151"/>
-                            <Setter TargetName="triangle" Property="Stroke" Value="#FF515151"/>
+                            <Setter TargetName="grid" Property="Background" Value="{DynamicResource ListBoxItem_BackgroundHover}"/>
+                            <Setter TargetName="triangle" Property="Fill" Value="{DynamicResource ListBoxItem_BackgroundHover}"/>
+                            <Setter TargetName="triangle" Property="Stroke" Value="{DynamicResource ListBoxItem_BackgroundHover}"/>
                         </Trigger>
                     </ControlTemplate.Triggers>
                 </ControlTemplate>

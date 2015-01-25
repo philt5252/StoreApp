@@ -47,6 +47,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CustomControls\FlipControl.xaml.cs" />
+    <Compile Include="CustomControls\TileCanvas.cs" />
     <Compile Include="Views\MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
     </Compile>
@@ -70,10 +71,12 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <Resource Include="Views\Images\dark_wood.png" />
     <Content Include="Views\Images\edit.png" />
-    <Content Include="Views\Images\menu.png">
+    <Resource Include="Views\Images\hixs_pattern_evolution.png" />
+    <Resource Include="Views\Images\menu.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
+    </Resource>
     <Content Include="Views\Images\save.png" />
   </ItemGroup>
   <ItemGroup>
@@ -113,6 +116,9 @@
       <Numbers>True</Numbers>
       <Punctuation>True</Punctuation>
     </BlendEmbeddedFont>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Views\Images\tactile_noise.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\Expression\Blend\.NETFramework\v4.5\Microsoft.Expression.Blend.WPF.targets" />

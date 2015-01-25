@@ -3,9 +3,9 @@
 
 
     <Style TargetType="{x:Type Button}">
-        <Setter Property="Background" Value="#FF2C2C2C"></Setter>
-        <Setter Property="Foreground" Value="White"></Setter>
-        <Setter Property="BorderBrush" Value="Transparent"></Setter>
+        <Setter Property="Background" Value="{DynamicResource Button_Background}"></Setter>
+        <Setter Property="Foreground" Value="{DynamicResource Button_Foreground}"></Setter>
+        <Setter Property="BorderBrush" Value="{DynamicResource Button_Border}"></Setter>
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="Button">
@@ -16,10 +16,10 @@
                     </Border>
                     <ControlTemplate.Triggers>
                         <Trigger Property="Button.IsMouseOver" Value="True">
-                            <Setter Property="Background" TargetName="border" Value="#FF818181"/>
+                            <Setter Property="Background" TargetName="border" Value="{DynamicResource Button_BackgroundHover}"/>
                         </Trigger>
                         <Trigger Property="Button.IsPressed" Value="True">
-                            <Setter Property="Background" TargetName="border" Value="#FF212121"/>
+                            <Setter Property="Background" TargetName="border" Value="{DynamicResource Button_BackgroundPressed}"/>
                         </Trigger>
                     </ControlTemplate.Triggers>
                 </ControlTemplate>
@@ -30,7 +30,7 @@
 
     <Style x:Key="HoverButtonStyle" TargetType="Button">
         <Setter Property="Background" Value="Transparent"></Setter>
-        <Setter Property="Foreground" Value="White"></Setter>
+        <Setter Property="Foreground" Value="{DynamicResource HoverButton_Foreground}"></Setter>
         <Setter Property="BorderBrush" Value="Transparent"></Setter>
         <Setter Property="Opacity" Value="0"></Setter>
         <Setter Property="Template">

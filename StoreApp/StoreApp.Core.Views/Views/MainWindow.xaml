@@ -2,7 +2,8 @@
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
-             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:views="clr-namespace:StoreApp.Core.Views"
              mc:Ignorable="d" 
              Height="600" Width="1000">
     <Window.Resources>
@@ -24,8 +25,14 @@
             </DoubleAnimationUsingKeyFrames>
         </Storyboard>
 
+        <DataTemplate x:Key="TileImageBackground">
+            <views:TileCanvas ImageSource="Images/dark_wood.png" />
+        </DataTemplate>
     </Window.Resources>
-    <Grid>
+
+    <Grid Background="{DynamicResource Grid_Background}" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" >
+
+
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*"></ColumnDefinition>
         </Grid.ColumnDefinitions>
@@ -34,14 +41,18 @@
             <RowDefinition Height="*"></RowDefinition>
             <RowDefinition Height="20"></RowDefinition>
         </Grid.RowDefinitions>
+        <ContentPresenter Grid.Row="1"  ContentTemplate="{StaticResource TileImageBackground}" Opacity=".7" />
         <StackPanel Orientation="Horizontal" Grid.Column="0" Grid.Row="1">
             <ListBox ItemsSource="{Binding MenuItems}" DisplayMemberPath="Text" x:Name="listBox" Width="200">
             </ListBox>
             <Button x:Name="menuButton" HorizontalAlignment="Left" Height="30" 
-            	Margin="3,2,0,0" VerticalAlignment="Top" Width="30" RenderTransformOrigin="0.5,0.5" Click="MenuButton_OnClick">
-            	<Image Source="Images/menu.png"/>
+            	    Margin="3,2,0,0" VerticalAlignment="Top" Width="30" RenderTransformOrigin="0.5,0.5" 
+                    Click="MenuButton_OnClick">
+                <Button.Content>
+                    <Image Source="Images/menu.png" Width="20" Height="20"/>
+                </Button.Content>
             </Button>
         </StackPanel>
-       
+
     </Grid>
 </Window>
