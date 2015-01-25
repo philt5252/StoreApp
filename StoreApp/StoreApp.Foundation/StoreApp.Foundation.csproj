@@ -44,6 +44,7 @@
   <ItemGroup>
     <Compile Include="Controllers\IAppController.cs" />
     <Compile Include="Controllers\IBooksController.cs" />
+    <Compile Include="Controllers\IGamesController.cs" />
     <Compile Include="Factories\Models\IBookFactory.cs" />
     <Compile Include="Factories\Models\IGameFactory.cs" />
     <Compile Include="Factories\ViewModels\IBookEditViewModelFactory.cs" />
@@ -64,6 +65,7 @@
     <Compile Include="ViewModels\IMainWindowViewModel.cs" />
     <Compile Include="ViewModels\IMenuItemViewModel.cs" />
     <Compile Include="ViewModels\IMenuViewModel.cs" />
+    <Compile Include="ViewModels\IViewModelBase.cs" />
     <Compile Include="ViewModels\ViewModelBase.cs" />
   </ItemGroup>
   <ItemGroup />

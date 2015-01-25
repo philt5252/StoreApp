@@ -1,7 +1,9 @@
-﻿namespace StoreApp.Foundation.ViewModels
+﻿using StoreApp.Foundation.Models;
+
+namespace StoreApp.Foundation.ViewModels
 {
-    public interface IBookEditViewModel
+    public interface IBookEditViewModel : IViewModelBase
     {
-         
+        IBook Book { get; }
     }
 }

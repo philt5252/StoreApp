@@ -4,7 +4,7 @@ using StoreApp.Foundation.Annotations;
 
 namespace StoreApp.Foundation.ViewModels
 {
-    public class ViewModelBase : INotifyPropertyChanged
+    public class ViewModelBase : IViewModelBase
     {
         public event PropertyChangedEventHandler PropertyChanged;
 
@@ -14,5 +14,7 @@ namespace StoreApp.Foundation.ViewModels
             var handler = PropertyChanged;
             if (handler != null) handler(this, new PropertyChangedEventArgs(propertyName));
         }
+
+        public bool IsDirty { get; protected set; }
     }
 }
