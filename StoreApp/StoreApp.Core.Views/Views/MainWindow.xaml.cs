@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -25,23 +26,26 @@ namespace StoreApp.Core.Views.Views
     public partial class MainWindow : Window
     {
         private Boolean menuShowing;
+        private IRegionManager regionManager;
         public MainWindow()
         {
-            InitializeComponent();
-            menuShowing = true;
+            
+            regionManager = ServiceLocator.Current.GetInstance<IRegionManager>();
+            RegionManager.SetRegionManager(this, regionManager);
+
 
             InitializeComponent();
-
-            RegionAdapterMappings regionAdapterMappings = ServiceLocator.Current.GetInstance<RegionAdapterMappings>();
-            IRegionAdapter regionAdapter = regionAdapterMappings.GetMapping(typeof(ContentControl));
-            IRegion region = regionAdapter.Initialize(contentControl, Regions.MainRegion);
-
-            //IRegionManager regionManager = ServiceLocator.Current.GetInstance<IRegionManager>();
-            //regionManager.Regions.Add(region);
-
+         
             RegionManager.UpdateRegions();
+
+            Closing += OnClosing;
+            menuShowing = true;
         }
 
+        private void OnClosing(object sender, CancelEventArgs cancelEventArgs)
+        {
+            regionManager.Regions.Remove("MainRegion");
+        }
 
         private void MenuButton_OnClick(object sender, RoutedEventArgs e)
         {

@@ -9,7 +9,7 @@
 
     <!-- Note: Camera setup only works when this is square. -->
     <Grid xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-              Width="30" Height="30">
+             >
 
         <!-- Provides 3D rotation transition. Hidden except for when animation is
        active. -->
