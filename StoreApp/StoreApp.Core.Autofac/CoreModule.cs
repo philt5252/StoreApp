@@ -23,6 +23,9 @@ namespace StoreApp.Core.Autofac
             builder.RegisterType<MainWindowViewModel>().As<IMainWindowViewModel>();
             builder.RegisterType<MenuViewModel>().As<IMenuViewModel>();
             builder.RegisterType<BookMenuItemViewModel>().As<IMenuItemViewModel>();
+            builder.RegisterType<GameMenuItemViewModel>().As<IMenuItemViewModel>();
+            builder.RegisterType<PerformanceMenuItemViewModel>().As<IMenuItemViewModel>();
+            builder.RegisterType<EmployeeMenuItemViewModel>().As<IMenuItemViewModel>();
         }
     }
 }

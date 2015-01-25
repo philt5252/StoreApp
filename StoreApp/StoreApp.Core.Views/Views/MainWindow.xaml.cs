@@ -13,6 +13,9 @@ using System.Windows.Media.Animation;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using Microsoft.Practices.Prism.Regions;
+using Microsoft.Practices.ServiceLocation;
+using StoreApp.Foundation.Views;
 
 namespace StoreApp.Core.Views.Views
 {
@@ -26,6 +29,17 @@ namespace StoreApp.Core.Views.Views
         {
             InitializeComponent();
             menuShowing = true;
+
+            InitializeComponent();
+
+            RegionAdapterMappings regionAdapterMappings = ServiceLocator.Current.GetInstance<RegionAdapterMappings>();
+            IRegionAdapter regionAdapter = regionAdapterMappings.GetMapping(typeof(ContentControl));
+            IRegion region = regionAdapter.Initialize(contentControl, Regions.MainRegion);
+
+            //IRegionManager regionManager = ServiceLocator.Current.GetInstance<IRegionManager>();
+            //regionManager.Regions.Add(region);
+
+            RegionManager.UpdateRegions();
         }
 
 

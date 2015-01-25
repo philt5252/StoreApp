@@ -72,6 +72,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ViewModels\MainWindowViewModel.cs" />
     <Compile Include="ViewModels\MenuItems\BookMenuItemViewModel.cs" />
+    <Compile Include="ViewModels\MenuItems\EmployeeMenuItemViewModel.cs" />
+    <Compile Include="ViewModels\MenuItems\GameMenuItemViewModel.cs" />
+    <Compile Include="ViewModels\MenuItems\PerformanceMenuItemViewModel.cs" />
     <Compile Include="ViewModels\MenuViewModel.cs" />
   </ItemGroup>
   <ItemGroup>

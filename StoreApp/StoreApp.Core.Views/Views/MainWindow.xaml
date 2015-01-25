@@ -4,6 +4,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:views="clr-namespace:StoreApp.Core.Views"
+             xmlns:regions="http://www.codeplex.com/CompositeWPF"
              mc:Ignorable="d" 
              Height="600" Width="1000">
     <Window.Resources>
@@ -50,21 +51,9 @@
                     <Image Source="Images/menu.png" Width="20" Height="20"/>
                 </Button.Content>
             </Button>
+            <ContentControl x:Name ="contentControl"  regions:RegionManager.RegionName="MainRegion"></ContentControl>
         </StackPanel>
-        <Border BorderBrush="#99747474" BorderThickness="5" CornerRadius="10"  HorizontalAlignment="Left" 
-                Height="207" Margin="741,40,0,0" Grid.Row="1" VerticalAlignment="Top" Width="201" Background="#99747474">
-        </Border>
-
-        <Border BorderBrush="#99747474" BorderThickness="5" CornerRadius="10"  HorizontalAlignment="Left" 
-                Height="152" Margin="511,272,0,0" Grid.Row="1" VerticalAlignment="Top" Width="320" Background="#99747474">
-        </Border>
-
-
-        <Border BorderBrush="#99747474" BorderThickness="5" CornerRadius="10"  HorizontalAlignment="Left" 
-                Height="106" Margin="511,40,0,0" Grid.Row="1" VerticalAlignment="Top" Width="168" Background="#99747474">
-        </Border>
-        <Border BorderBrush="#99747474" BorderThickness="5" CornerRadius="10"  HorizontalAlignment="Left" 
-        	Height="452" Margin="266,40,0,0" Grid.Row="1" VerticalAlignment="Top" Width="168" Background="#99747474"/>
+        
 
 
     </Grid>
