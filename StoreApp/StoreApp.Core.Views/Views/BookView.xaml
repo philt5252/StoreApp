@@ -8,12 +8,12 @@
     
     <UserControl.Resources>
         <DataTemplate x:Key="frontTemplate">
-            <StackPanel Orientation>
+            <StackPanel Orientation="Horizontal">
                 <TextBlock Text="{Binding Name}"></TextBlock>
             </StackPanel>
         </DataTemplate>
         <DataTemplate x:Key="backTemplate">
-            <StackPanel Orientation>
+            <StackPanel Orientation="Horizontal">
                 <TextBox Text="{Binding Name}"></TextBox>
             </StackPanel>
         </DataTemplate>
