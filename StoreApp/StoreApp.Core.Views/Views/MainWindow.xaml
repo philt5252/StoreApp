@@ -8,21 +8,21 @@
 	<Window.Resources>
 		<Storyboard x:Key="MenuMinimize">
 			<DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(FrameworkElement.Width)" Storyboard.TargetName="listBox">
-				<EasingDoubleKeyFrame KeyTime="0:0:1" Value="0"/>
+				<EasingDoubleKeyFrame KeyTime="0:0:0:5" Value="0">
+					<EasingDoubleKeyFrame.EasingFunction>
+						<ExponentialEase EasingMode="EaseIn"/>
+					</EasingDoubleKeyFrame.EasingFunction>
+				</EasingDoubleKeyFrame>
 			</DoubleAnimationUsingKeyFrames>
 			<ThicknessAnimationUsingKeyFrames Storyboard.TargetProperty="(FrameworkElement.Margin)" Storyboard.TargetName="menuButton">
-				<EasingThicknessKeyFrame KeyTime="0:0:1" Value="10,2,0,0">
-					<EasingThicknessKeyFrame.EasingFunction>
-						<BackEase EasingMode="EaseInOut"/>
-					</EasingThicknessKeyFrame.EasingFunction>
-				</EasingThicknessKeyFrame>
+				<EasingThicknessKeyFrame KeyTime="0:0:0.5" Value="8,2,0,0"/>
 			</ThicknessAnimationUsingKeyFrames>
 		</Storyboard>
 	</Window.Resources>
 	<Window.Triggers>
-		<!--<EventTrigger RoutedEvent="FrameworkElement.Loaded">
+		<EventTrigger RoutedEvent="FrameworkElement.Loaded">
 			<BeginStoryboard Storyboard="{StaticResource MenuMinimize}"/>
-		</EventTrigger>-->
+		</EventTrigger>
 	</Window.Triggers>
     
     <Grid>
