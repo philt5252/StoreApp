@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Windows.Input;
+using System.Windows.Media.Imaging;
 using Microsoft.Practices.Prism.Commands;
 using StoreApp.Foundation.ViewModels;
 
@@ -10,6 +11,8 @@ namespace StoreApp.Core.ViewModels.MenuItems
         public string Text { get { return "Books"; } }
         public ICommand MenuCommand { get; protected set; }
 
+        public String NewText { get { return "B"; }}
+
         public BookMenuItemViewModel()
         {
             MenuCommand = new DelegateCommand(ExecuteMenuCommand);
@@ -19,5 +22,6 @@ namespace StoreApp.Core.ViewModels.MenuItems
         {
             throw new NotImplementedException();
         }
+
     }
 }

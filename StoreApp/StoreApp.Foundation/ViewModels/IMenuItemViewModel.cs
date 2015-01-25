@@ -1,4 +1,6 @@
-﻿using System.Windows.Input;
+﻿
+using System.Windows.Input;
+using System.Windows.Media.Imaging;
 
 namespace StoreApp.Foundation.ViewModels
 {
@@ -6,5 +8,8 @@ namespace StoreApp.Foundation.ViewModels
     {
         string Text { get; }
         ICommand MenuCommand { get; }
+        string NewText { get; }
     }
+
+
 }

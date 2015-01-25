@@ -21,11 +21,29 @@ namespace StoreApp.Core.Views.Views
     /// </summary>
     public partial class MainWindow : Window
     {
+        private Boolean menuShowing;
         public MainWindow()
         {
             InitializeComponent();
+            menuShowing = true;
         }
 
-        
+
+        private void MenuButton_OnClick(object sender, RoutedEventArgs e)
+        {
+      
+            if (menuShowing)
+            {
+                Storyboard storyBoard = (Storyboard)this.Resources["MinimizeMenu"];
+                storyBoard.Begin();
+                menuShowing = false;
+            }
+            else
+            {
+                Storyboard storyBoard = (Storyboard)this.Resources["MaximizeMenu"];
+                storyBoard.Begin();
+                menuShowing = true;
+            }
+        }
     }
 }

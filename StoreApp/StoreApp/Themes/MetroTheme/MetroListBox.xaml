@@ -15,27 +15,21 @@
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="ListBoxItem">
-                    <Grid x:Name="Border"  Background="Transparent">
+                    <Grid x:Name="Border"  Background="Transparent" >
                         <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width=".8*"></ColumnDefinition>
-                            <ColumnDefinition Width=".2*"></ColumnDefinition>
+                            <ColumnDefinition Width="*"></ColumnDefinition>
+                            <ColumnDefinition Width="12"></ColumnDefinition>
                         </Grid.ColumnDefinitions>
                         <Grid x:Name="grid" Grid.Column="0" Background="#FF323232">
                             <Grid.RowDefinitions>
                                 <RowDefinition Height=".95*"></RowDefinition>
                                 <RowDefinition Height=".05*"></RowDefinition>
                             </Grid.RowDefinitions>
-                            <ContentPresenter Margin="10,0,10,0" Grid.Row="0"  VerticalAlignment="Center" HorizontalAlignment="Left" />
-                            <Rectangle Grid.Row="1" Margin="10,0,0,0" HorizontalAlignment="Left" x:Name="rectangle" Height="2" Width="0" Fill="White" Opacity="0">
-                                <Rectangle.RenderTransform>
-                                    <TransformGroup>
-                                        <TranslateTransform/>
-                                    </TransformGroup>
-                                </Rectangle.RenderTransform>
-                            </Rectangle>
+                            <ContentPresenter Margin="10,0,10,0" Grid.Row="0"  VerticalAlignment="Center" HorizontalAlignment="Left"  />
                         </Grid>
                         <Polygon x:Name="triangle" Opacity="0" Grid.Column="1" Points="0,0 12,25, 0,50" Stroke="#FF212020" Fill="#FF212020" />
                     </Grid>
+                  
                     <ControlTemplate.Triggers>
                         <Trigger Property="IsSelected" Value="true">
                             <Setter TargetName="grid" Property="Background" Value="#FF212020"/>
@@ -45,29 +39,7 @@
                             <Setter TargetName="grid" Property="Background" Value="#FF515151"/>
                             <Setter TargetName="triangle" Property="Fill" Value="#FF515151"/>
                             <Setter TargetName="triangle" Property="Stroke" Value="#FF515151"/>
-                            <Setter TargetName="rectangle" Property="Opacity" Value="1"></Setter>
                         </Trigger>
-                        <!-- Begin the Storyboard -->
-                <!--        <EventTrigger RoutedEvent="Button.MouseEnter">
-                            <BeginStoryboard x:Name="listboxItemDecorStoryboard" >
-                                <Storyboard >
-                                    <DoubleAnimation 
-                                        Storyboard.TargetName="rectangle" 
-                                        Storyboard.TargetProperty="Width" 
-                                        Duration="0:0:1" From="0" To="50" />
-                                    <DoubleAnimation 
-                                        Storyboard.TargetName="rectangle" 
-                                        Storyboard.TargetProperty="Opacity" 
-                                        Duration="0:0:1" From="0" To="1" />
-                                    <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[0].(TranslateTransform.Y)" Storyboard.TargetName="rectangle">
-                                        <EasingDoubleKeyFrame KeyTime="0:0:1" Value="-5"/>
-                                    </DoubleAnimationUsingKeyFrames>
-                                </Storyboard>
-                            </BeginStoryboard>
-                        </EventTrigger>
-                        <EventTrigger RoutedEvent="Button.MouseLeave">
-                            <StopStoryboard BeginStoryboardName="listboxItemDecorStoryboard"></StopStoryboard>
-                        </EventTrigger>-->
                     </ControlTemplate.Triggers>
                 </ControlTemplate>
             </Setter.Value>

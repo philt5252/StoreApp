@@ -5,26 +5,26 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              mc:Ignorable="d" 
              Height="600" Width="1000">
-	<Window.Resources>
-		<Storyboard x:Key="MenuMinimize">
-			<DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(FrameworkElement.Width)" Storyboard.TargetName="listBox">
-				<EasingDoubleKeyFrame KeyTime="0:0:0:5" Value="0">
-					<EasingDoubleKeyFrame.EasingFunction>
-						<ExponentialEase EasingMode="EaseIn"/>
-					</EasingDoubleKeyFrame.EasingFunction>
-				</EasingDoubleKeyFrame>
-			</DoubleAnimationUsingKeyFrames>
-			<ThicknessAnimationUsingKeyFrames Storyboard.TargetProperty="(FrameworkElement.Margin)" Storyboard.TargetName="menuButton">
-				<EasingThicknessKeyFrame KeyTime="0:0:0.5" Value="8,2,0,0"/>
-			</ThicknessAnimationUsingKeyFrames>
-		</Storyboard>
-	</Window.Resources>
-	<Window.Triggers>
-		<EventTrigger RoutedEvent="FrameworkElement.Loaded">
-			<BeginStoryboard Storyboard="{StaticResource MenuMinimize}"/>
-		</EventTrigger>
-	</Window.Triggers>
-    
+    <Window.Resources>
+
+        <Storyboard x:Key="MinimizeMenu">
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(FrameworkElement.Width)" Storyboard.TargetName="listBox">
+                <EasingDoubleKeyFrame KeyTime="0:0:1" Value="50"/>
+            </DoubleAnimationUsingKeyFrames>
+            <StringAnimationUsingKeyFrames SpeedRatio="2" Storyboard.TargetProperty="(ItemsControl.DisplayMemberPath)" Storyboard.TargetName="listBox">
+                <DiscreteStringKeyFrame KeyTime="0:0:1" Value="NewText"/>
+            </StringAnimationUsingKeyFrames>
+        </Storyboard>
+        <Storyboard x:Key="MaximizeMenu">
+            <StringAnimationUsingKeyFrames SpeedRatio="4" Storyboard.TargetProperty="(ItemsControl.DisplayMemberPath)" Storyboard.TargetName="listBox">
+                <DiscreteStringKeyFrame KeyTime="0:0:1" Value="Text"/>
+            </StringAnimationUsingKeyFrames>
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(FrameworkElement.Width)" Storyboard.TargetName="listBox">
+                <EasingDoubleKeyFrame KeyTime="0:0:1" Value="200"/>
+            </DoubleAnimationUsingKeyFrames>
+        </Storyboard>
+
+    </Window.Resources>
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*"></ColumnDefinition>
@@ -38,8 +38,8 @@
             <ListBox ItemsSource="{Binding MenuItems}" DisplayMemberPath="Text" x:Name="listBox" Width="200">
             </ListBox>
             <Button x:Name="menuButton" HorizontalAlignment="Left" Height="30" 
-            	Margin="-20,2,0,0" VerticalAlignment="Top" Width="30" >
-                <Image Source="Images/menu.png"/>
+            	Margin="3,2,0,0" VerticalAlignment="Top" Width="30" RenderTransformOrigin="0.5,0.5" Click="MenuButton_OnClick">
+            	<Image Source="Images/menu.png"/>
             </Button>
         </StackPanel>
        
