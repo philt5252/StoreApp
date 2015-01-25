@@ -7,6 +7,8 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using Autofac;
+using Microsoft.Practices.ServiceLocation;
+using Olf.Prism.Autofac;
 using StoreApp.Core.Autofac;
 using StoreApp.Core.DataAccess.Autofac;
 using StoreApp.Core.Views.Autofac;
@@ -28,8 +30,11 @@ namespace StoreApp
             builder.RegisterModule<CoreModule>();
             builder.RegisterModule<DataAccessModule>();
             builder.RegisterModule<ViewsModule>();
-
+            builder.RegisterModule<PrismModule>();
+            
             var container = builder.Build();
+
+            ServiceLocator.SetLocatorProvider(() => container.Resolve<IServiceLocator>());
 
             IAppController appController;
 
