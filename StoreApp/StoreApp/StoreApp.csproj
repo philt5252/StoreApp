@@ -124,9 +124,21 @@
       <Project>{06448600-EDFF-4A88-8F0E-708B0976172F}</Project>
       <Name>StoreApp.Core.DataAccess.Autofac</Name>
     </ProjectReference>
+    <ProjectReference Include="..\StoreApp.Core.DataAccess\StoreApp.Core.DataAccess.csproj">
+      <Project>{d7747d70-99a8-4b9e-9b17-fafb2827927a}</Project>
+      <Name>StoreApp.Core.DataAccess</Name>
+    </ProjectReference>
     <ProjectReference Include="..\StoreApp.Core.Views.Autofac\StoreApp.Core.Views.Autofac.csproj">
       <Project>{D0C9FC06-121A-4B0E-B8C0-CDF252A02E90}</Project>
       <Name>StoreApp.Core.Views.Autofac</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\StoreApp.Core.Views\StoreApp.Core.Views.csproj">
+      <Project>{51f014e0-636c-4f6d-9b4c-8e41d5cf200e}</Project>
+      <Name>StoreApp.Core.Views</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\StoreApp.Core\StoreApp.Core.csproj">
+      <Project>{fb12c1ea-4faf-4bf4-b57c-48580c57eaae}</Project>
+      <Name>StoreApp.Core</Name>
     </ProjectReference>
     <ProjectReference Include="..\StoreApp.Foundation\StoreApp.Foundation.csproj">
       <Project>{CC9B294B-B996-4AA9-9E88-BC31E37C9CB0}</Project>
