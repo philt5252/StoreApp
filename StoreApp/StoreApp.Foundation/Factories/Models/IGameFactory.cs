@@ -2,8 +2,8 @@
 
 namespace StoreApp.Foundation.Factories.Models
 {
-    public interface IProductFactory
+    public interface IGameFactory
     {
-        IProduct Create();
+        IGame Create();
     }
 }

@@ -35,8 +35,7 @@
             <RowDefinition Height="20"></RowDefinition>
         </Grid.RowDefinitions>
         <StackPanel Orientation="Horizontal" Grid.Column="0" Grid.Row="1">
-            <ListBox ItemsSource="{Binding MenuItems}" x:Name="listBox" Width="200">
-                <ListBoxItem Content="{Binding Text}" ></ListBoxItem>
+            <ListBox ItemsSource="{Binding MenuItems}" DisplayMemberPath="Text" x:Name="listBox" Width="200">
             </ListBox>
             <Button x:Name="menuButton" HorizontalAlignment="Left" Height="30" 
             	Margin="-20,2,0,0" VerticalAlignment="Top" Width="30" >
