@@ -5,6 +5,25 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              mc:Ignorable="d" 
              Height="600" Width="1000">
+	<Window.Resources>
+		<Storyboard x:Key="MenuMinimize">
+			<DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(FrameworkElement.Width)" Storyboard.TargetName="listBox">
+				<EasingDoubleKeyFrame KeyTime="0:0:1" Value="0"/>
+			</DoubleAnimationUsingKeyFrames>
+			<ThicknessAnimationUsingKeyFrames Storyboard.TargetProperty="(FrameworkElement.Margin)" Storyboard.TargetName="menuButton">
+				<EasingThicknessKeyFrame KeyTime="0:0:1" Value="10,2,0,0">
+					<EasingThicknessKeyFrame.EasingFunction>
+						<BackEase EasingMode="EaseInOut"/>
+					</EasingThicknessKeyFrame.EasingFunction>
+				</EasingThicknessKeyFrame>
+			</ThicknessAnimationUsingKeyFrames>
+		</Storyboard>
+	</Window.Resources>
+	<Window.Triggers>
+		<!--<EventTrigger RoutedEvent="FrameworkElement.Loaded">
+			<BeginStoryboard Storyboard="{StaticResource MenuMinimize}"/>
+		</EventTrigger>-->
+	</Window.Triggers>
     
     <Grid>
         <Grid.ColumnDefinitions>
@@ -16,17 +35,8 @@
             <RowDefinition Height="20"></RowDefinition>
         </Grid.RowDefinitions>
         <StackPanel Orientation="Horizontal" Grid.Column="0" Grid.Row="1">
-            <ListBox Width="200">
-                <ListBoxItem Content="HOME" ></ListBoxItem>
-                <ListBoxItem Content="BOOKS"></ListBoxItem>
-                <ListBoxItem Content="GAMES"></ListBoxItem>
-                <ListBoxItem Content="EMPLOYEES"></ListBoxItem>
-                <ListBoxItem Content="SCHEDULING"></ListBoxItem>
-                <ListBoxItem Content="OTHER TAB"></ListBoxItem>
-                <ListBoxItem Content="OTHER TAB"></ListBoxItem>
-                <ListBoxItem Content="OTHER TAB"></ListBoxItem>
-                <ListBoxItem Content="OTHER TAB"></ListBoxItem>
-                <ListBoxItem Content="OTHER TAB"></ListBoxItem>
+            <ListBox ItemsSource="{Binding MenuItems}" x:Name="listBox" Width="200">
+                <ListBoxItem Content="{Binding Text}" ></ListBoxItem>
             </ListBox>
             <Button x:Name="menuButton" HorizontalAlignment="Left" Height="30" 
             	Margin="-20,2,0,0" VerticalAlignment="Top" Width="30" >
