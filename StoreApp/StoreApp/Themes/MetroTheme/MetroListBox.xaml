@@ -1,0 +1,142 @@
+﻿<ResourceDictionary  xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+	>
+    
+    <Style TargetType="{x:Type ListBox}">
+        <Setter Property="Background" Value="Transparent"></Setter>
+        <Setter Property="BorderBrush" Value="Transparent"></Setter>
+        <Setter Property="Foreground" Value="White"></Setter>
+    </Style>
+    
+    <Style TargetType="{x:Type ListBoxItem}">
+        <Setter Property="Height" Value="50"></Setter>
+        <Setter Property="Padding" Value="15,20,15,20"></Setter>
+        <Setter Property="FontSize" Value="19"></Setter>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="ListBoxItem">
+                    <Grid x:Name="Border"  Background="Transparent">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width=".8*"></ColumnDefinition>
+                            <ColumnDefinition Width=".2*"></ColumnDefinition>
+                        </Grid.ColumnDefinitions>
+                        <Grid x:Name="grid" Grid.Column="0" Background="#FF323232">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height=".95*"></RowDefinition>
+                                <RowDefinition Height=".05*"></RowDefinition>
+                            </Grid.RowDefinitions>
+                            <ContentPresenter Margin="10,0,10,0" Grid.Row="0"  VerticalAlignment="Center" HorizontalAlignment="Left" />
+                            <Rectangle Grid.Row="1" Margin="10,0,0,0" HorizontalAlignment="Left" x:Name="rectangle" Height="2" Width="0" Fill="White" Opacity="0">
+                                <Rectangle.RenderTransform>
+                                    <TransformGroup>
+                                        <TranslateTransform/>
+                                    </TransformGroup>
+                                </Rectangle.RenderTransform>
+                            </Rectangle>
+                        </Grid>
+                        <Polygon x:Name="triangle" Opacity="0" Grid.Column="1" Points="0,0 12,25, 0,50" Stroke="#FF212020" Fill="#FF212020" />
+                    </Grid>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsSelected" Value="true">
+                            <Setter TargetName="grid" Property="Background" Value="#FF212020"/>
+                            <Setter TargetName="triangle" Property="Opacity" Value="1"></Setter>
+                        </Trigger>
+                        <Trigger Property="ListBoxItem.IsMouseOver" Value="true">
+                            <Setter TargetName="grid" Property="Background" Value="#FF515151"/>
+                            <Setter TargetName="triangle" Property="Fill" Value="#FF515151"/>
+                            <Setter TargetName="triangle" Property="Stroke" Value="#FF515151"/>
+                            <Setter TargetName="rectangle" Property="Opacity" Value="1"></Setter>
+                        </Trigger>
+                        <!-- Begin the Storyboard -->
+                <!--        <EventTrigger RoutedEvent="Button.MouseEnter">
+                            <BeginStoryboard x:Name="listboxItemDecorStoryboard" >
+                                <Storyboard >
+                                    <DoubleAnimation 
+                                        Storyboard.TargetName="rectangle" 
+                                        Storyboard.TargetProperty="Width" 
+                                        Duration="0:0:1" From="0" To="50" />
+                                    <DoubleAnimation 
+                                        Storyboard.TargetName="rectangle" 
+                                        Storyboard.TargetProperty="Opacity" 
+                                        Duration="0:0:1" From="0" To="1" />
+                                    <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[0].(TranslateTransform.Y)" Storyboard.TargetName="rectangle">
+                                        <EasingDoubleKeyFrame KeyTime="0:0:1" Value="-5"/>
+                                    </DoubleAnimationUsingKeyFrames>
+                                </Storyboard>
+                            </BeginStoryboard>
+                        </EventTrigger>
+                        <EventTrigger RoutedEvent="Button.MouseLeave">
+                            <StopStoryboard BeginStoryboardName="listboxItemDecorStoryboard"></StopStoryboard>
+                        </EventTrigger>-->
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <!--<Style TargetType="{x:Type ListBoxItem}">
+        <Setter Property="Padding" Value="3" />
+        <Setter Property="HorizontalContentAlignment" Value="Left" />
+        <Setter Property="VerticalContentAlignment" Value="Top" />
+        <Setter Property="Background" Value="Transparent" />
+        <Setter Property="Width" Value="150" />
+       
+        <Setter Property="Height" Value="3" />
+        <Setter Property="BorderThickness" Value="1"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="ListBoxItem">
+                    <Grid Background="{TemplateBinding Background}">
+                        <VisualStateManager.VisualStateGroups>
+                            <VisualStateGroup x:Name="CommonStates">
+                                <VisualState x:Name="Normal" />
+                                <VisualState x:Name="MouseOver">
+                                    <Storyboard>
+                                        <DoubleAnimation Storyboard.TargetName="fillColor" Storyboard.TargetProperty="Opacity" Duration="0" To=".35"/>
+                                    </Storyboard>
+                                </VisualState>
+                                <VisualState x:Name="Disabled">
+                                    <Storyboard>
+                                        <DoubleAnimation Storyboard.TargetName="contentPresenter" Storyboard.TargetProperty="Opacity" Duration="0" To=".55" />
+                                    </Storyboard>
+                                </VisualState>
+                            </VisualStateGroup>
+                            <VisualStateGroup x:Name="SelectionStates">
+                                <VisualState x:Name="Unselected" />
+                                <VisualState x:Name="Selected">
+                                    <Storyboard>
+                                        <DoubleAnimation Storyboard.TargetName="fillColor2" Storyboard.TargetProperty="Opacity" Duration="0" To=".75"/>
+                                    </Storyboard>
+                                </VisualState>
+                            </VisualStateGroup>
+                            <VisualStateGroup x:Name="FocusStates">
+                                <VisualState x:Name="Focused">
+                                    <Storyboard>
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="FocusVisualElement" Storyboard.TargetProperty="Visibility" Duration="0">
+                                            <DiscreteObjectKeyFrame KeyTime="0">
+                                                <DiscreteObjectKeyFrame.Value>
+                                                    <Visibility>Visible</Visibility>
+                                                </DiscreteObjectKeyFrame.Value>
+                                            </DiscreteObjectKeyFrame>
+                                        </ObjectAnimationUsingKeyFrames>
+                                    </Storyboard>
+                                </VisualState>
+                                <VisualState x:Name="Unfocused"/>
+                            </VisualStateGroup>
+                        </VisualStateManager.VisualStateGroups>
+                        <Rectangle x:Name="fillColor" Opacity="0" Fill="#FFBADDE9" IsHitTestVisible="False" RadiusX="1" RadiusY="1"/>
+                        <Rectangle x:Name="fillColor2" Opacity="0" Fill="#FFBADDE9" IsHitTestVisible="False" RadiusX="1" RadiusY="1"/>
+                        <ContentPresenter
+                              x:Name="contentPresenter"
+                              Content="{TemplateBinding Content}"
+                              ContentTemplate="{TemplateBinding ContentTemplate}"
+                              HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                              Margin="{TemplateBinding Padding}"/>
+                        <Rectangle x:Name="FocusVisualElement" Stroke="#FF6DBDD1" StrokeThickness="1" Visibility="Collapsed" RadiusX="1" RadiusY="1" />
+                    </Grid>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>-->
+
+</ResourceDictionary>

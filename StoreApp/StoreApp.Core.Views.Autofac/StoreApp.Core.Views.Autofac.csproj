@@ -33,13 +33,17 @@
     <Reference Include="Autofac">
       <HintPath>..\packages\Autofac.3.5.2\lib\net40\Autofac.dll</HintPath>
     </Reference>
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Xaml" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
+    <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -47,6 +51,16 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\StoreApp.Core.Views\StoreApp.Core.Views.csproj">
+      <Project>{51F014E0-636C-4F6D-9B4C-8E41D5CF200E}</Project>
+      <Name>StoreApp.Core.Views</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\StoreApp.Foundation.Views\StoreApp.Foundation.Views.csproj">
+      <Project>{E628083F-3CC8-4331-AF6C-536B4857B64B}</Project>
+      <Name>StoreApp.Foundation.Views</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
