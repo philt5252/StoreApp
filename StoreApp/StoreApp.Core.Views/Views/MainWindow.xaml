@@ -5,6 +5,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:views="clr-namespace:StoreApp.Core.Views"
              xmlns:regions="http://www.codeplex.com/CompositeWPF"
+             xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
              mc:Ignorable="d" 
              Height="600" Width="1000">
     <Window.Resources>
@@ -52,12 +53,22 @@
             <ListBox ItemsSource="{Binding MenuItems}" x:Name="listBox" Width="200">
                 <ListBox.ItemTemplate>
                     <DataTemplate >
+                        <Grid>
                         <StackPanel Orientation="Horizontal">
                             <Image Source="{Binding Image}" Height="25" Width="25" Margin="0,0,10,0"></Image>
                             <TextBlock x:Name="menuTextBlock" Text="{Binding Text}" Height="30"></TextBlock>
+                           
                         </StackPanel>
+                            <i:Interaction.Triggers>
+                                <i:EventTrigger EventName="MouseDown">
+                                    <i:InvokeCommandAction Command="{Binding MenuCommand}"/>
+                                </i:EventTrigger>
+                            </i:Interaction.Triggers>
+                        </Grid>
+
                     </DataTemplate>
                 </ListBox.ItemTemplate>
+                
             </ListBox>
             <Button x:Name="menuButton" HorizontalAlignment="Left" Height="30" 
             	    Margin="3,2,0,0" VerticalAlignment="Top" Width="30" RenderTransformOrigin="0.5,0.5" 
