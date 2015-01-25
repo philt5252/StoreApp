@@ -1,4 +1,5 @@
-using System;
+﻿using System;
+using System.Linq;
 using System.Reflection;
 using Autofac;
 using StoreApp.Core.Controllers;
@@ -33,7 +34,14 @@ namespace StoreApp.Core.Autofac
 
                 if (type.Namespace.Contains("ViewModels") || type.Namespace.Contains("Models"))
                 {
-                    builder.RegisterType(type).As(type.GetInterfaces()[0]);
+
+                    var interfaceType = type.GetInterfaces().FirstOrDefault(i => i.Name == "I" + type.Name);
+
+                    if (interfaceType == null)
+                        interfaceType = type.GetInterfaces()[0];
+
+                    builder.RegisterType(type).As(interfaceType);
+
                 }
             }
         }

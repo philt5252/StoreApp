@@ -9,11 +9,12 @@ namespace StoreApp.Core.ViewModels
 {
     public class BookEditViewModel : ViewModelBase, IBookEditViewModel
     {
-        private readonly IBook book;
         private readonly IBooksController booksController;
         private int id;
         private string name;
         private double price;
+
+        public IBook Book { get; protected set; }
 
         public int Id
         {
@@ -43,7 +44,7 @@ namespace StoreApp.Core.ViewModels
 
         public BookEditViewModel(IBook book, IBooksController booksController)
         {
-            this.book = book;
+            Book = book;
             this.booksController = booksController;
 
             SaveCommand = new DelegateCommand(ExecuteSaveCommand);
@@ -57,16 +58,16 @@ namespace StoreApp.Core.ViewModels
 
         protected virtual void ExecuteSaveCommand()
         {
-            book.Name = Name;
-            book.Price = Price;
+            Book.Name = Name;
+            Book.Price = Price;
 
-            booksController.Save(book);
+            booksController.Save(Book);
         }
 
         protected virtual void SetIsDirty()
         {
-            if (!book.Name.Equals(Name)
-                || !book.Price.Equals(Price))
+            if (!Book.Name.Equals(Name)
+                || !Book.Price.Equals(Price))
             {
                 IsDirty = false;
             }
@@ -75,6 +76,6 @@ namespace StoreApp.Core.ViewModels
             IsDirty = true;
         }
 
-        public IBook Book { get; private set; }
+       
     }
 }

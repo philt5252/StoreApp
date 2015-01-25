@@ -117,7 +117,7 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\StoreApp.Core.Autofac\StoreApp.Core.Autofac.csproj">
-      <Project>{2CED8331-561B-4B35-B4AC-37D2154EC981}</Project>
+      <Project>{2ced8331-561b-4b35-b4ac-37d2154ec981}</Project>
       <Name>StoreApp.Core.Autofac</Name>
     </ProjectReference>
     <ProjectReference Include="..\StoreApp.Core.DataAccess.Autofac\StoreApp.Core.DataAccess.Autofac.csproj">
