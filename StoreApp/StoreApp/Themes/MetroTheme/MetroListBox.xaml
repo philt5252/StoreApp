@@ -6,12 +6,17 @@
         <Setter Property="Background" Value="Transparent"></Setter>
         <Setter Property="BorderBrush" Value="Transparent"></Setter>
         <Setter Property="Foreground" Value="{DynamicResource ListBox_Foreground}"></Setter>
+        <Setter Property="MinWidth" Value="195"></Setter>
     </Style>
     
     <Style TargetType="{x:Type ListBoxItem}">
         <Setter Property="Height" Value="50"></Setter>
         <Setter Property="Padding" Value="15,20,15,20"></Setter>
         <Setter Property="FontSize" Value="19"></Setter>
+        <Setter Property="HorizontalContentAlignment" Value="Right"></Setter>
+        <Setter Property="Width" Value="{Binding MinWidth, 
+              RelativeSource={RelativeSource Mode=FindAncestor, 
+                                 AncestorType={x:Type ListBox }}}"></Setter>
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="ListBoxItem">
@@ -25,7 +30,7 @@
                                 <RowDefinition Height=".95*"></RowDefinition>
                                 <RowDefinition Height=".05*"></RowDefinition>
                             </Grid.RowDefinitions>
-                            <ContentPresenter Margin="10,0,10,0" Grid.Row="0"  VerticalAlignment="Center" HorizontalAlignment="Left"  />
+                            <ContentPresenter Margin="10,0,10,0" Grid.Row="0"  />
                         </Grid>
                         <Polygon x:Name="triangle" Opacity="0" Grid.Column="1" Points="0,0 12,25, 0,50" Stroke="{DynamicResource ListBoxItem_BackgroundPressed}" Fill="{DynamicResource ListBoxItem_BackgroundPressed}" />
                     </Grid>

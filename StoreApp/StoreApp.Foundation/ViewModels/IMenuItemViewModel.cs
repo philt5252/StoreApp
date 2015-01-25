@@ -9,6 +9,7 @@ namespace StoreApp.Foundation.ViewModels
         string Text { get; }
         ICommand MenuCommand { get; }
         string NewText { get; }
+        BitmapImage Image { get; }
     }
 
 

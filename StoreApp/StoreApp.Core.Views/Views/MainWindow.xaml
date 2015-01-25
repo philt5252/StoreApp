@@ -11,18 +11,25 @@
 
         <Storyboard x:Key="MinimizeMenu">
             <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(FrameworkElement.Width)" Storyboard.TargetName="listBox">
-                <EasingDoubleKeyFrame KeyTime="0:0:1" Value="50"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:1" Value="60"/>
             </DoubleAnimationUsingKeyFrames>
-            <StringAnimationUsingKeyFrames SpeedRatio="2" Storyboard.TargetProperty="(ItemsControl.DisplayMemberPath)" Storyboard.TargetName="listBox">
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(FrameworkElement.MinWidth)" Storyboard.TargetName="listBox">
+                <EasingDoubleKeyFrame KeyTime="0:0:1" Value="55"/>
+            </DoubleAnimationUsingKeyFrames>
+
+            <!--<StringAnimationUsingKeyFrames SpeedRatio="2" Storyboard.TargetProperty="(ItemsControl.DisplayMemberPath)" Storyboard.TargetName="listBox">
                 <DiscreteStringKeyFrame KeyTime="0:0:1" Value="NewText"/>
-            </StringAnimationUsingKeyFrames>
+            </StringAnimationUsingKeyFrames>-->
         </Storyboard>
         <Storyboard x:Key="MaximizeMenu">
-            <StringAnimationUsingKeyFrames SpeedRatio="4" Storyboard.TargetProperty="(ItemsControl.DisplayMemberPath)" Storyboard.TargetName="listBox">
+            <!--<StringAnimationUsingKeyFrames SpeedRatio="4" Storyboard.TargetProperty="(ItemsControl.DisplayMemberPath)" Storyboard.TargetName="listBox">
                 <DiscreteStringKeyFrame KeyTime="0:0:1" Value="Text"/>
-            </StringAnimationUsingKeyFrames>
+            </StringAnimationUsingKeyFrames>-->
             <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(FrameworkElement.Width)" Storyboard.TargetName="listBox">
                 <EasingDoubleKeyFrame KeyTime="0:0:1" Value="200"/>
+            </DoubleAnimationUsingKeyFrames>
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(FrameworkElement.MinWidth)" Storyboard.TargetName="listBox">
+                <EasingDoubleKeyFrame KeyTime="0:0:1" Value="195"/>
             </DoubleAnimationUsingKeyFrames>
         </Storyboard>
 
@@ -42,7 +49,15 @@
         </Grid.RowDefinitions>
         <ContentPresenter Grid.Row="1"  ContentTemplate="{StaticResource TileImageBackground}" Opacity=".7" />
         <StackPanel Orientation="Horizontal" Grid.Column="0" Grid.Row="1">
-            <ListBox ItemsSource="{Binding MenuItems}" DisplayMemberPath="Text" x:Name="listBox" Width="200">
+            <ListBox ItemsSource="{Binding MenuItems}" x:Name="listBox" Width="200">
+                <ListBox.ItemTemplate>
+                    <DataTemplate >
+                        <StackPanel Orientation="Horizontal">
+                            <Image Source="{Binding Image}" Height="25" Width="25" Margin="0,0,10,0"></Image>
+                            <TextBlock x:Name="menuTextBlock" Text="{Binding Text}" Height="30"></TextBlock>
+                        </StackPanel>
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
             </ListBox>
             <Button x:Name="menuButton" HorizontalAlignment="Left" Height="30" 
             	    Margin="3,2,0,0" VerticalAlignment="Top" Width="30" RenderTransformOrigin="0.5,0.5" 

@@ -51,6 +51,7 @@ namespace StoreApp.Core.Views.Views
                 Storyboard storyBoard = (Storyboard)this.Resources["MinimizeMenu"];
                 storyBoard.Begin();
                 menuShowing = false;
+
             }
             else
             {

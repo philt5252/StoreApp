@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
+using System.Windows.Media.Imaging;
 using Microsoft.Practices.Prism.Commands;
 using StoreApp.Foundation.ViewModels;
 
@@ -15,6 +16,8 @@ namespace StoreApp.Core.ViewModels.MenuItems
         public ICommand MenuCommand { get; protected set; }
 
         public String NewText { get { return "G"; }}
+
+        public BitmapImage Image { get { return new BitmapImage(new Uri("Images/menu.png", UriKind.Relative)); } }
 
         public GameMenuItemViewModel()
         {

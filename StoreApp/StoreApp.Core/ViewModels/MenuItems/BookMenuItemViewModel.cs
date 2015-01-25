@@ -12,6 +12,7 @@ namespace StoreApp.Core.ViewModels.MenuItems
         public ICommand MenuCommand { get; protected set; }
 
         public String NewText { get { return "B"; }}
+        public BitmapImage Image { get { return new BitmapImage(new Uri("Images/menu.png", UriKind.Relative)); } }
 
         public BookMenuItemViewModel()
         {
