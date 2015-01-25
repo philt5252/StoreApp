@@ -31,8 +31,6 @@
     </Window.Resources>
 
     <Grid Background="{DynamicResource Grid_Background}" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" >
-
-
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*"></ColumnDefinition>
         </Grid.ColumnDefinitions>
@@ -53,6 +51,21 @@
                 </Button.Content>
             </Button>
         </StackPanel>
+        <Border BorderBrush="#99747474" BorderThickness="5" CornerRadius="10"  HorizontalAlignment="Left" 
+                Height="207" Margin="741,40,0,0" Grid.Row="1" VerticalAlignment="Top" Width="201" Background="#99747474">
+        </Border>
+
+        <Border BorderBrush="#99747474" BorderThickness="5" CornerRadius="10"  HorizontalAlignment="Left" 
+                Height="152" Margin="511,272,0,0" Grid.Row="1" VerticalAlignment="Top" Width="320" Background="#99747474">
+        </Border>
+
+
+        <Border BorderBrush="#99747474" BorderThickness="5" CornerRadius="10"  HorizontalAlignment="Left" 
+                Height="106" Margin="511,40,0,0" Grid.Row="1" VerticalAlignment="Top" Width="168" Background="#99747474">
+        </Border>
+        <Border BorderBrush="#99747474" BorderThickness="5" CornerRadius="10"  HorizontalAlignment="Left" 
+        	Height="452" Margin="266,40,0,0" Grid.Row="1" VerticalAlignment="Top" Width="168" Background="#99747474"/>
+
 
     </Grid>
 </Window>
