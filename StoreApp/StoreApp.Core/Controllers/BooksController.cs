@@ -1,4 +1,5 @@
-﻿using StoreApp.Foundation.Controllers;
+﻿using Microsoft.Practices.Prism.Regions;
+using StoreApp.Foundation.Controllers;
 using StoreApp.Foundation.DataAccess;
 using StoreApp.Foundation.Factories.Models;
 using StoreApp.Foundation.Factories.ViewModels;
@@ -11,11 +12,15 @@ namespace StoreApp.Core.Controllers
     {
         private readonly IBooksRepository booksRepository;
         private readonly IBookListingViewModelFactory bookListingViewModelFactory;
+        private readonly IRegionManager regionManager;
 
-        public BooksController(IBooksRepository booksRepository, IBookListingViewModelFactory bookListingViewModelFactory)
+        public BooksController(IBooksRepository booksRepository, 
+            IBookListingViewModelFactory bookListingViewModelFactory,
+            IRegionManager regionManager)
         {
             this.booksRepository = booksRepository;
             this.bookListingViewModelFactory = bookListingViewModelFactory;
+            this.regionManager = regionManager;
         }
 
         public void Listing()
@@ -23,6 +28,11 @@ namespace StoreApp.Core.Controllers
             var books = booksRepository.All();
 
             var bookListingViewModel = bookListingViewModelFactory.Create(books);
+        }
+
+        public void Save(IBook book)
+        {
+            booksRepository.Save(book);
         }
     }
 }

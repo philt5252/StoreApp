@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Xml.Linq;
 using StoreApp.Foundation.DataAccess;
 using StoreApp.Foundation.Factories.Models;
 using StoreApp.Foundation.Models;
@@ -29,6 +30,17 @@ namespace StoreApp.Core.DataAccess
         public IBook[] All()
         {
             return books.ToArray();
+        }
+
+        public void Save(IBook book)
+        {
+            if (!books.Contains(book))
+                books.Add(book);
+        }
+
+        public void Delete(IBook book)
+        {
+            books.Remove(book);
         }
     }
 }
