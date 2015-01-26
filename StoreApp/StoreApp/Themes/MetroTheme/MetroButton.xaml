@@ -28,25 +28,32 @@
         </Setter>
     </Style>
 
-    <Style x:Key="HoverButtonStyle" TargetType="Button">
+    <Style x:Key="HoverButtonStyle"  TargetType="Button">
         <Setter Property="Background" Value="Transparent"></Setter>
         <Setter Property="Foreground" Value="{DynamicResource HoverButton_Foreground}"></Setter>
         <Setter Property="BorderBrush" Value="Transparent"></Setter>
-        <Setter Property="Opacity" Value="0"></Setter>
+        <Setter Property="Opacity" Value="1"></Setter>
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="Button">
                     <Border x:Name="border" CornerRadius="2" Background="{TemplateBinding Background}"
                                 BorderThickness="0">
-                        <ContentPresenter x:Name="textBlock" Content="{TemplateBinding Content}" 
+
+                        <Button x:Name="contentButton" Height="50" Width="50" Opacity="0" 
+                                Background="Transparent" Command="{TemplateBinding Command}">
+                            <Button.Content>
+                                <ContentPresenter x:Name="content" Content="{TemplateBinding Content}" 
                                    HorizontalAlignment="Center" VerticalAlignment="Center"></ContentPresenter>
+                            </Button.Content>
+                        </Button>
+
                     </Border>
                     <ControlTemplate.Triggers>
-                        <Trigger Property="Button.IsMouseOver" Value="True">
-                            <Setter Property="Opacity" Value=".5"/>
+                        <Trigger Property="Button.IsMouseOver" Value="True" SourceName="border">
+                            <Setter TargetName="contentButton" Property="Opacity" Value=".5"/>
                         </Trigger>
-                        <Trigger Property="Button.IsPressed" Value="True">
-                            <Setter Property="Opacity"  Value="1"/>
+                        <Trigger Property="Button.IsPressed" Value="True" SourceName="contentButton">
+                            <Setter TargetName="contentButton" Property="Opacity"  Value="1"/>
                         </Trigger>
                     </ControlTemplate.Triggers>
                 </ControlTemplate>
