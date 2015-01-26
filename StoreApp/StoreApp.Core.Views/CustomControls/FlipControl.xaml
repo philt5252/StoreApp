@@ -15,7 +15,7 @@
        active. -->
         <Viewport3D Grid.Column="0" x:Name="vp3D" Visibility="Hidden">
             <Viewport3D.Camera>
-                <PerspectiveCamera x:Name="camera" Position="0,0,0.5" LookDirection="0,0,-1" FieldOfView="90" />
+                <PerspectiveCamera x:Name="camera" Position="0,0,0.5" LookDirection="0,0,-1" FieldOfView="120" />
             </Viewport3D.Camera>
 
             <Viewport3D.Children>
@@ -23,7 +23,7 @@
                 <ModelVisual3D>
                     <ModelVisual3D.Content>
                         <Model3DGroup>
-                            <DirectionalLight Color="#444" Direction="0,0,1" />
+                            <DirectionalLight Color="#444" Direction="0,0,-1" />
                             <!--was negative 1-->
                             <AmbientLight Color="#BBB" />
                         </Model3DGroup>
@@ -61,7 +61,7 @@
                                             <VisualBrush.RelativeTransform>
                                                 <!-- By default, this would come out backwards because we're on the
                                    back on the shape. Flip it to make it right. -->
-                                                <ScaleTransform ScaleY="-1" CenterY="0.5" />
+                                                <ScaleTransform ScaleY="-.5" CenterY="0.5" />
                                             </VisualBrush.RelativeTransform>
                                         </VisualBrush>
                                     </DiffuseMaterial.Brush>
@@ -96,7 +96,7 @@
        has that effect, even a transparent one. -->
             <Border x:Name="frontHost" Background="Transparent">
                 <Border.Triggers>
-                    <EventTrigger RoutedEvent="Button.Click">
+                    <EventTrigger RoutedEvent="TextBlock.MouseDown">
                         <BeginStoryboard>
                             <Storyboard>
                                 <!-- Make the Viewport3D visible only for the duration of the rotation. -->
@@ -160,7 +160,7 @@
         <Border x:Name="backWrapper" Grid.Column="0"  Visibility="Hidden" Opacity="0">
             <Border x:Name="backHost" Background="Transparent">
                 <Border.Triggers>
-                    <EventTrigger RoutedEvent="Button.Click">
+                    <EventTrigger RoutedEvent="Grid.MouseDown">
                         <BeginStoryboard>
                             <Storyboard>
                                 <ObjectAnimationUsingKeyFrames
@@ -200,7 +200,7 @@
                         </BeginStoryboard>
                     </EventTrigger>
                 </Border.Triggers>
-                <ContentPresenter Content="{Binding ElementName=myControl, Path=BackSource}" ContentTemplate="{Binding ElementName=myControl, Path=BackDataTemplate}" />
+                <ContentPresenter Content="{Binding}" ContentTemplate="{Binding ElementName=myControl, Path=BackDataTemplate}" />
             </Border>
         </Border>
 

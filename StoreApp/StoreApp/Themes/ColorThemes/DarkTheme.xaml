@@ -46,15 +46,15 @@ xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
     <SolidColorBrush x:Key="MenuItem_BorderPressed" Color="#00FFFFFF"/>
 
     <!--TextBox-->
-    <SolidColorBrush x:Key="TextBox_Background" Color="#FF494949"/>
-    <SolidColorBrush x:Key="TextBox_Border" Color="#FF636363"/>
+    <SolidColorBrush x:Key="TextBox_Background" Color="#99272727"/>
+    <SolidColorBrush x:Key="TextBox_Border" Color="#E53C3C3C"/>
     <SolidColorBrush x:Key="TextBox_BorderHover" Color="#FFFFFFFF"/>
     <SolidColorBrush x:Key="TextBox_ForegroundHover" Color="#00FFFFFF"/>
-    <SolidColorBrush x:Key="TextBox_Foreground" Color="#FF6E96AA"/>
+    <SolidColorBrush x:Key="TextBox_Foreground" Color="White"/>
     <SolidColorBrush x:Key="TextBox_BackgroundPressed" Color="#FF263451"/>
-    <SolidColorBrush x:Key="TextBox_ForegroundPressed" Color="#00FFFFFF"/>
+    <SolidColorBrush x:Key="TextBox_ForegroundPressed" Color="White"/>
     <SolidColorBrush x:Key="TextBox_BackgroundHover" Color="#FF263451"/>
-    <SolidColorBrush x:Key="TextBox_BorderPressed" Color="#00FFFFFF"/>
+    <SolidColorBrush x:Key="TextBox_BorderPressed" Color="White"/>
 
     <!--Button-->
     <SolidColorBrush x:Key="Button_Background" Color="#E50A0A0A"/>
