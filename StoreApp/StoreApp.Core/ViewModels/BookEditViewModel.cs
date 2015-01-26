@@ -45,6 +45,11 @@ namespace StoreApp.Core.ViewModels
         public BookEditViewModel(IBook book, IBooksController booksController)
         {
             Book = book;
+
+            Name = Book.Name;
+            Price = Book.Price;
+            Id = Book.Id;
+
             this.booksController = booksController;
 
             SaveCommand = new DelegateCommand(ExecuteSaveCommand);
