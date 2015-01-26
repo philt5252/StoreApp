@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Drawing;
 using System.Windows.Input;
 using Microsoft.Practices.Prism.Commands;
 using StoreApp.Foundation.Controllers;
@@ -13,6 +14,8 @@ namespace StoreApp.Core.ViewModels
         private int id;
         private string name;
         private double price;
+        private string description;
+        private Bitmap image;
 
         public IBook Book { get; protected set; }
 
@@ -33,10 +36,37 @@ namespace StoreApp.Core.ViewModels
             }
         }
 
+        public Bitmap Image
+        {
+            get { return image; }
+            set
+            {
+                image = value;
+
+                SetIsDirty();
+            }
+        }
+
+        public string Description
+        {
+            get { return description; }
+            set
+            {
+                description = value;
+
+                SetIsDirty();
+            }
+        }
+
         public double Price
         {
             get { return price; }
-            set { price = value; }
+            set
+            {
+                price = value;
+
+                SetIsDirty();
+            }
         }
 
         public ICommand SaveCommand { get; protected set; }
@@ -49,6 +79,7 @@ namespace StoreApp.Core.ViewModels
             Name = Book.Name;
             Price = Book.Price;
             Id = Book.Id;
+            Image = Book.Image;
 
             this.booksController = booksController;
 
@@ -72,7 +103,9 @@ namespace StoreApp.Core.ViewModels
         protected virtual void SetIsDirty()
         {
             if (!Book.Name.Equals(Name)
-                || !Book.Price.Equals(Price))
+                || !Book.Price.Equals(Price)
+                || !Book.Description.Equals(Description)
+                || !Book.Image.Equals(Image))
             {
                 IsDirty = false;
             }

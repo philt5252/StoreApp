@@ -20,6 +20,7 @@ namespace StoreApp.Core.DataAccess
 
                 game.Id = i;
                 game.Name = "Book" + i;
+                game.Description = "Description!!!!" + i;
                 game.Price = i;
 
                 games.Add(game);
