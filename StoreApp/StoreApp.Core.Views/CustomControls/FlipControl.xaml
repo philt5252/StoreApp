@@ -15,7 +15,7 @@
        active. -->
         <Viewport3D Grid.Column="0" x:Name="vp3D" Visibility="Hidden">
             <Viewport3D.Camera>
-                <PerspectiveCamera x:Name="camera" Position="0,0,0.5" LookDirection="0,0,-1" FieldOfView="120" />
+                <PerspectiveCamera x:Name="camera" Position="0,0,0.5" LookDirection="0,0,-1" FieldOfView="140" />
             </Viewport3D.Camera>
 
             <Viewport3D.Children>
@@ -61,7 +61,7 @@
                                             <VisualBrush.RelativeTransform>
                                                 <!-- By default, this would come out backwards because we're on the
                                    back on the shape. Flip it to make it right. -->
-                                                <ScaleTransform ScaleY="-.5" CenterY="0.5" />
+                                                <ScaleTransform ScaleX="-1" CenterX="0.5" />
                                             </VisualBrush.RelativeTransform>
                                         </VisualBrush>
                                     </DiffuseMaterial.Brush>
@@ -72,7 +72,7 @@
                             <GeometryModel3D.Transform>
                                 <RotateTransform3D>
                                     <RotateTransform3D.Rotation>
-                                        <AxisAngleRotation3D x:Name="rotate" Axis="-3,0,0" Angle="0" />
+                                        <AxisAngleRotation3D x:Name="rotate" Axis="0,-3,0" Angle="0" />
                                     </RotateTransform3D.Rotation>
                                 </RotateTransform3D>
                             </GeometryModel3D.Transform>
@@ -154,7 +154,7 @@
                         </BeginStoryboard>
                     </EventTrigger>
                 </Border.Triggers>
-                <ContentPresenter  Content="{Binding ElementName=myControl, Path=FrontSource}" ContentTemplate="{Binding ElementName=myControl, Path=FrontDataTemplate}" />
+                <ContentPresenter  Content="{Binding}" ContentTemplate="{Binding ElementName=myControl, Path=FrontDataTemplate}" />
             </Border>
         </Border>
         <Border x:Name="backWrapper" Grid.Column="0"  Visibility="Hidden" Opacity="0">

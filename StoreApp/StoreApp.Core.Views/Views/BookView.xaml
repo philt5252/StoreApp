@@ -39,8 +39,8 @@
                                         </Grid.RowDefinitions>
                                         <Image Grid.Column="0" Grid.RowSpan="2" Source="Images/menu.png"></Image>
                                         <TextBlock Grid.Column="1" Grid.Row="0" Text="{Binding Name}" Foreground="White" FontSize="15"></TextBlock>
-                                        <TextBlock Grid.Column="1" Grid.Row="1" Text="This is the Description" Foreground="White"></TextBlock>
-                                        <TextBlock Grid.Column="1" Grid.Row="2" Text="$100.00"  Foreground="White"></TextBlock>
+                                        <TextBlock Grid.Column="1" Grid.Row="1" Text="{Binding Description}" Foreground="White"></TextBlock>
+                                        <TextBlock Grid.Column="1" Grid.Row="2" Text="{Binding Price}"  Foreground="White"></TextBlock>
                                     </Grid>
                                 </Border>
                             </DataTemplate>
@@ -66,9 +66,9 @@
                                                 </Border>
                                             </Button.Content>
                                         </Button>
-                                        <TextBox Margin="2" Grid.Column="1" Grid.Row="0" Text="Name" FontSize="15"></TextBox>
-                                        <TextBox Margin="2" Grid.Column="1" Grid.Row="1" Text="This is the Description"></TextBox>
-                                        <TextBox Margin="2" Grid.Column="1" Grid.Row="2" Text="$100.00" ></TextBox>
+                                        <TextBox Margin="2" Grid.Column="1" Grid.Row="0" Text="{Binding Name}" FontSize="15"></TextBox>
+                                        <TextBox Margin="2" Grid.Column="1" Grid.Row="1" Text="{Binding Description}"></TextBox>
+                                        <TextBox Margin="2" Grid.Column="1" Grid.Row="2" Text="{Binding Price}" ></TextBox>
                                     </Grid>
                                 </Border>
                             </DataTemplate>
