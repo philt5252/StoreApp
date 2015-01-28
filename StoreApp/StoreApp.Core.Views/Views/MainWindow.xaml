@@ -82,7 +82,7 @@
                 <ItemsControl ItemsSource="{Binding SubMenuItems}" >
                     <ItemsControl.ItemTemplate>
                       <DataTemplate>
-                            <Button HorizontalAlignment="Left" Height="30" 
+                            <Button Content="{Binding Text}" HorizontalAlignment="Left" Height="30" 
             	            VerticalAlignment="Top" Width="30" RenderTransformOrigin="0.5,0.5" Command="{Binding MenuCommand}">
                             </Button>
                       </DataTemplate>
