@@ -7,19 +7,21 @@ using System.Windows.Data;
 using System.Windows.Input;
 using System.Windows.Media.Imaging;
 using Microsoft.Practices.Prism.Commands;
+using Microsoft.Practices.Prism.Events;
 using StoreApp.Foundation.ViewModels;
 
 namespace StoreApp.Core.ViewModels.MenuItems
 {
-    public class EmployeeMenuItemViewModel : IMenuItemViewModel
+    public class EmployeeMenuItemViewModel : MenuItemViewModel
     {
-        public string Text { get { return "Employee"; } }
-        public ICommand MenuCommand { get; protected set; }
+        public override string Text { get { return "Employee"; } }
+        public override ICommand MenuCommand { get; protected set; }
 
-        public String NewText { get { return ""; }}
+        public override String NewText { get { return ""; } }
 
-        public BitmapImage Image { get { return new BitmapImage(new Uri("Images/menu.png", UriKind.Relative)); } }
-        public EmployeeMenuItemViewModel()
+        public override BitmapImage Image { get { return new BitmapImage(new Uri("Images/menu.png", UriKind.Relative)); } }
+        public EmployeeMenuItemViewModel(IEventAggregator eventAggregator)
+            :base(eventAggregator)
         {
             MenuCommand = new DelegateCommand(ExecuteMenuCommand);
         }

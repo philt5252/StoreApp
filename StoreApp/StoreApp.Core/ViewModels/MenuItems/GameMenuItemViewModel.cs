@@ -6,27 +6,32 @@ using System.Threading.Tasks;
 using System.Windows.Input;
 using System.Windows.Media.Imaging;
 using Microsoft.Practices.Prism.Commands;
+using Microsoft.Practices.Prism.Events;
+using StoreApp.Foundation.Controllers;
 using StoreApp.Foundation.ViewModels;
 
 namespace StoreApp.Core.ViewModels.MenuItems
 {
-    public class GameMenuItemViewModel : IMenuItemViewModel
+    public class GameMenuItemViewModel : MenuItemViewModel
     {
-        public string Text { get { return "Games"; } }
-        public ICommand MenuCommand { get; protected set; }
+        private readonly IBooksController booksController;
+        public override string Text { get { return "Games"; } }
+        public override ICommand MenuCommand { get; protected set; }
 
-        public String NewText { get { return "G"; }}
+        public override String NewText { get { return "G"; } }
 
-        public BitmapImage Image { get { return new BitmapImage(new Uri("Images/menu.png", UriKind.Relative)); } }
+        public override BitmapImage Image { get { return new BitmapImage(new Uri("Images/menu.png", UriKind.Relative)); } }
 
-        public GameMenuItemViewModel()
+        public GameMenuItemViewModel(IEventAggregator eventAggregator, IBooksController booksController)
+            :base(eventAggregator)
         {
+            this.booksController = booksController;
             MenuCommand = new DelegateCommand(ExecuteMenuCommand);
         }
 
         private void ExecuteMenuCommand()
         {
-            throw new NotImplementedException();
+            booksController.Listing();
         }
     }
 }
