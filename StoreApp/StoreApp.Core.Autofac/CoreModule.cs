@@ -37,11 +37,19 @@ namespace StoreApp.Core.Autofac
 
                     var interfaceType = type.GetInterfaces().FirstOrDefault(i => i.Name == "I" + type.Name);
 
+                    if (type.Name == "MenuItemViewModel")
+                    {
+                        builder.RegisterType(type).AsSelf();
+                        continue;
+                    }
+
                     if (interfaceType == null)
                         interfaceType = type.GetInterfaces()[0];
 
                     if (type.GetInterfaces().Any(i => i.Name == "IMenuItemViewModel"))
                         interfaceType = type.GetInterfaces().First(i => i.Name == "IMenuItemViewModel");
+
+                    
 
                     builder.RegisterType(type).As(interfaceType);
 
