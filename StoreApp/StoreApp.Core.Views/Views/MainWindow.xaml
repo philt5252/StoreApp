@@ -79,7 +79,7 @@
                         <Image Source="Images/menu.png" Width="20" Height="20"/>
                     </Button.Content>
                 </Button>
-                <ItemsControl ItemsSource="{Binding SubMenuItem, UpdateSourceTrigger=PropertyChanged}" >
+                <ItemsControl ItemsSource="{Binding SubMenuItems, UpdateSourceTrigger=PropertyChanged}" >
                     <ItemsControl.ItemTemplate>
                       <DataTemplate>
                             <Button Content="{Binding Text}" HorizontalAlignment="Left" Height="30" 
