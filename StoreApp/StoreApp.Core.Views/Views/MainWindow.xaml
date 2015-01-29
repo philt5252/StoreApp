@@ -76,15 +76,14 @@
             	     VerticalAlignment="Top" Width="30" RenderTransformOrigin="0.5,0.5" 
                     Click="MenuButton_OnClick">
                     <Button.Content>
-                        <Image Source="Images/menu.png" Width="20" Height="20"/>
+                        <Image Source="Images/menu.png" Width="20" Height="20" OpacityMask="#4CD2ECFB"/>
                     </Button.Content>
                 </Button>
                 <ItemsControl ItemsSource="{Binding SubMenuItems, UpdateSourceTrigger=PropertyChanged}" >
                     <ItemsControl.ItemTemplate>
                       <DataTemplate>
                             <Button Content="{Binding Text}" HorizontalAlignment="Left" Height="30" 
-            	            VerticalAlignment="Top" Width="30" RenderTransformOrigin="0.5,0.5" Command="{Binding MenuCommand}">
-                            </Button>
+            	            VerticalAlignment="Top" Width="30" RenderTransformOrigin="0.5,0.5" Command="{Binding MenuCommand}"></Button>
                       </DataTemplate>
                     </ItemsControl.ItemTemplate>
                 </ItemsControl>
