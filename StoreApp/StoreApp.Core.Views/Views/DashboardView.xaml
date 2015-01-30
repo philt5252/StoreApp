@@ -5,9 +5,9 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:customControls="clr-namespace:StoreApp.Core.Views.CustomControls"
              mc:Ignorable="d" 
-             d:DesignHeight="300" d:DesignWidth="300">
+             d:DesignHeight="400" d:DesignWidth="600">
     <Grid >
-        <customControls:GridSystem x:Name="gridSystem" HorizontalAlignment="Left" VerticalAlignment="Top"/>
-        <CheckBox x:Name="editChk" Content="Edit" HorizontalAlignment="Left" Margin="608,10,0,0" VerticalAlignment="Top"  Click="editChk_Click"/>
+        <customControls:GridSystem x:Name="gridSystem" HorizontalAlignment="Left" Height="400" VerticalAlignment="Top" Width="600"/>
+        <CheckBox x:Name="editChk" Content="Edit" HorizontalAlignment="Left"  VerticalAlignment="Top"  Click="editChk_Click"/>
     </Grid>
 </UserControl>
