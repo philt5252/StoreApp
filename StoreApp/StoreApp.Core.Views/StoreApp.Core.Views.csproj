@@ -63,13 +63,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CustomControls\FlipControl.xaml.cs" />
-    <Compile Include="CustomControls\GridSystem.xaml.cs">
-      <DependentUpon>GridSystem.xaml</DependentUpon>
-    </Compile>
+    <Compile Include="CustomControls\GridSystem.xaml.cs" />
     <Compile Include="CustomControls\TileCanvas.cs" />
-    <Compile Include="CustomControls\WidgetHost.xaml.cs">
-      <DependentUpon>WidgetHost.xaml</DependentUpon>
-    </Compile>
+    <Compile Include="CustomControls\WidgetHost.xaml.cs" />
     <Compile Include="Factories\BookViewFactory.cs" />
     <Compile Include="Factories\DashboardViewFactory.cs" />
     <Compile Include="Factories\SampleWidgetViewFactory.cs" />
@@ -127,6 +123,10 @@
     <ProjectReference Include="..\StoreApp.Foundation.Views\StoreApp.Foundation.Views.csproj">
       <Project>{E628083F-3CC8-4331-AF6C-536B4857B64B}</Project>
       <Name>StoreApp.Foundation.Views</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\StoreApp.Foundation\StoreApp.Foundation.csproj">
+      <Project>{CC9B294B-B996-4AA9-9E88-BC31E37C9CB0}</Project>
+      <Name>StoreApp.Foundation</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Controls;
 using StoreApp.Core.Views.Views;
 using StoreApp.Foundation.Views.Factories;
 
@@ -18,7 +19,7 @@ namespace StoreApp.Core.Views.Factories
             this.createView = createView;
         }
 
-        public FrameworkElement Create()
+        public Control Create()
         {
             return createView();
         }

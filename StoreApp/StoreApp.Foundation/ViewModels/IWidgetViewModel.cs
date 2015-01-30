@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Drawing;
 using System.Windows;
+using System.Windows.Controls;
 
 namespace StoreApp.Foundation.ViewModels
 {
@@ -8,6 +9,6 @@ namespace StoreApp.Foundation.ViewModels
     {
         string WidgetName { get; }
         Bitmap Image { get; }
-        FrameworkElement CreateWidget();
+        Control CreateWidget();
     }
 }

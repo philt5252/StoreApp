@@ -1,5 +1,6 @@
 ﻿using System.Drawing;
 using System.Windows;
+using System.Windows.Controls;
 using StoreApp.Foundation.ViewModels;
 using StoreApp.Foundation.Views.Factories;
 
@@ -16,7 +17,7 @@ namespace StoreApp.Core.ViewModels
             this.sampleWidgetViewFactory = sampleWidgetViewFactory;
         }
 
-        public override FrameworkElement CreateWidget()
+        public override Control CreateWidget()
         {
             var widgetViewModel = CreateWidgetViewModel();
 

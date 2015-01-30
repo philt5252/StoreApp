@@ -14,8 +14,10 @@ using System.Windows.Media.Animation;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using DashboardTest;
 using Microsoft.Practices.Prism.Regions;
 using Microsoft.Practices.ServiceLocation;
+using StoreApp.Foundation.ViewModels;
 using StoreApp.Foundation.Views;
 
 namespace StoreApp.Core.Views.Views
@@ -28,6 +30,9 @@ namespace StoreApp.Core.Views.Views
         private Boolean menuShowing;
         private Boolean widgetShowing;
         private IRegionManager regionManager;
+
+        private bool isDragging = false;
+        private Point startPoint;
         public MainWindow()
         {
             
@@ -42,6 +47,46 @@ namespace StoreApp.Core.Views.Views
             Closing += OnClosing;
             menuShowing = true;
             widgetShowing = false;
+
+            WidgetListBox.PreviewMouseDown += sourceLbx_PreviewMouseDown;
+            WidgetListBox.PreviewMouseUp += sourceLbx_PreviewMouseUp;
+            WidgetListBox.PreviewMouseMove += sourceLbx_PreviewMouseMove;
+        }
+
+        void sourceLbx_PreviewMouseMove(object sender, MouseEventArgs e)
+        {
+            if (e.LeftButton == MouseButtonState.Pressed && !isDragging)
+            {
+                Point position = e.GetPosition(null);
+
+                if (Math.Abs(position.X - startPoint.X) > SystemParameters.MinimumHorizontalDragDistance ||
+                    Math.Abs(position.Y - startPoint.Y) > SystemParameters.MinimumVerticalDragDistance)
+                {
+                    StartDrag(e);
+
+                }
+            }
+        }
+
+        private void StartDrag(MouseEventArgs e)
+        {
+            isDragging = true;
+            WidgetHost host = new WidgetHost();
+            host.Child = (WidgetListBox.SelectedItem as IWidgetViewModel).CreateWidget();
+
+            DataObject data = new DataObject(host);
+            DragDropEffects de = DragDrop.DoDragDrop(WidgetListBox, data, DragDropEffects.Move);
+            isDragging = false;
+        }
+
+        void sourceLbx_PreviewMouseUp(object sender, MouseButtonEventArgs e)
+        {
+            isDragging = false;
+        }
+
+        void sourceLbx_PreviewMouseDown(object sender, MouseButtonEventArgs e)
+        {
+            startPoint = e.GetPosition(null);
         }
 
         private void OnClosing(object sender, CancelEventArgs cancelEventArgs)

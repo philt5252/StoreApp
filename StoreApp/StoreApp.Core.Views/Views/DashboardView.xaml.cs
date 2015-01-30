@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using DashboardTest;
 
 namespace StoreApp.Core.Views.Views
 {
@@ -20,6 +21,7 @@ namespace StoreApp.Core.Views.Views
     /// </summary>
     public partial class DashboardView : UserControl
     {
+
         public DashboardView()
         {
             InitializeComponent();
