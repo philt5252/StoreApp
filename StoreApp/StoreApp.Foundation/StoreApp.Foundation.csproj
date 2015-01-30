@@ -61,6 +61,7 @@
   <ItemGroup>
     <Compile Include="Controllers\IAppController.cs" />
     <Compile Include="Controllers\IBooksController.cs" />
+    <Compile Include="Controllers\IDashboardController.cs" />
     <Compile Include="Controllers\IGamesController.cs" />
     <Compile Include="Events\UpdateSubMenuEvent.cs" />
     <Compile Include="Factories\Models\IBookFactory.cs" />
