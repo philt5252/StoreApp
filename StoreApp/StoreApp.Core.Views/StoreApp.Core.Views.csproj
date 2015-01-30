@@ -63,7 +63,13 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CustomControls\FlipControl.xaml.cs" />
+    <Compile Include="CustomControls\GridSystem.xaml.cs">
+      <DependentUpon>GridSystem.xaml</DependentUpon>
+    </Compile>
     <Compile Include="CustomControls\TileCanvas.cs" />
+    <Compile Include="CustomControls\WidgetHost.xaml.cs">
+      <DependentUpon>WidgetHost.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Factories\BookViewFactory.cs" />
     <Compile Include="Factories\DashboardViewFactory.cs" />
     <Compile Include="Factories\SampleWidgetViewFactory.cs" />
@@ -84,6 +90,14 @@
   </ItemGroup>
   <ItemGroup>
     <Page Include="CustomControls\FlipControl.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="CustomControls\GridSystem.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="CustomControls\WidgetHost.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
