@@ -37,10 +37,10 @@
         </Storyboard>
         <Storyboard x:Key="MaximizeWidgetMenu">
             <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(FrameworkElement.Width)" Storyboard.TargetName="WidgetListBox">
-                <EasingDoubleKeyFrame KeyTime="0:0:1" Value="200"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:1" Value="210"/>
             </DoubleAnimationUsingKeyFrames>
             <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(FrameworkElement.MinWidth)" Storyboard.TargetName="WidgetListBox">
-                <EasingDoubleKeyFrame KeyTime="0:0:1" Value="200"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:1" Value="210"/>
             </DoubleAnimationUsingKeyFrames>
         </Storyboard>
 
@@ -50,7 +50,7 @@
         </DataTemplate>
     </Window.Resources>
 
-    <Grid Background="{DynamicResource Grid_Background}" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" >
+    <Grid x:Name="mainGrid" Background="{DynamicResource Grid_Background}" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" >
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*"></ColumnDefinition>
         </Grid.ColumnDefinitions>
@@ -60,9 +60,9 @@
             <RowDefinition Height="20"></RowDefinition>
         </Grid.RowDefinitions>
         <ContentPresenter Grid.Row="1"  ContentTemplate="{StaticResource TileImageBackground}" Opacity=".7" />
-        <StackPanel Orientation="Horizontal" Grid.Column="0" Grid.Row="1">
+        <StackPanel x:Name="MainStackPanel" Orientation="Horizontal" Grid.Column="0" Grid.Row="1">
             <StackPanel Orientation="Horizontal">
-                <ListBox ItemsSource="{Binding MenuItems}" x:Name="MenuListBox" Width="200">
+                <ListBox Background="Transparent" ItemsSource="{Binding MenuItems}" x:Name="MenuListBox" Width="200">
                     <ListBox.ItemTemplate>
                         <DataTemplate>
                             <Grid>
@@ -79,11 +79,8 @@
                         </DataTemplate>
                     </ListBox.ItemTemplate>
                 </ListBox>
-                <ListBox ScrollViewer.HorizontalScrollBarVisibility="Disabled" MinWidth="0"  x:Name ="WidgetListBox"  Width="0" Margin="-15, 0, 0, 0">
-                    <ListBoxItem >Item1</ListBoxItem>
-                    <ListBoxItem >Item2</ListBoxItem>
-                    <ListBoxItem >Item3</ListBoxItem>
-                    <ListBoxItem >Ite41</ListBoxItem>
+                <ListBox Background="#E50A0A0A" ScrollViewer.HorizontalScrollBarVisibility="Disabled" MinWidth="0"  
+                         ItemsSource="{Binding Widgets}" DisplayMemberPath="WidgetName" MaxHeight="{Binding Height, ElementName=MainStackPanel}" x:Name ="WidgetListBox"  Width="0" Margin="-13, 0, 0, 0">
                 </ListBox>
             </StackPanel>
             <StackPanel Margin="3,2,0,0" >

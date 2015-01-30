@@ -3,7 +3,7 @@
 	>
     
     <Style TargetType="{x:Type ListBox}">
-        <Setter Property="Background" Value="Transparent"></Setter>
+     <!--   <Setter Property="Background" Value="{TemplateBinding Background}"></Setter>-->
         <Setter Property="BorderBrush" Value="Transparent"></Setter>
         <Setter Property="Foreground" Value="{DynamicResource ListBox_Foreground}"></Setter>
         <Setter Property="MinWidth" Value="195"></Setter>
