@@ -26,6 +26,7 @@ namespace StoreApp.Core.Views.Views
     public partial class MainWindow : Window
     {
         private Boolean menuShowing;
+        private Boolean widgetShowing;
         private IRegionManager regionManager;
         public MainWindow()
         {
@@ -40,6 +41,7 @@ namespace StoreApp.Core.Views.Views
 
             Closing += OnClosing;
             menuShowing = true;
+            widgetShowing = false;
         }
 
         private void OnClosing(object sender, CancelEventArgs cancelEventArgs)
@@ -62,6 +64,34 @@ namespace StoreApp.Core.Views.Views
                 Storyboard storyBoard = (Storyboard)this.Resources["MaximizeMenu"];
                 storyBoard.Begin();
                 menuShowing = true;
+                if (widgetShowing)
+                {
+                    Storyboard storyBoard1 = (Storyboard)this.Resources["MinimizeWidgetMenu"];
+                    storyBoard1.Begin();
+                    widgetShowing = false;
+                }
+            }
+        }
+
+        private void WidgetButton_OnClick(object sender, RoutedEventArgs e)
+        {
+            if (widgetShowing)
+            {
+                Storyboard storyBoard = (Storyboard)this.Resources["MinimizeWidgetMenu"];
+                storyBoard.Begin();
+                widgetShowing = false;
+            }
+            else
+            {
+                Storyboard storyBoard = (Storyboard)this.Resources["MaximizeWidgetMenu"];
+                storyBoard.Begin();
+                widgetShowing = true;
+                if (menuShowing)
+                {
+                    Storyboard storyBoard1 = (Storyboard)this.Resources["MinimizeMenu"];
+                    storyBoard1.Begin();
+                    menuShowing = false;
+                }
             }
         }
     }

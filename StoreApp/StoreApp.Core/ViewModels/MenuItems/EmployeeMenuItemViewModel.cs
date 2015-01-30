@@ -28,7 +28,7 @@ namespace StoreApp.Core.ViewModels.MenuItems
 
         private void ExecuteMenuCommand()
         {
-            throw new NotImplementedException();
+         
         }
     }
 }

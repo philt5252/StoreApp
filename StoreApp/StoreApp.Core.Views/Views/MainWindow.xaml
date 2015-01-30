@@ -10,29 +10,40 @@
              Height="600" Width="1000">
     <Window.Resources>
 
+
         <Storyboard x:Key="MinimizeMenu">
-            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(FrameworkElement.Width)" Storyboard.TargetName="listBox">
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(FrameworkElement.Width)" Storyboard.TargetName="MenuListBox">
                 <EasingDoubleKeyFrame KeyTime="0:0:1" Value="60"/>
             </DoubleAnimationUsingKeyFrames>
-            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(FrameworkElement.MinWidth)" Storyboard.TargetName="listBox">
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(FrameworkElement.MinWidth)" Storyboard.TargetName="MenuListBox">
                 <EasingDoubleKeyFrame KeyTime="0:0:1" Value="55"/>
             </DoubleAnimationUsingKeyFrames>
-
-            <!--<StringAnimationUsingKeyFrames SpeedRatio="2" Storyboard.TargetProperty="(ItemsControl.DisplayMemberPath)" Storyboard.TargetName="listBox">
-                <DiscreteStringKeyFrame KeyTime="0:0:1" Value="NewText"/>
-            </StringAnimationUsingKeyFrames>-->
         </Storyboard>
         <Storyboard x:Key="MaximizeMenu">
-            <!--<StringAnimationUsingKeyFrames SpeedRatio="4" Storyboard.TargetProperty="(ItemsControl.DisplayMemberPath)" Storyboard.TargetName="listBox">
-                <DiscreteStringKeyFrame KeyTime="0:0:1" Value="Text"/>
-            </StringAnimationUsingKeyFrames>-->
-            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(FrameworkElement.Width)" Storyboard.TargetName="listBox">
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(FrameworkElement.Width)" Storyboard.TargetName="MenuListBox">
                 <EasingDoubleKeyFrame KeyTime="0:0:1" Value="200"/>
             </DoubleAnimationUsingKeyFrames>
-            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(FrameworkElement.MinWidth)" Storyboard.TargetName="listBox">
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(FrameworkElement.MinWidth)" Storyboard.TargetName="MenuListBox">
                 <EasingDoubleKeyFrame KeyTime="0:0:1" Value="195"/>
             </DoubleAnimationUsingKeyFrames>
         </Storyboard>
+        <Storyboard x:Key="MinimizeWidgetMenu">
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(FrameworkElement.Width)" Storyboard.TargetName="WidgetListBox">
+                <EasingDoubleKeyFrame KeyTime="0:0:1" Value="0"/>
+            </DoubleAnimationUsingKeyFrames>
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(FrameworkElement.MinWidth)" Storyboard.TargetName="WidgetListBox">
+                <EasingDoubleKeyFrame KeyTime="0:0:1" Value="0"/>
+            </DoubleAnimationUsingKeyFrames>
+        </Storyboard>
+        <Storyboard x:Key="MaximizeWidgetMenu">
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(FrameworkElement.Width)" Storyboard.TargetName="WidgetListBox">
+                <EasingDoubleKeyFrame KeyTime="0:0:1" Value="200"/>
+            </DoubleAnimationUsingKeyFrames>
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(FrameworkElement.MinWidth)" Storyboard.TargetName="WidgetListBox">
+                <EasingDoubleKeyFrame KeyTime="0:0:1" Value="200"/>
+            </DoubleAnimationUsingKeyFrames>
+        </Storyboard>
+
 
         <DataTemplate x:Key="TileImageBackground">
             <views:TileCanvas ImageSource="Images/dark_wood.png" />
@@ -50,27 +61,31 @@
         </Grid.RowDefinitions>
         <ContentPresenter Grid.Row="1"  ContentTemplate="{StaticResource TileImageBackground}" Opacity=".7" />
         <StackPanel Orientation="Horizontal" Grid.Column="0" Grid.Row="1">
-            <ListBox ItemsSource="{Binding MenuItems}" x:Name="listBox" Width="200">
-                <ListBox.ItemTemplate>
-                    <DataTemplate >
-                        <Grid>
-                            <StackPanel Orientation="Horizontal">
-                                <Image Source="{Binding Image}" Height="25" Width="25" Margin="0,0,10,0"></Image>
-                                <TextBlock x:Name="menuTextBlock" Text="{Binding Text}" Height="30"></TextBlock>
-
-                            </StackPanel>
-                            <i:Interaction.Triggers>
-                                <i:EventTrigger EventName="MouseDown">
-                                    <i:InvokeCommandAction Command="{Binding MenuCommand}"/>
-                                </i:EventTrigger>
-                            </i:Interaction.Triggers>
-                        </Grid>
-
-                    </DataTemplate>
-
-                </ListBox.ItemTemplate>
-
-            </ListBox>
+            <StackPanel Orientation="Horizontal">
+                <ListBox ItemsSource="{Binding MenuItems}" x:Name="MenuListBox" Width="200">
+                    <ListBox.ItemTemplate>
+                        <DataTemplate>
+                            <Grid>
+                                <StackPanel Orientation="Horizontal">
+                                    <Image Source="{Binding Image}" Height="25" Width="25" Margin="0,0,10,0"></Image>
+                                    <TextBlock x:Name="menuTextBlock" Text="{Binding Text}" Height="30"></TextBlock>
+                                </StackPanel>
+                                <i:Interaction.Triggers>
+                                    <i:EventTrigger EventName="MouseDown">
+                                        <i:InvokeCommandAction Command="{Binding MenuCommand}"/>
+                                    </i:EventTrigger>
+                                </i:Interaction.Triggers>
+                            </Grid>
+                        </DataTemplate>
+                    </ListBox.ItemTemplate>
+                </ListBox>
+                <ListBox ScrollViewer.HorizontalScrollBarVisibility="Disabled" MinWidth="0"  x:Name ="WidgetListBox"  Width="0" Margin="-15, 0, 0, 0">
+                    <ListBoxItem >Item1</ListBoxItem>
+                    <ListBoxItem >Item2</ListBoxItem>
+                    <ListBoxItem >Item3</ListBoxItem>
+                    <ListBoxItem >Ite41</ListBoxItem>
+                </ListBox>
+            </StackPanel>
             <StackPanel Margin="3,2,0,0" >
                 <Button x:Name="menuButton" HorizontalAlignment="Left" Height="30" 
             	     VerticalAlignment="Top" Width="30" RenderTransformOrigin="0.5,0.5" 
@@ -81,12 +96,32 @@
                 </Button>
                 <ItemsControl ItemsSource="{Binding SubMenuItems, UpdateSourceTrigger=PropertyChanged}" >
                     <ItemsControl.ItemTemplate>
-                      <DataTemplate>
-                            <Button Content="{Binding Text}" HorizontalAlignment="Left" Height="30" 
+                        <DataTemplate>
+                            <DataTemplate.Resources>
+                                <Storyboard x:Key="ItemAnimation" AutoReverse="False">
+                                    <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(FrameworkElement.Height)" Storyboard.TargetName="myButton">
+                                        <EasingDoubleKeyFrame KeyTime="0:0:1" Value="30"/>
+                                    </DoubleAnimationUsingKeyFrames>
+                                </Storyboard>
+                            </DataTemplate.Resources>
+                            <Button x:Name="myButton" Content="{Binding Text}" HorizontalAlignment="Left" Height="0" 
             	            VerticalAlignment="Top" Width="30" RenderTransformOrigin="0.5,0.5" Command="{Binding MenuCommand}"></Button>
-                      </DataTemplate>
+                            <DataTemplate.Triggers>
+                                <EventTrigger RoutedEvent="FrameworkElement.Loaded">
+                                    <BeginStoryboard Storyboard="{StaticResource ItemAnimation}" />
+                                </EventTrigger>
+                            </DataTemplate.Triggers>
+                        </DataTemplate>
                     </ItemsControl.ItemTemplate>
+
                 </ItemsControl>
+                <Button x:Name="widgetButton" HorizontalAlignment="Left" Height="30" 
+            	     VerticalAlignment="Top" Margin="0,5,0,0" Width="30" RenderTransformOrigin="0.5,0.5" 
+                    Click="WidgetButton_OnClick">
+                    <Button.Content>
+                        <Image Source="Images/menu.png" Width="20" Height="20" OpacityMask="#4CD2ECFB"/>
+                    </Button.Content>
+                </Button>
             </StackPanel>
 
             <ContentControl x:Name ="contentControl"  regions:RegionManager.RegionName="MainRegion"></ContentControl>
