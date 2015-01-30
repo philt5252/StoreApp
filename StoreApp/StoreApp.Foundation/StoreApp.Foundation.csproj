@@ -43,6 +43,7 @@
       <HintPath>..\packages\CommonServiceLocator.1.0\lib\NET35\Microsoft.Practices.ServiceLocation.dll</HintPath>
     </Reference>
     <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Drawing" />
@@ -84,7 +85,9 @@
     <Compile Include="ViewModels\IMenuItemViewModel.cs" />
     <Compile Include="ViewModels\IMenuViewModel.cs" />
     <Compile Include="ViewModels\IViewModelBase.cs" />
+    <Compile Include="ViewModels\IWidgetViewModel.cs" />
     <Compile Include="ViewModels\ViewModelBase.cs" />
+    <Compile Include="ViewModels\WidgetViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

@@ -34,6 +34,8 @@ namespace StoreApp.Core.Autofac
 
                 if (type.Namespace.Contains("ViewModels") || type.Namespace.Contains("Models"))
                 {
+                    if (type.IsAbstract)
+                        continue;
 
                     var interfaceType = type.GetInterfaces().FirstOrDefault(i => i.Name == "I" + type.Name);
 

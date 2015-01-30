@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections;
+using System.Collections.Generic;
 using StoreApp.Foundation.Factories.ViewModels;
 using StoreApp.Foundation.ViewModels;
 
@@ -8,7 +10,7 @@ namespace StoreApp.Core.Factories.ViewModels
     {
         private readonly Func<IMainWindowViewModel> createViewModelFunc;
 
-        public MainWindowViewModelFactory(Func<IMainWindowViewModel> createViewModelFunc )
+        public MainWindowViewModelFactory(Func<IMainWindowViewModel> createViewModelFunc)
         {
             this.createViewModelFunc = createViewModelFunc;
         }
