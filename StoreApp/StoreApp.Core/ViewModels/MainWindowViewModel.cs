@@ -29,9 +29,13 @@ namespace StoreApp.Core.ViewModels
             }
         }
 
-        public MainWindowViewModel(IEnumerable<IMenuItemViewModel> menuItems, IMenuViewModelFactory menuViewModelFactory)
+        public IWidgetViewModel[] Widgets { get; protected set; }
+
+        public MainWindowViewModel(IEnumerable<IMenuItemViewModel> menuItems, 
+            IEnumerable<IWidgetViewModel> widgets, IMenuViewModelFactory menuViewModelFactory)
         {
             menuViewModel = menuViewModelFactory.Create(menuItems.ToArray());
+            Widgets = widgets.ToArray();
 
             foreach (var menuItemViewModel in menuViewModel.MenuItems)
             {
