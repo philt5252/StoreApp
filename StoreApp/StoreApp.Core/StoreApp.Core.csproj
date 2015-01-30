@@ -64,6 +64,7 @@
   <ItemGroup>
     <Compile Include="Controllers\AppController.cs" />
     <Compile Include="Controllers\BooksController.cs" />
+    <Compile Include="Controllers\DashboardController.cs" />
     <Compile Include="Controllers\GamesController.cs" />
     <Compile Include="Factories\Models\BookFactory.cs" />
     <Compile Include="Factories\ViewModels\BookEditViewModelFactory.cs" />
