@@ -7,13 +7,16 @@
              d:DesignHeight="300" d:DesignWidth="300">
     <Border CornerRadius="15" Background="#B25B5B5B" BorderBrush="#B25B5B5B">
         <Grid>
+            <StackPanel>
+                <TextBlock Text="Top Books" FontSize="20" Foreground="White" Margin="10" HorizontalAlignment="Center"></TextBlock>
             <ItemsControl ItemsSource="{Binding Books}" Background="Transparent">
                 <ItemsControl.ItemTemplate>
                     <DataTemplate>
-                        <TextBlock FontSize="12" HorizontalAlignment="Center"></TextBlock>
+                        <TextBlock Foreground="White" Text="{Binding Name}" FontSize="12" HorizontalAlignment="Center" Margin="0,5,0,5"></TextBlock>
                     </DataTemplate>
                 </ItemsControl.ItemTemplate>
             </ItemsControl>
+            </StackPanel>
         </Grid>
     </Border>
 </UserControl>

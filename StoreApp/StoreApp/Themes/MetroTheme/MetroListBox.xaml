@@ -51,6 +51,40 @@
         </Setter>
     </Style>
 
+   <!-- <Style x:Key="noArrowStyle" TargetType="{x:Type ListBoxItem}">
+        <Setter Property="Height" Value="50"></Setter>
+        <Setter Property="Padding" Value="15,20,15,20"></Setter>
+        <Setter Property="FontSize" Value="19"></Setter>
+        <Setter Property="HorizontalContentAlignment" Value="Right"></Setter>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="ListBoxItem">
+                    <Grid x:Name="Border"  Background="Transparent" >
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"></ColumnDefinition>
+                        </Grid.ColumnDefinitions>
+                        <Grid x:Name="grid" Grid.Column="0" Background="{DynamicResource ListBoxItem_Background}">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height=".95*"></RowDefinition>
+                                <RowDefinition Height=".05*"></RowDefinition>
+                            </Grid.RowDefinitions>
+                            <ContentPresenter Content="{Binding}" Margin="10,0,10,0" Grid.Row="0"  />
+                        </Grid>
+                    </Grid>
+
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsSelected" Value="true">
+                            <Setter TargetName="grid" Property="Background" Value="{DynamicResource ListBoxItem_BackgroundPressed}"/>
+                        </Trigger>
+                        <Trigger Property="ListBoxItem.IsMouseOver" Value="true">
+                            <Setter TargetName="grid" Property="Background" Value="{DynamicResource ListBoxItem_BackgroundHover}"/>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>-->
+
     <!--<Style TargetType="{x:Type ListBoxItem}">
         <Setter Property="Padding" Value="3" />
         <Setter Property="HorizontalContentAlignment" Value="Left" />

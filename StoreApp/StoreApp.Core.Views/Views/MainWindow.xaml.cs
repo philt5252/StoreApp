@@ -139,5 +139,12 @@ namespace StoreApp.Core.Views.Views
                 }
             }
         }
+
+        private void WidgetListBox_OnSelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            ListBox listBox = sender as ListBox;
+            var control = (listBox.SelectedItem as IWidgetViewModel).CreateWidget();
+            WidgetPresenter.Child = control;
+        }
     }
 }

@@ -28,18 +28,18 @@
             </DoubleAnimationUsingKeyFrames>
         </Storyboard>
         <Storyboard x:Key="MinimizeWidgetMenu">
-            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(FrameworkElement.Width)" Storyboard.TargetName="WidgetListBox">
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(FrameworkElement.Width)" Storyboard.TargetName="WidgetCanvas">
                 <EasingDoubleKeyFrame KeyTime="0:0:1" Value="0"/>
             </DoubleAnimationUsingKeyFrames>
-            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(FrameworkElement.MinWidth)" Storyboard.TargetName="WidgetListBox">
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(FrameworkElement.MinWidth)" Storyboard.TargetName="WidgetCanvas">
                 <EasingDoubleKeyFrame KeyTime="0:0:1" Value="0"/>
             </DoubleAnimationUsingKeyFrames>
         </Storyboard>
         <Storyboard x:Key="MaximizeWidgetMenu">
-            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(FrameworkElement.Width)" Storyboard.TargetName="WidgetListBox">
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(FrameworkElement.Width)" Storyboard.TargetName="WidgetCanvas">
                 <EasingDoubleKeyFrame KeyTime="0:0:1" Value="210"/>
             </DoubleAnimationUsingKeyFrames>
-            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(FrameworkElement.MinWidth)" Storyboard.TargetName="WidgetListBox">
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(FrameworkElement.MinWidth)" Storyboard.TargetName="WidgetCanvas">
                 <EasingDoubleKeyFrame KeyTime="0:0:1" Value="210"/>
             </DoubleAnimationUsingKeyFrames>
         </Storyboard>
@@ -60,7 +60,7 @@
             <RowDefinition Height="20"></RowDefinition>
         </Grid.RowDefinitions>
         <ContentPresenter Grid.Row="1"  ContentTemplate="{StaticResource TileImageBackground}" Opacity=".7" />
-        <StackPanel x:Name="MainStackPanel" Orientation="Horizontal" Grid.Column="0" Grid.Row="1">
+        <StackPanel x:Name="MainStackPanel" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Orientation="Horizontal" Grid.Column="0" Grid.Row="1">
             <StackPanel Orientation="Horizontal">
                 <ListBox Background="Transparent" ItemsSource="{Binding MenuItems}" x:Name="MenuListBox" Width="200">
                     <ListBox.ItemTemplate>
@@ -79,9 +79,22 @@
                         </DataTemplate>
                     </ListBox.ItemTemplate>
                 </ListBox>
-                <ListBox Background="#E50A0A0A" ScrollViewer.HorizontalScrollBarVisibility="Disabled" MinWidth="0"  
-                         ItemsSource="{Binding Widgets}" DisplayMemberPath="WidgetName" MaxHeight="{Binding Height, ElementName=MainStackPanel}" x:Name ="WidgetListBox"  Width="0" Margin="-13, 0, 0, 0">
-                </ListBox>
+                <Grid Background="#E50A0A0A"  Margin="-13, 0, 0, 0" x:Name="WidgetCanvas" Width="0" Height="{Binding Height, ElementName=MainStackPanel}">
+                    <StackPanel>
+                    <ListBox x:Name ="WidgetListBox"  Background="#E50A0A0A" ScrollViewer.HorizontalScrollBarVisibility="Disabled" 
+                         ItemsSource="{Binding Widgets}"
+                          Width="210" SelectionChanged="WidgetListBox_OnSelectionChanged">
+                        <ListBox.ItemTemplate>
+                            <DataTemplate>
+                                <Grid >
+                                <TextBlock Text="{Binding WidgetName}" ></TextBlock>
+                                </Grid>
+                            </DataTemplate>
+                        </ListBox.ItemTemplate>
+                    </ListBox>
+                    <Viewbox  x:Name="WidgetPresenter" Margin="15" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"></Viewbox>
+                    </StackPanel>
+                </Grid>
             </StackPanel>
             <StackPanel Margin="3,2,0,0" >
                 <Button x:Name="menuButton" HorizontalAlignment="Left" Height="30" 
@@ -121,7 +134,8 @@
                 </Button>
             </StackPanel>
 
-            <ContentControl x:Name ="contentControl"  regions:RegionManager.RegionName="MainRegion"></ContentControl>
+            <ContentControl x:Name ="contentControl" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" HorizontalContentAlignment="Stretch" 
+                            VerticalContentAlignment="Stretch"  regions:RegionManager.RegionName="MainRegion"></ContentControl>
         </StackPanel>
 
 
