@@ -4,6 +4,7 @@ using System.Reflection;
 using Autofac;
 using StoreApp.Core.Controllers;
 using StoreApp.Core.Factories.ViewModels;
+using StoreApp.Core.Models;
 using StoreApp.Core.ViewModels;
 using StoreApp.Core.ViewModels.MenuItems;
 using StoreApp.Foundation.Controllers;
@@ -44,6 +45,9 @@ namespace StoreApp.Core.Autofac
                         builder.RegisterType(type).AsSelf();
                         continue;
                     }
+
+                    if (type == typeof (BookSale))
+                        continue;
 
                     if (interfaceType == null)
                         interfaceType = type.GetInterfaces()[0];
