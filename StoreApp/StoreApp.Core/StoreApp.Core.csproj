@@ -74,6 +74,7 @@
     <Compile Include="Factories\ViewModels\MenuItemViewModelFactory.cs" />
     <Compile Include="Factories\ViewModels\MenuViewModelFactory.cs" />
     <Compile Include="Models\Book.cs" />
+    <Compile Include="Models\BookSale.cs" />
     <Compile Include="Models\Game.cs" />
     <Compile Include="Models\Product.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

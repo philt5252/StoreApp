@@ -15,9 +15,20 @@ namespace StoreApp.Core.ViewModels
         public override string WidgetName { get { return "SampleWidgetName"; } }
         public override Bitmap Image { get { return null; } }
 
+        public BookSale[] BookSales { get; protected set; }
+
         public SampleWidgetViewModel(ISampleWidgetViewFactory sampleWidgetViewFactory)
         {
             this.sampleWidgetViewFactory = sampleWidgetViewFactory;
+
+            BookSales = new[]
+            {
+                new BookSale {Genre = "Genre1", Sales = 40},
+                new BookSale {Genre = "Genre2", Sales = 5},
+                new BookSale {Genre = "Genre3", Sales = 10},
+                new BookSale {Genre = "Genre4", Sales = 15},
+                new BookSale {Genre = "Genre5", Sales = 10},
+            };
         }
 
         public override Control CreateWidget()
