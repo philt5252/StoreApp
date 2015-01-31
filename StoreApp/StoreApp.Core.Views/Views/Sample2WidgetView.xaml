@@ -20,14 +20,12 @@
                 SelectedItem="{Binding Path=SelectedItem, Mode=TwoWay}">
                 <metroChart:ClusteredColumnChart.Series>
                     <metroChart:ChartSeries
-                        SeriesTitle="Books Sales"
+                        SeriesTitle="Books"
                         DisplayMember="Genre"
                         ValueMember="Sales"
                         ItemsSource="{Binding Path=BookSales}" />
                 </metroChart:ClusteredColumnChart.Series>
             </metroChart:ClusteredColumnChart>
-
-
         </Grid>
     </Border>
 </UserControl>
