@@ -1,6 +1,9 @@
-﻿using System.Drawing;
+﻿using System.Collections.ObjectModel;
+using System.Drawing;
 using System.Windows;
 using System.Windows.Controls;
+using StoreApp.Core.Models;
+using StoreApp.Foundation.Models;
 using StoreApp.Foundation.ViewModels;
 using StoreApp.Foundation.Views.Factories;
 
@@ -33,4 +36,6 @@ namespace StoreApp.Core.ViewModels
             return new SampleWidgetViewModel(sampleWidgetViewFactory);
         }
     }
+
+
 }
