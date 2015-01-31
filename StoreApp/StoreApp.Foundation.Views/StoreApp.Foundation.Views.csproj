@@ -46,6 +46,7 @@
     <Compile Include="Factories\IBookViewFactory.cs" />
     <Compile Include="Factories\IDashboardViewFactory.cs" />
     <Compile Include="Factories\IMainWindowFactory.cs" />
+    <Compile Include="Factories\ISample2WidgetViewFactory.cs" />
     <Compile Include="Factories\ISampleWidgetViewFactory.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Regions.cs" />
