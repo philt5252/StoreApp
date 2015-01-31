@@ -89,6 +89,7 @@
     <Compile Include="ViewModels\MenuItems\MenuItemViewModel.cs" />
     <Compile Include="ViewModels\MenuItems\PerformanceMenuItemViewModel.cs" />
     <Compile Include="ViewModels\MenuViewModel.cs" />
+    <Compile Include="ViewModels\Sample2WidgetViewModel.cs" />
     <Compile Include="ViewModels\SampleWidgetViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
