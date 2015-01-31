@@ -72,6 +72,7 @@
     <Compile Include="Factories\BookViewFactory.cs" />
     <Compile Include="Factories\DashboardViewFactory.cs" />
     <Compile Include="Factories\Sample2WidgetViewFactory.cs" />
+    <Compile Include="Factories\Sample3WidgetViewFactory.cs" />
     <Compile Include="Factories\SampleWidgetViewFactory.cs" />
     <Compile Include="Views\BookView.xaml.cs">
       <DependentUpon>BookView.xaml</DependentUpon>
@@ -86,6 +87,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Views\Sample2WidgetView.xaml.cs">
       <DependentUpon>Sample2WidgetView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Sample3WidgetView.xaml.cs">
+      <DependentUpon>Sample3WidgetView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\SampleWidgetView.xaml.cs">
       <DependentUpon>SampleWidgetView.xaml</DependentUpon>
@@ -122,6 +126,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\Sample2WidgetView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Sample3WidgetView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
