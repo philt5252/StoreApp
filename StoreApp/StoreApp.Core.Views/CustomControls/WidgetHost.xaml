@@ -5,9 +5,10 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              mc:Ignorable="d" Height="283.5" Width="298">
     <Viewbox>
-        <Grid  x:Name="mainGrid">
+        <Grid x:Name="mainGrid">
             <Rectangle Cursor="Hand" x:Name="overlayRect" Visibility="Hidden" Fill="#7F8F8FAE" HorizontalAlignment="Stretch" StrokeThickness="2" Stroke="Black" VerticalAlignment="Stretch" />
             <Rectangle Cursor="SizeNWSE" x:Name="bottomRightRect" Fill="#7F000000" HorizontalAlignment="Right" MinHeight="10" MinWidth="10" Height="10" Stroke="Black" StrokeThickness="1" VerticalAlignment="Bottom" Width="10"/>
         </Grid>
     </Viewbox>
+
 </UserControl>

@@ -9,6 +9,6 @@
              d:DesignHeight="400" d:DesignWidth="600">
     <Grid >
         <dashboardTest:GridSystem x:Name="gridSystem" Height="1000" Width="1200" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
-        <CheckBox x:Name="editChk" Content="Edit" HorizontalAlignment="Left"  VerticalAlignment="Top"  Click="editChk_Click"/>
+        <ToggleButton x:Name="editChk" Content="Edit" HorizontalAlignment="Right"  VerticalAlignment="Top" Click="editChk_Click"/>
     </Grid>
 </UserControl>

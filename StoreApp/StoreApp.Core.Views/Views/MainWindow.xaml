@@ -6,6 +6,7 @@
              xmlns:views="clr-namespace:StoreApp.Core.Views"
              xmlns:regions="http://www.codeplex.com/CompositeWPF"
              xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+             xmlns:converters="clr-namespace:StoreApp.Core.Views.Converters"
              mc:Ignorable="d" 
              Height="600" Width="1000">
     <Window.Resources>
@@ -48,6 +49,7 @@
         <DataTemplate x:Key="TileImageBackground">
             <views:TileCanvas ImageSource="Images/dark_wood.png" />
         </DataTemplate>
+        
     </Window.Resources>
 
     <Grid x:Name="mainGrid" Background="{DynamicResource Grid_Background}" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" >
@@ -62,7 +64,7 @@
         <ContentPresenter Grid.Row="1"  ContentTemplate="{StaticResource TileImageBackground}" Opacity=".7" />
         <StackPanel x:Name="MainStackPanel" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Orientation="Horizontal" Grid.Column="0" Grid.Row="1">
             <StackPanel Orientation="Horizontal">
-                <ListBox Background="Transparent" ItemsSource="{Binding MenuItems}" x:Name="MenuListBox" Width="200">
+                <ListBox SelectionChanged="MenuListBox_OnSelectionChanged" Background="Transparent" ItemsSource="{Binding MenuItems}" x:Name="MenuListBox" Width="200">
                     <ListBox.ItemTemplate>
                         <DataTemplate>
                             <Grid>
@@ -87,12 +89,14 @@
                         <ListBox.ItemTemplate>
                             <DataTemplate>
                                 <Grid >
-                                <TextBlock Text="{Binding WidgetName}" ></TextBlock>
+                                    <TextBlock Text="{Binding WidgetName}" ></TextBlock>
                                 </Grid>
                             </DataTemplate>
                         </ListBox.ItemTemplate>
                     </ListBox>
-                    <Viewbox  x:Name="WidgetPresenter" Margin="15" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"></Viewbox>
+                        <Border Background="DarkGray" Opacity=".5" Width="190" Height="200"  CornerRadius="10" Padding="10" Margin="10">
+                            <Viewbox  x:Name="WidgetPresenter" Margin="15" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"></Viewbox>
+                        </Border>
                     </StackPanel>
                 </Grid>
             </StackPanel>
@@ -123,15 +127,7 @@
                             </DataTemplate.Triggers>
                         </DataTemplate>
                     </ItemsControl.ItemTemplate>
-
                 </ItemsControl>
-                <Button x:Name="widgetButton" HorizontalAlignment="Left" Height="30" 
-            	     VerticalAlignment="Top" Margin="0,5,0,0" Width="30" RenderTransformOrigin="0.5,0.5" 
-                    Click="WidgetButton_OnClick">
-                    <Button.Content>
-                        <Image Source="Images/menu.png" Width="20" Height="20" OpacityMask="#4CD2ECFB"/>
-                    </Button.Content>
-                </Button>
             </StackPanel>
 
             <ContentControl x:Name ="contentControl" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" HorizontalContentAlignment="Stretch" 

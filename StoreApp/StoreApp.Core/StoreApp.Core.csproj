@@ -86,6 +86,7 @@
     <Compile Include="ViewModels\MenuItems\BookMenuItemViewModel.cs" />
     <Compile Include="ViewModels\MenuItems\EmployeeMenuItemViewModel.cs" />
     <Compile Include="ViewModels\MenuItems\GameMenuItemViewModel.cs" />
+    <Compile Include="ViewModels\MenuItems\HomeMenuItemViewModel.cs" />
     <Compile Include="ViewModels\MenuItems\MenuItemViewModel.cs" />
     <Compile Include="ViewModels\MenuItems\PerformanceMenuItemViewModel.cs" />
     <Compile Include="ViewModels\MenuViewModel.cs" />
@@ -107,7 +108,11 @@
       <Name>StoreApp.Foundation</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <None Include="ViewModels\MenuItems\Images\home.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
@@ -115,12 +120,25 @@
     <None Include="ViewModels\MenuItems\Images\edit.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <Resource Include="ViewModels\MenuItems\Images\menu.png">
+    <None Include="ViewModels\MenuItems\Images\menu.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Resource>
-    <Resource Include="ViewModels\MenuItems\Images\save.png">
+    </None>
+    <None Include="ViewModels\MenuItems\Images\save.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Resource>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="ViewModels\MenuItems\Images\book.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="ViewModels\MenuItems\Images\chart.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="ViewModels\MenuItems\Images\employees.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>

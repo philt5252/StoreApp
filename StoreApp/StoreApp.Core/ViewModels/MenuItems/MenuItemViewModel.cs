@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.ObjectModel;
+using System.Drawing;
 using System.Windows.Input;
 using System.Windows.Media.Imaging;
 using Microsoft.Practices.Prism.Events;

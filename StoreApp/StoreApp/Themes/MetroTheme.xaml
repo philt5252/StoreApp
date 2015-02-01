@@ -4,5 +4,6 @@
         <ResourceDictionary Source="MetroTheme/MetroButton.xaml"></ResourceDictionary>
         <ResourceDictionary Source="MetroTheme/MetroListBox.xaml"></ResourceDictionary>
         <ResourceDictionary Source="MetroTheme/MetroTextBox.xaml"></ResourceDictionary>
+        <ResourceDictionary Source="MetroTheme/MetroToggleButton.xaml"></ResourceDictionary>
     </ResourceDictionary.MergedDictionaries>
 </ResourceDictionary>

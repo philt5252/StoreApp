@@ -65,6 +65,7 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Converters\ImageConverter.cs" />
     <Compile Include="CustomControls\FlipControl.xaml.cs" />
     <Compile Include="CustomControls\GridSystem.xaml.cs" />
     <Compile Include="CustomControls\TileCanvas.cs" />
@@ -149,13 +150,30 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <Resource Include="Views\Images\employees.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
     <Resource Include="Views\Images\dark_wood.png" />
-    <Content Include="Views\Images\edit.png" />
+    <Resource Include="Views\Images\book.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Views\Images\bar-chart.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Content Include="Views\Images\delete.png" />
+    <Resource Include="Views\Images\edit.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
     <Resource Include="Views\Images\hixs_pattern_evolution.png" />
     <Resource Include="Views\Images\menu.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Resource>
-    <Content Include="Views\Images\save.png" />
+    <Resource Include="Views\Images\home.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Views\Images\save.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
   </ItemGroup>
   <ItemGroup>
     <BlendEmbeddedFont Include="Fonts\verdana.ttf">
@@ -201,9 +219,7 @@
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Converters\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\Expression\Blend\.NETFramework\v4.5\Microsoft.Expression.Blend.WPF.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

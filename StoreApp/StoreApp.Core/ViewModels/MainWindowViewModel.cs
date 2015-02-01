@@ -34,7 +34,18 @@ namespace StoreApp.Core.ViewModels
         public MainWindowViewModel(IEnumerable<IMenuItemViewModel> menuItems, 
             IEnumerable<IWidgetViewModel> widgets, IMenuViewModelFactory menuViewModelFactory)
         {
-            menuViewModel = menuViewModelFactory.Create(menuItems.ToArray());
+            var itemViewModel = menuItems.First(m => m.Text == "Home");
+            List<IMenuItemViewModel> list = new List<IMenuItemViewModel>();
+            list.Add(itemViewModel);
+            foreach (IMenuItemViewModel menuItem in menuItems)
+            {
+                if (menuItem == itemViewModel)
+                {
+                    continue;
+                }
+                list.Add(menuItem);
+            }
+            menuViewModel = menuViewModelFactory.Create(list.ToArray());
             Widgets = widgets.ToArray();
 
             foreach (var menuItemViewModel in menuViewModel.MenuItems)

@@ -97,45 +97,82 @@ namespace StoreApp.Core.Views.Views
         private void MenuButton_OnClick(object sender, RoutedEventArgs e)
         {
       
-            if (menuShowing)
-            {
-                Storyboard storyBoard = (Storyboard)this.Resources["MinimizeMenu"];
-                storyBoard.Begin();
-                menuShowing = false;
-
-            }
-            else
-            {
-                Storyboard storyBoard = (Storyboard)this.Resources["MaximizeMenu"];
-                storyBoard.Begin();
-                menuShowing = true;
-                if (widgetShowing)
-                {
-                    Storyboard storyBoard1 = (Storyboard)this.Resources["MinimizeWidgetMenu"];
-                    storyBoard1.Begin();
-                    widgetShowing = false;
-                }
-            }
+           slideMenu();
         }
 
         private void WidgetButton_OnClick(object sender, RoutedEventArgs e)
         {
+           slideWidget();
+        }
+
+        private void minimizeMenu()
+        {
+            if (menuShowing)
+            {
+
+                Storyboard storyBoard = (Storyboard) this.Resources["MinimizeMenu"];
+                storyBoard.Begin();
+                menuShowing = false;
+            }
+        }
+  
+
+        private void maximizeMenu()
+        {
+            if (!widgetShowing)
+            {
+                Storyboard storyBoard = (Storyboard) this.Resources["MaximizeMenu"];
+                storyBoard.Begin();
+                menuShowing = true;
+            }
+        }
+
+        private void minimizeWidget()
+        {
             if (widgetShowing)
             {
-                Storyboard storyBoard = (Storyboard)this.Resources["MinimizeWidgetMenu"];
+                Storyboard storyBoard = (Storyboard) this.Resources["MinimizeWidgetMenu"];
                 storyBoard.Begin();
                 widgetShowing = false;
             }
-            else
+        }
+
+        private void maximizeWidget()
+        {
+            if (!widgetShowing)
             {
-                Storyboard storyBoard = (Storyboard)this.Resources["MaximizeWidgetMenu"];
+                Storyboard storyBoard = (Storyboard) this.Resources["MaximizeWidgetMenu"];
                 storyBoard.Begin();
                 widgetShowing = true;
+            }
+        }
+        private void slideMenu()
+        {
+            if (menuShowing)
+            {
+                minimizeMenu();
+            }
+            else
+            {
+                maximizeMenu();
+                if (widgetShowing)
+                {
+                    minimizeWidget();
+                }
+            }
+        }
+        private void slideWidget()
+        {
+             if (widgetShowing)
+            {
+                minimizeWidget();
+            }
+            else
+            {
+                maximizeWidget();
                 if (menuShowing)
                 {
-                    Storyboard storyBoard1 = (Storyboard)this.Resources["MinimizeMenu"];
-                    storyBoard1.Begin();
-                    menuShowing = false;
+                  minimizeMenu();
                 }
             }
         }
@@ -145,6 +182,15 @@ namespace StoreApp.Core.Views.Views
             ListBox listBox = sender as ListBox;
             var control = (listBox.SelectedItem as IWidgetViewModel).CreateWidget();
             WidgetPresenter.Child = control;
+        }
+
+        private void MenuListBox_OnSelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            ListBox listBox = sender as ListBox;
+            if ((listBox.SelectedItem as IMenuItemViewModel).Text != "Home")
+            {
+                minimizeWidget();
+            }
         }
     }
 }

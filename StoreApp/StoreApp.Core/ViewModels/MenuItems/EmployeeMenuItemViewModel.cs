@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -19,7 +20,7 @@ namespace StoreApp.Core.ViewModels.MenuItems
 
         public override String NewText { get { return ""; } }
 
-        public override BitmapImage Image { get { return new BitmapImage(new Uri("Images/menu.png", UriKind.Relative)); } }
+        public override BitmapImage Image { get { return new BitmapImage(new Uri("Images/employees.png", UriKind.Relative)); } }
         public EmployeeMenuItemViewModel(IEventAggregator eventAggregator)
             :base(eventAggregator)
         {

@@ -19,7 +19,7 @@ namespace StoreApp.Core.ViewModels.MenuItems
         public override ICommand MenuCommand { get; protected set; }
 
         public override String NewText { get { return "B"; } }
-        public override BitmapImage Image { get { return new BitmapImage(new Uri("Images/menu.png", UriKind.Relative)); } }
+        public override BitmapImage Image { get { return new BitmapImage(new Uri("Images/book.png", UriKind.Relative)); } }
 
         public BookMenuItemViewModel(IEventAggregator eventAggregator, IBooksController booksController)
             :base(eventAggregator)
