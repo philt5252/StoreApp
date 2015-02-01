@@ -10,10 +10,10 @@ using System.Windows.Data;
 using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
+using System.Windows.Media.Animation;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-using DashboardTest;
 using StoreApp.Foundation.ViewModels;
 
 namespace StoreApp.Core.Views.Views
@@ -23,7 +23,7 @@ namespace StoreApp.Core.Views.Views
     /// </summary>
     public partial class DashboardView : UserControl
     {
-
+        private bool widgetShowing = false;
         public DashboardView()
         {
             InitializeComponent();
@@ -41,6 +41,56 @@ namespace StoreApp.Core.Views.Views
             if (propertyChangedEventArgs.PropertyName == "IsEdit")
             {
                 gridSystem.IsEdit = (DataContext as IDashboardViewModel).IsEdit;
+                slideWidget();
+
+            }
+        }
+
+        private void minimizeMenu()
+        {
+            Storyboard storyBoard = (Storyboard)Application.Current.Resources["MinimizeMenu"];
+                storyBoard.Begin();
+        }
+
+
+        private void maximizeMenu()
+        {
+            if (!widgetShowing)
+            {
+                Storyboard storyBoard = (Storyboard)Application.Current.Resources["MaximizeMenu"];
+                storyBoard.Begin();
+            }
+        }
+
+        private void minimizeWidget()
+        {
+            if (widgetShowing)
+            {
+                Storyboard storyBoard = (Storyboard)Application.Current.Resources["MinimizeWidgetMenu"];
+                storyBoard.Begin();
+                widgetShowing = false;
+            }
+        }
+
+        private void maximizeWidget()
+        {
+            if (!widgetShowing)
+            {
+                Storyboard storyBoard = (Storyboard)Application.Current.Resources["MaximizeWidgetMenu"];
+                storyBoard.Begin();
+                widgetShowing = true;
+            }
+        }
+        private void slideWidget()
+        {
+            if (widgetShowing)
+            {
+                minimizeWidget();
+            }
+            else
+            {
+                maximizeWidget();
+                minimizeMenu();
             }
         }
     }

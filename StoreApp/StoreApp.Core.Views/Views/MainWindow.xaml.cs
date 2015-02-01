@@ -14,9 +14,9 @@ using System.Windows.Media.Animation;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-using DashboardTest;
 using Microsoft.Practices.Prism.Regions;
 using Microsoft.Practices.ServiceLocation;
+using StoreApp.Core.Views.CustomControls;
 using StoreApp.Foundation.ViewModels;
 using StoreApp.Foundation.Views;
 
@@ -192,5 +192,6 @@ namespace StoreApp.Core.Views.Views
                 minimizeWidget();
             }
         }
+
     }
 }

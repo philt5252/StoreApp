@@ -13,7 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace DashboardTest
+namespace StoreApp.Core.Views.CustomControls
 {
     /// <summary>
     /// Interaction logic for WidgetHost.xaml

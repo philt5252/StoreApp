@@ -12,20 +12,24 @@
             <Setter Property="Height" Value="300"/>
         </Style>
     </UserControl.Resources>
-    <Border CornerRadius="15" Background="#B25B5B5B" BorderBrush="#B25B5B5B">
-        <Grid>
-            <metroChart:ClusteredColumnChart    
-                Style="{StaticResource MinimalChartStyle}"                         
-                ChartTitle="Weekly Book Sales"             
-                SelectedItem="{Binding Path=SelectedItem, Mode=TwoWay}">
-                <metroChart:ClusteredColumnChart.Series>
-                    <metroChart:ChartSeries
-                        SeriesTitle="Books"
-                        DisplayMember="Genre"
-                        ValueMember="Sales"
-                        ItemsSource="{Binding Path=BookSales}" />
-                </metroChart:ClusteredColumnChart.Series>
-            </metroChart:ClusteredColumnChart>
-        </Grid>
-    </Border>
+    <Grid Background="Transparent">
+        <Border CornerRadius="15" Background="#B25B5B5B" BorderBrush="#B25B5B5B">
+            <Grid>
+                <metroChart:ClusteredColumnChart    
+                    Style="{StaticResource MinimalChartStyle}"                         
+                    ChartTitle="Weekly Book Sales"             
+                    SelectedItem="{Binding Path=SelectedItem, Mode=TwoWay}">
+                    <metroChart:ClusteredColumnChart.Series>
+                        <metroChart:ChartSeries
+                            SeriesTitle="Books"
+                            DisplayMember="Genre"
+                            ValueMember="Sales"
+                            ItemsSource="{Binding Path=BookSales}" />
+                    </metroChart:ClusteredColumnChart.Series>
+                </metroChart:ClusteredColumnChart>
+            </Grid>
+        </Border>
+        <Border x:Name="overlay" Panel.ZIndex="1"  CornerRadius="15" Background="Pink" BorderBrush="#B25B5B5B">
+        </Border>
+    </Grid>
 </UserControl>

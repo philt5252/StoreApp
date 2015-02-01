@@ -119,7 +119,7 @@
                                 </Storyboard>
                             </DataTemplate.Resources>
                             <Button x:Name="myButton" Content="{Binding Text}" HorizontalAlignment="Left" Height="0" 
-            	            VerticalAlignment="Top" Width="30" RenderTransformOrigin="0.5,0.5" Command="{Binding MenuCommand}"></Button>
+            	            VerticalAlignment="Top" Width="30" RenderTransformOrigin="0.5,0.5" Command="{Binding MenuCommand}" ></Button>
                             <DataTemplate.Triggers>
                                 <EventTrigger RoutedEvent="FrameworkElement.Loaded">
                                     <BeginStoryboard Storyboard="{StaticResource ItemAnimation}" />

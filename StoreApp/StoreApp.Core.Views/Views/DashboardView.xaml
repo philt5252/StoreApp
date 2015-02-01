@@ -4,11 +4,10 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:customControls="clr-namespace:StoreApp.Core.Views.CustomControls"
-             xmlns:dashboardTest="clr-namespace:DashboardTest"
              mc:Ignorable="d" 
              d:DesignHeight="400" d:DesignWidth="600">
     <Grid >
-        <dashboardTest:GridSystem  x:Name="gridSystem" Height="1000" Width="1200" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
+        <customControls:GridSystem  x:Name="gridSystem" Height="1000" Width="1200" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
       
     </Grid>
 </UserControl>
