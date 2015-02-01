@@ -5,162 +5,149 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:dropDownButton="clr-namespace:StoreApp"
              xmlns:customControls="clr-namespace:StoreApp.Core.Views.CustomControls"
-             mc:Ignorable="d" 
+             xmlns:er="clr-namespace:StoreApp.Core.Views.Views"
+             mc:Ignorable="d" x:Name="userControl" 
              d:DesignHeight="300" d:DesignWidth="300">
 
     <UserControl.Resources>
 
-        <DataTemplate x:Key="frontTemplate">
-            <StackPanel Orientation="Horizontal">
-                <TextBlock Text="Name"></TextBlock>
-            </StackPanel>
-        </DataTemplate>
-        <DataTemplate x:Key="backTemplate">
-            <StackPanel Orientation="Horizontal">
-                <TextBox Text="bye"></TextBox>
-            </StackPanel>
-        </DataTemplate>
+        <Style TargetType="Button" x:Key="imageButtonStyle">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border x:Name="border"  Height="20" Width="40" CornerRadius="4" Background="DarkGray">
+                            <Image Source="Images/menu.png" ></Image>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="true">
+                                <Setter TargetName="border" Property="Background" Value="Gray"></Setter>
+                            </Trigger>
+                            <Trigger Property="IsPressed" Value="true">
+                                <Setter TargetName="border" Property="Background" Value="#CC363636"></Setter>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
     </UserControl.Resources>
     <Grid Background="Transparent">
-        <ItemsControl ItemsSource="{Binding Books}" Margin="15" x:Name="MyItemsControl">
-            <ItemsControl.ItemTemplate >
-                <DataTemplate>
-                    <Grid>
+        <ScrollViewer HorizontalAlignment="Right" HorizontalScrollBarVisibility="Hidden" VerticalScrollBarVisibility="Hidden">
+            <ItemsControl ItemsSource="{Binding Books}" Margin="15" x:Name="MyItemsControl">
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate>
+                        <Grid x:Name ="mainGrid">
 
-                        <customControls:FlipControl IsEdit="{Binding IsEdit}" x:Name="flipControl" Margin="0,10,0,10"  Height="150" Width="450" FrontSource="{Binding}">
-                            <customControls:FlipControl.FrontDataTemplate>
-                                <DataTemplate >
-                                    <Grid>
-                                        <Border CornerRadius="10" Background="#99767676" Padding="10">
-                                            <Grid Background="Transparent">
+                            <customControls:FlipControl IsEdit="{Binding IsEdit, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" x:Name="flipControl" Margin="0,10,0,10"  Height="150" Width="490" FrontSource="{Binding}">
+                                <customControls:FlipControl.FrontDataTemplate>
+                                    <DataTemplate >
+                                        <Grid>
+                                            <Border CornerRadius="10" Background="#99767676" Padding="10">
+                                                <Grid Background="Transparent">
+                                                    <Grid.ColumnDefinitions>
+                                                        <ColumnDefinition Width="3*"></ColumnDefinition>
+                                                        <ColumnDefinition Width="6*"></ColumnDefinition>
+                                                        <ColumnDefinition Width="1*"></ColumnDefinition>
+                                                    </Grid.ColumnDefinitions>
+                                                    <Grid.RowDefinitions>
+
+                                                        <RowDefinition Height="3*"></RowDefinition>
+                                                        <RowDefinition Height="5*"></RowDefinition>
+                                                        <RowDefinition Height="2*"></RowDefinition>
+                                                    </Grid.RowDefinitions>
+                                                    <Image Grid.Column="0" Grid.RowSpan="3" Source="{Binding Image}"></Image>
+                                                    <TextBlock Grid.Column="1" Grid.Row="0" Margin="0,20,0,0" Text="{Binding Name}" Foreground="White" FontSize="15"></TextBlock>
+                                                    <TextBlock Grid.Column="1" Grid.Row="1" Text="{Binding Description}" Foreground="White"></TextBlock>
+                                                    <TextBlock Grid.Column="1" Grid.Row="2" Text="{Binding Price, StringFormat=C}"  Foreground="White" ></TextBlock>
+                                                </Grid>
+                                            </Border>
+                                        </Grid>
+                                    </DataTemplate>
+                                </customControls:FlipControl.FrontDataTemplate>
+                                <customControls:FlipControl.BackDataTemplate>
+                                    <DataTemplate>
+                                        <Border CornerRadius="10" Background="#CC767676" Padding="10">
+                                            <Grid  Margin="10">
                                                 <Grid.ColumnDefinitions>
                                                     <ColumnDefinition Width="3*"></ColumnDefinition>
-                                                    <ColumnDefinition Width="6*"></ColumnDefinition>
-                                                    <ColumnDefinition Width="1*"></ColumnDefinition>
+                                                    <ColumnDefinition Width="7*"></ColumnDefinition>
                                                 </Grid.ColumnDefinitions>
                                                 <Grid.RowDefinitions>
-                                                    <RowDefinition Height="2*"></RowDefinition>
-                                                    <RowDefinition Height="5*"></RowDefinition>
                                                     <RowDefinition Height="3*"></RowDefinition>
+                                                    <RowDefinition Height="5*"></RowDefinition>
+                                                    <RowDefinition Height="2*"></RowDefinition>
                                                 </Grid.RowDefinitions>
-                                                <Image Grid.Column="0" Grid.RowSpan="2" Source="Images/menu.png"></Image>
-                                                <TextBlock Grid.Column="1" Grid.Row="0" Text="{Binding Name}" Foreground="White" FontSize="15"></TextBlock>
-                                                <TextBlock Grid.Column="1" Grid.Row="1" Text="{Binding Description}" Foreground="White"></TextBlock>
-                                                <TextBlock Grid.Column="1" Grid.Row="2" Text="{Binding Price, StringFormat=C}"  Foreground="White" ></TextBlock>
-                                                <Grid Background="Transparent" Height="{TemplateBinding Height}" 
-                                                Width="{TemplateBinding Width}" Grid.Row="0" Grid.RowSpan="3" 
-                                                Grid.ColumnSpan="3" Grid.Column="0" HorizontalAlignment="Stretch" >
-                                                    <Button Height="40" Width="40" Background="Pink" Opacity="0">
-                                                        <Button.Content>
-                                                            <Image Source="Images/menu.png" HorizontalAlignment="Right" VerticalAlignment="Top" Height="30" Width="30" Margin="5"></Image>
-                                                        </Button.Content>
-                                                        <!--<Button.Triggers>
-                                                    <Trigger Property="Grid.IsMouseOver" Value="true">
-                                                        <Setter Property="Button.Opacity" Value="1" ></Setter>
-                                                    </Trigger>
-                                                </Button.Triggers>-->
-                                                    </Button>
+                                                <Image Grid.Column="0" Grid.RowSpan="3" Grid.Row="0" Source="{Binding Image}" Opacity=".5"></Image>
+                                                <Button Grid.Column="0"  Grid.RowSpan="2" Grid.Row="0" Height="70" Width="70" 
+                                                    Style="{StaticResource imageButtonStyle}" ToolTip="Edit Image">
+                                                </Button>
+                                                <TextBox  Margin="2,10,2,2" Grid.Column="1" Grid.Row="0" Text="{Binding Name}" FontSize="15"></TextBox>
+                                                <TextBox Margin="2" Grid.Column="1" Grid.Row="1" Text="{Binding Description}"></TextBox>
+                                                <TextBox Margin="2" Grid.Column="1" Grid.Row="2" Text="{Binding Price, StringFormat=C}" ></TextBox>
 
-                                                </Grid>
                                             </Grid>
                                         </Border>
-                                    </Grid>
-                                </DataTemplate>
-                            </customControls:FlipControl.FrontDataTemplate>
-                            <customControls:FlipControl.BackDataTemplate>
-                                <DataTemplate>
-                                    <Border CornerRadius="10" Background="#CC767676" Padding="10">
-                                        <Grid  Margin="10">
-                                            <Grid.ColumnDefinitions>
-                                                <ColumnDefinition Width="3*"></ColumnDefinition>
-                                                <ColumnDefinition Width="7*"></ColumnDefinition>
-                                            </Grid.ColumnDefinitions>
-                                            <Grid.RowDefinitions>
-                                                <RowDefinition Height="3*"></RowDefinition>
-                                                <RowDefinition Height="5*"></RowDefinition>
-                                                <RowDefinition Height="2*"></RowDefinition>
-                                            </Grid.RowDefinitions>
-                                            <Image Grid.Column="0" Grid.RowSpan="2" Grid.Row="0" Source="Images/menu.png" Opacity=".5"></Image>
-                                            <Button Grid.Column="0"  Grid.RowSpan="2" Grid.Row="0" Style="{DynamicResource HoverButtonStyle}" Height="70" Width="70">
-                                                <Button.Content>
-                                                    <Border  Height="20" Width="40" CornerRadius="4" Background="#CC363636">
-                                                        <Image Source="Images/menu.png" ></Image>
-                                                    </Border>
-                                                </Button.Content>
-                                            </Button>
-                                            <TextBox Margin="2" Grid.Column="1" Grid.Row="0" Text="{Binding Name}" FontSize="15"></TextBox>
-                                            <TextBox Margin="2" Grid.Column="1" Grid.Row="1" Text="{Binding Description}"></TextBox>
-                                            <TextBox Margin="2" Grid.Column="1" Grid.Row="2" Text="{Binding Price, StringFormat=C}" ></TextBox>
+                                    </DataTemplate>
+                                </customControls:FlipControl.BackDataTemplate>
+                            </customControls:FlipControl>
 
-                                        </Grid>
-                                    </Border>
-                                </DataTemplate>
-                            </customControls:FlipControl.BackDataTemplate>
-                        </customControls:FlipControl>
-                        <Border x:Name="overlay" Panel.ZIndex="1" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"  Background="Transparent" >
-                            <Grid HorizontalAlignment="Right" >
-                                <Grid.RowDefinitions>
-                                    <RowDefinition Height="40"></RowDefinition>
-                                    <RowDefinition Height="*"></RowDefinition>
-                                </Grid.RowDefinitions>
-                                <StackPanel Grid.Row="0" Orientation="Horizontal">
-                                    <StackPanel.Resources>
-                                        <Style TargetType="{x:Type Button}">
-                                            <Setter Property="Background" Value="Transparent"></Setter>
-                                            <Setter Property="BorderBrush" Value="Transparent"></Setter>
-                                            <Setter Property="Template">
-                                                <Setter.Value>
-                                                    <ControlTemplate TargetType="Button">
-                                                        <Border x:Name="border" CornerRadius="30" Height="30" Width="30" Background="{TemplateBinding Background}"
+                            <StackPanel Grid.Row="0" Orientation="Horizontal" Panel.ZIndex="1" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,10,5,0">
+                                <StackPanel.Resources>
+                                    <Style TargetType="{x:Type Button}">
+                                        <Setter Property="Background" Value="Transparent"></Setter>
+                                        <Setter Property="BorderBrush" Value="Transparent"></Setter>
+                                        <Setter Property="Template">
+                                            <Setter.Value>
+                                                <ControlTemplate TargetType="Button">
+                                                    <Border x:Name="border" CornerRadius="30" Height="30" Width="30" Background="{TemplateBinding Background}"
                                 BorderThickness="2" BorderBrush="White" Opacity=".6" >
-                                                            <ContentPresenter Opacity=".6" Width="15" Height="15" x:Name="image" Content="{TemplateBinding Content}"></ContentPresenter>
-                                                        </Border>
-                                                        <ControlTemplate.Triggers>
-                                                            <Trigger Property="Border.IsMouseOver" Value="True" SourceName="border">
-                                                                <Setter TargetName="image" Property="Opacity" Value="1"/>
-                                                                <Setter TargetName="border" Property="Opacity" Value="1"/>
-                                                            </Trigger>
-                                                        </ControlTemplate.Triggers>
-                                                    </ControlTemplate>
-                                                </Setter.Value>
-                                            </Setter>
-                                        </Style>
-                                    </StackPanel.Resources>
-                                    <Button  x:Name="editButton" Margin="2,3,2,3" 
-                             Opacity="0" Width="30" Height="30" ToolTip="Edit Widget" Command="{Binding EditCommand}">
-                                        <Button.Content>
-                                            <Image  HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Source="../Views/Images/edit.png"></Image>
-                                        </Button.Content>
-                                    </Button>
-                                    <Button   x:Name="deleteButton" Margin="2,3,2,3" 
-                             Opacity="0" Width="30" Height="30" ToolTip="Delete Widget">
-                                        <Button.Content>
-                                            <Image   HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Source="../Views/Images/save.png"></Image>
-                                        </Button.Content>
-                                    </Button>
-                                    <Button  x:Name="saveButton" Margin="2,3,2,3" 
-                             Opacity="0" Width="30" Height="30" ToolTip="Save Widget">
-                                        <Button.Content>
-                                            <Image   HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Source="../Views/Images/delete.png"></Image>
-                                        </Button.Content>
-                                    </Button>
+                                                        <ContentPresenter Opacity=".6" Width="15" Height="15" x:Name="image" Content="{TemplateBinding Content}"></ContentPresenter>
+                                                    </Border>
+                                                    <ControlTemplate.Triggers>
+                                                        <Trigger Property="Border.IsMouseOver" Value="True" SourceName="border">
+                                                            <Setter TargetName="image" Property="Opacity" Value="1"/>
+                                                            <Setter TargetName="border" Property="Opacity" Value="1"/>
+                                                        </Trigger>
+                                                    </ControlTemplate.Triggers>
+                                                </ControlTemplate>
+                                            </Setter.Value>
+                                        </Setter>
+                                    </Style>
+                                </StackPanel.Resources>
+                                <Button  x:Name="editButton" Margin="2,3,2,3" 
+                             Opacity="0" Width="30" Height="30" ToolTip="Edit" Command="{Binding EditCommand}">
+                                    <Button.Content>
+                                        <Image  HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Source="../Views/Images/edit.png"></Image>
+                                    </Button.Content>
+                                </Button>
+                                <Button   x:Name="deleteButton" Margin="2,3,2,3" 
+                             Opacity="0" Width="30" Height="30" ToolTip="Save">
+                                    <Button.Content>
+                                        <Image   HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Source="../Views/Images/save.png"></Image>
+                                    </Button.Content>
+                                </Button>
+                                <Button  x:Name="saveButton" Margin="2,3,2,3" 
+                             Opacity="0" Width="30" Height="30" ToolTip="Delete">
+                                    <Button.Content>
+                                        <Image   HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Source="../Views/Images/delete.png"></Image>
+                                    </Button.Content>
+                                </Button>
 
-                                </StackPanel>
-                            </Grid>
-                            <Border.Triggers>
+                            </StackPanel>
+                            <Grid.Triggers>
                                 <EventTrigger
-                            SourceName="overlay"
-                                RoutedEvent="Border.MouseEnter">
+                            SourceName="mainGrid"
+                                RoutedEvent="Grid.MouseEnter">
                                     <EventTrigger.Actions>
                                         <BeginStoryboard>
                                             <Storyboard>
-                                                <DoubleAnimationUsingKeyFrames SpeedRatio="2" Storyboard.TargetProperty="(FrameworkElement.Opacity)" Storyboard.TargetName="editButton">
+                                                <DoubleAnimationUsingKeyFrames SpeedRatio="4" Storyboard.TargetProperty="(FrameworkElement.Opacity)" Storyboard.TargetName="editButton">
                                                     <EasingDoubleKeyFrame KeyTime="0:0:1" Value=".6"/>
                                                 </DoubleAnimationUsingKeyFrames>
-                                                <DoubleAnimationUsingKeyFrames SpeedRatio="2" Storyboard.TargetProperty="(FrameworkElement.Opacity)" Storyboard.TargetName="deleteButton">
+                                                <DoubleAnimationUsingKeyFrames SpeedRatio="4" Storyboard.TargetProperty="(FrameworkElement.Opacity)" Storyboard.TargetName="deleteButton">
                                                     <EasingDoubleKeyFrame KeyTime="0:0:1" Value=".6"/>
                                                 </DoubleAnimationUsingKeyFrames>
-                                                <DoubleAnimationUsingKeyFrames SpeedRatio="2" Storyboard.TargetProperty="(FrameworkElement.Opacity)" Storyboard.TargetName="saveButton">
+                                                <DoubleAnimationUsingKeyFrames SpeedRatio="4" Storyboard.TargetProperty="(FrameworkElement.Opacity)" Storyboard.TargetName="saveButton">
                                                     <EasingDoubleKeyFrame KeyTime="0:0:1" Value=".6"/>
                                                 </DoubleAnimationUsingKeyFrames>
                                             </Storyboard>
@@ -168,31 +155,31 @@
                                     </EventTrigger.Actions>
                                 </EventTrigger>
                                 <EventTrigger
-                            SourceName="overlay"
-                                RoutedEvent="Border.MouseLeave">
+                            SourceName="mainGrid"
+                                RoutedEvent="Grid.MouseLeave">
                                     <EventTrigger.Actions>
                                         <BeginStoryboard>
                                             <Storyboard>
-                                                <DoubleAnimationUsingKeyFrames SpeedRatio="2" Storyboard.TargetProperty="(FrameworkElement.Opacity)" Storyboard.TargetName="editButton">
+                                                <DoubleAnimationUsingKeyFrames SpeedRatio="4" Storyboard.TargetProperty="(FrameworkElement.Opacity)" Storyboard.TargetName="editButton">
                                                     <EasingDoubleKeyFrame KeyTime="0:0:1" Value="0"/>
                                                 </DoubleAnimationUsingKeyFrames>
-                                                <DoubleAnimationUsingKeyFrames SpeedRatio="2" Storyboard.TargetProperty="(FrameworkElement.Opacity)" Storyboard.TargetName="deleteButton">
+                                                <DoubleAnimationUsingKeyFrames SpeedRatio="4" Storyboard.TargetProperty="(FrameworkElement.Opacity)" Storyboard.TargetName="deleteButton">
                                                     <EasingDoubleKeyFrame KeyTime="0:0:1" Value="0"/>
                                                 </DoubleAnimationUsingKeyFrames>
-                                                <DoubleAnimationUsingKeyFrames SpeedRatio="2" Storyboard.TargetProperty="(FrameworkElement.Opacity)" Storyboard.TargetName="saveButton">
+                                                <DoubleAnimationUsingKeyFrames SpeedRatio="4" Storyboard.TargetProperty="(FrameworkElement.Opacity)" Storyboard.TargetName="saveButton">
                                                     <EasingDoubleKeyFrame KeyTime="0:0:1" Value="0"/>
                                                 </DoubleAnimationUsingKeyFrames>
                                             </Storyboard>
                                         </BeginStoryboard>
                                     </EventTrigger.Actions>
                                 </EventTrigger>
-                            </Border.Triggers>
-                        </Border>
+                            </Grid.Triggers>
 
-                    </Grid>
-                </DataTemplate>
-            </ItemsControl.ItemTemplate>
-        </ItemsControl>
+                        </Grid>
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+            </ItemsControl>
+        </ScrollViewer>
 
     </Grid>
 </UserControl>

@@ -1,5 +1,7 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Drawing;
+using System.Windows.Media.Imaging;
 using System.Xml.Linq;
 using StoreApp.Foundation.DataAccess;
 using StoreApp.Foundation.Factories.Models;
@@ -21,7 +23,7 @@ namespace StoreApp.Core.DataAccess
                 var book = bookFactory.Create();
 
                 book.Id = i;
-                book.Image = new Bitmap("ViewModels\\MenuItems\\Images\\edit.png");
+                book.Image = new BitmapImage(new Uri("Images/pridePrejudice.jpg", UriKind.Relative));
                 book.Name = "Book" + i;
                 book.Description = "Description!!!!! " + i;
                 book.Price = i;

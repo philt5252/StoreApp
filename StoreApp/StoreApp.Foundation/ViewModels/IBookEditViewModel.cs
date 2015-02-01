@@ -1,5 +1,6 @@
 ﻿using System.Drawing;
 using System.Windows.Input;
+using System.Windows.Media.Imaging;
 using StoreApp.Foundation.Models;
 
 namespace StoreApp.Foundation.ViewModels
@@ -10,7 +11,7 @@ namespace StoreApp.Foundation.ViewModels
         bool IsEdit { get; }
         int Id { get; }
         string Name { get; set; }
-        Bitmap Image { get; set; }
+        BitmapImage Image { get; set; }
         string Description { get; set; }
         double Price { get; set; }
         ICommand SaveCommand { get; }

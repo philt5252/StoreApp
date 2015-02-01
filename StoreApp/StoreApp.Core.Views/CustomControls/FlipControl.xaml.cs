@@ -2,6 +2,7 @@
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
+using System.Windows.Media.Animation;
 
 namespace StoreApp.Core.Views.CustomControls
 {
@@ -10,16 +11,11 @@ namespace StoreApp.Core.Views.CustomControls
     /// </summary>
     public partial class FlipControl : UserControl
     {
+        
         public FlipControl()
         {
             InitializeComponent();
 
-            PreviewMouseDown += OnPreviewMouseDown;
-        }
-
-        private void OnPreviewMouseDown(object sender, MouseButtonEventArgs mouseButtonEventArgs)
-        {
-            RaiseFlipEvent();
         }
 
         public static readonly DependencyProperty FrontDataTemplateProperty = DependencyProperty.Register(
@@ -59,16 +55,27 @@ namespace StoreApp.Core.Views.CustomControls
         }
 
         public static readonly DependencyProperty IsEditProperty = DependencyProperty.Register(
-            "IsEdit", typeof (bool), typeof (FlipControl), new PropertyMetadata(default(bool)));
+            "IsEdit", typeof (bool), typeof (FlipControl), new PropertyMetadata(default(bool), PropertyChangedCallback));
+
+        private static void PropertyChangedCallback(DependencyObject dependencyObject, DependencyPropertyChangedEventArgs dependencyPropertyChangedEventArgs)
+        {
+            FlipControl flipControl = dependencyObject as FlipControl;
+            if (flipControl.IsEdit)
+            {
+                Storyboard storyBoard = (Storyboard)flipControl.Resources["FlipForward"];
+                storyBoard.Begin();
+            }
+            else
+            {
+                Storyboard storyBoard = (Storyboard)flipControl.Resources["FlipBackward"];
+                storyBoard.Begin();
+            }
+        }
 
         public bool IsEdit
         {
             get { return (bool) GetValue(IsEditProperty); }
-            set
-            {
-                SetValue(IsEditProperty, value);
-                RaiseFlipEvent();
-            }
+            set { SetValue(IsEditProperty, value); }
         }
 
         public static readonly RoutedEvent FlipEvent = EventManager.RegisterRoutedEvent(

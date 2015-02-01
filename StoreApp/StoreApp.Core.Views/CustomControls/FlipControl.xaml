@@ -6,6 +6,98 @@
              xmlns:customControls="clr-namespace:StoreApp.Core.Views.CustomControls"
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300" x:Name="myControl">
+    
+    <UserControl.Resources>
+
+        <Storyboard  x:Key="FlipBackward">
+            <ObjectAnimationUsingKeyFrames
+                           Storyboard.TargetName="vp3D"
+                           Storyboard.TargetProperty="Visibility">
+                <DiscreteObjectKeyFrame KeyTime="0:0:0" Value="{x:Static Visibility.Visible}" />
+                <DiscreteObjectKeyFrame KeyTime="0:0:1.1" Value="{x:Static Visibility.Hidden}" />
+            </ObjectAnimationUsingKeyFrames>
+
+            <ObjectAnimationUsingKeyFrames
+                           Storyboard.TargetName="frontWrapper"
+                           Storyboard.TargetProperty="Visibility">
+                <DiscreteObjectKeyFrame KeyTime="0:0:1" Value="{x:Static Visibility.Visible}"/>
+            </ObjectAnimationUsingKeyFrames>
+            <ObjectAnimationUsingKeyFrames
+                           Storyboard.TargetName="backWrapper"
+                           Storyboard.TargetProperty="Visibility">
+                <DiscreteObjectKeyFrame KeyTime="0:0:0.05" Value="{x:Static Visibility.Hidden}" />
+            </ObjectAnimationUsingKeyFrames>
+
+            <DoubleAnimation To="0" Duration="0:0:0.05"
+                           Storyboard.TargetName="backWrapper"
+                           Storyboard.TargetProperty="Opacity" />
+            <DoubleAnimation BeginTime="0:0:1.05" Duration="0:0:0.05"
+                           Storyboard.TargetName="frontWrapper"
+                           Storyboard.TargetProperty="Opacity" />
+
+            <Point3DAnimation To="0,0,1.1" From="0,0,0.5"
+                           BeginTime="0:0:0.05" Duration="0:0:0.5" AutoReverse="True" DecelerationRatio="0.3"
+                           Storyboard.TargetName="camera"
+                           Storyboard.TargetProperty="(PerspectiveCamera.Position)" />
+            <DoubleAnimation From="180" To="360" AccelerationRatio=".3" DecelerationRatio="0.3"
+                           BeginTime="0:0:0.05" Duration="0:0:1"
+                           Storyboard.TargetName="rotate"
+                           Storyboard.TargetProperty="Angle" />
+        </Storyboard>
+        <Storyboard x:Key="FlipForward">
+            <!-- Make the Viewport3D visible only for the duration of the rotation. -->
+            <ObjectAnimationUsingKeyFrames
+                           Storyboard.TargetName="vp3D"
+                           Storyboard.TargetProperty="Visibility">
+                <DiscreteObjectKeyFrame KeyTime="0:0:0" Value="{x:Static Visibility.Visible}" />
+                <DiscreteObjectKeyFrame KeyTime="0:0:1.1" Value="{x:Static Visibility.Hidden}" />
+            </ObjectAnimationUsingKeyFrames>
+
+            <!-- Make the background element visible. (It won't actually appear until it is
+                 faded in right at the end of the animation.) -->
+            <ObjectAnimationUsingKeyFrames
+                           Storyboard.TargetName="backWrapper"
+                           Storyboard.TargetProperty="Visibility">
+                <DiscreteObjectKeyFrame KeyTime="0:0:1" Value="{x:Static Visibility.Visible}"/>
+            </ObjectAnimationUsingKeyFrames>
+
+
+            <!-- Hide the foreground element. It will already be invisible by this time
+                 because we fade it out right at the start of the animation. However, until
+                 we set its Visibility to Hidden, it will still be visible to the mouse... -->
+            <ObjectAnimationUsingKeyFrames
+                           Storyboard.TargetName="frontWrapper"
+                           Storyboard.TargetProperty="Visibility">
+                <DiscreteObjectKeyFrame KeyTime="0:0:0.05" Value="{x:Static Visibility.Hidden}" />
+            </ObjectAnimationUsingKeyFrames>
+
+
+            <!-- Fade the front wrapper out. The Viewport3D is behind us, so it'll fade into
+                 view at this point. The reason for fading is to avoid a visible step as we
+                 switch from the real UI to the copy projected onto the 3D model. -->
+            <DoubleAnimation To="0" Duration="0:0:0.05"
+                           Storyboard.TargetName="frontWrapper"
+                           Storyboard.TargetProperty="Opacity" />
+
+            <!-- Fade the back wrapper in. Once the spin completes, we fade the real back UI
+                 in over the Viewport3D - using a fade to avoid a sudden jolt between the
+                 slightly fuzzy 3D look and the real UI. -->
+            <DoubleAnimation BeginTime="0:0:1.05" Duration="0:0:0.05" To="1"
+                           Storyboard.TargetName="backWrapper"
+                           Storyboard.TargetProperty="Opacity" />
+
+            <!-- 3D animation. Move the camera out slightly as we spin, so the model fits entirely
+                 within the field of view. Rotate the model 180 degrees. -->
+            <Point3DAnimation To="0,0,1.1" From="0,0,0.5"
+                           BeginTime="0:0:0.05" Duration="0:0:0.5" AutoReverse="True" DecelerationRatio="0.3"
+                           Storyboard.TargetName="camera"
+                           Storyboard.TargetProperty="(PerspectiveCamera.Position)" />
+            <DoubleAnimation From="0" To="180" AccelerationRatio="0.3" DecelerationRatio="0.3"
+                           BeginTime="0:0:0.05" Duration="0:0:1"
+                           Storyboard.TargetName="rotate"
+                           Storyboard.TargetProperty="Angle" />
+        </Storyboard>
+    </UserControl.Resources>
 
 
     <!-- Note: Camera setup only works when this is square. -->
@@ -16,7 +108,7 @@
        active. -->
         <Viewport3D Grid.Column="0" x:Name="vp3D" Visibility="Hidden">
             <Viewport3D.Camera>
-                <PerspectiveCamera x:Name="camera" Position="0,0,0.5" LookDirection="0,0,-1" FieldOfView="140" />
+                <PerspectiveCamera x:Name="camera" Position="0,0,0.5" LookDirection="0,0,-1" FieldOfView="160" />
             </Viewport3D.Camera>
 
             <Viewport3D.Children>
@@ -96,11 +188,11 @@
        otherwise it messes with the VisualBrush's size in the 3D model. Setting the background
        has that effect, even a transparent one. -->
             <Border x:Name="frontHost" Background="Transparent">
-                <Border.Triggers>
-                    <EventTrigger RoutedEvent="customControls:FlipControl.Flip">
+              <!--  <Border.Triggers>
+                    <EventTrigger RoutedEvent="customControls:FlipControl.MouseDown">
                         <BeginStoryboard>
                             <Storyboard>
-                                <!-- Make the Viewport3D visible only for the duration of the rotation. -->
+                                ~1~ Make the Viewport3D visible only for the duration of the rotation. @1@
                                 <ObjectAnimationUsingKeyFrames
                            Storyboard.TargetName="vp3D"
                            Storyboard.TargetProperty="Visibility">
@@ -108,8 +200,8 @@
                                     <DiscreteObjectKeyFrame KeyTime="0:0:1.1" Value="{x:Static Visibility.Hidden}" />
                                 </ObjectAnimationUsingKeyFrames>
 
-                                <!-- Make the background element visible. (It won't actually appear until it is
-                 faded in right at the end of the animation.) -->
+                                ~1~ Make the background element visible. (It won't actually appear until it is
+                 faded in right at the end of the animation.) @1@
                                 <ObjectAnimationUsingKeyFrames
                            Storyboard.TargetName="backWrapper"
                            Storyboard.TargetProperty="Visibility">
@@ -117,9 +209,9 @@
                                 </ObjectAnimationUsingKeyFrames>
 
 
-                                <!-- Hide the foreground element. It will already be invisible by this time
+                                ~1~ Hide the foreground element. It will already be invisible by this time
                  because we fade it out right at the start of the animation. However, until
-                 we set its Visibility to Hidden, it will still be visible to the mouse... -->
+                 we set its Visibility to Hidden, it will still be visible to the mouse... @1@
                                 <ObjectAnimationUsingKeyFrames
                            Storyboard.TargetName="frontWrapper"
                            Storyboard.TargetProperty="Visibility">
@@ -127,22 +219,22 @@
                                 </ObjectAnimationUsingKeyFrames>
 
 
-                                <!-- Fade the front wrapper out. The Viewport3D is behind us, so it'll fade into
+                                ~1~ Fade the front wrapper out. The Viewport3D is behind us, so it'll fade into
                  view at this point. The reason for fading is to avoid a visible step as we
-                 switch from the real UI to the copy projected onto the 3D model. -->
+                 switch from the real UI to the copy projected onto the 3D model. @1@
                                 <DoubleAnimation To="0" Duration="0:0:0.05"
                            Storyboard.TargetName="frontWrapper"
                            Storyboard.TargetProperty="Opacity" />
 
-                                <!-- Fade the back wrapper in. Once the spin completes, we fade the real back UI
+                                ~1~ Fade the back wrapper in. Once the spin completes, we fade the real back UI
                  in over the Viewport3D - using a fade to avoid a sudden jolt between the
-                 slightly fuzzy 3D look and the real UI. -->
+                 slightly fuzzy 3D look and the real UI. @1@
                                 <DoubleAnimation BeginTime="0:0:1.05" Duration="0:0:0.05" To="1"
                            Storyboard.TargetName="backWrapper"
                            Storyboard.TargetProperty="Opacity" />
 
-                                <!-- 3D animation. Move the camera out slightly as we spin, so the model fits entirely
-                 within the field of view. Rotate the model 180 degrees. -->
+                                ~1~ 3D animation. Move the camera out slightly as we spin, so the model fits entirely
+                 within the field of view. Rotate the model 180 degrees. @1@
                                 <Point3DAnimation To="0,0,1.1" From="0,0,0.5"
                            BeginTime="0:0:0.05" Duration="0:0:0.5" AutoReverse="True" DecelerationRatio="0.3"
                            Storyboard.TargetName="camera"
@@ -154,14 +246,14 @@
                             </Storyboard>
                         </BeginStoryboard>
                     </EventTrigger>
-                </Border.Triggers>
+                </Border.Triggers>-->
                 <ContentPresenter  Content="{Binding}" ContentTemplate="{Binding ElementName=myControl, Path=FrontDataTemplate}" />
             </Border>
         </Border>
         <Border x:Name="backWrapper" Grid.Column="0"  Visibility="Hidden" Opacity="0">
             <Border x:Name="backHost" Background="Transparent">
-                <Border.Triggers>
-                    <EventTrigger RoutedEvent="customControls:FlipControl.Flip">
+            <!--    <Border.Triggers>
+                    <EventTrigger RoutedEvent="customControls:FlipControl.MouseDown">
                         <BeginStoryboard>
                             <Storyboard>
                                 <ObjectAnimationUsingKeyFrames
@@ -200,7 +292,7 @@
                             </Storyboard>
                         </BeginStoryboard>
                     </EventTrigger>
-                </Border.Triggers>
+                </Border.Triggers>-->
                 <ContentPresenter Content="{Binding}" ContentTemplate="{Binding ElementName=myControl, Path=BackDataTemplate}" />
             </Border>
         </Border>

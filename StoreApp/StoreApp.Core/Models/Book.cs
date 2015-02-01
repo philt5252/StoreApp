@@ -4,6 +4,5 @@ namespace StoreApp.Core.Models
 {
     public class Book : Product, IBook
     {
-
     }
 }
