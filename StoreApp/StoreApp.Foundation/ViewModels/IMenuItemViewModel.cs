@@ -13,7 +13,9 @@ namespace StoreApp.Foundation.ViewModels
         string NewText { get; }
         BitmapImage Image { get; }
 
-        ObservableCollection<IMenuItemViewModel> SubMenuItems { get; } 
+        ObservableCollection<IMenuItemViewModel> SubMenuItems { get; }
+
+        void SetMenuCommand(ICommand command);
     }
 
 
