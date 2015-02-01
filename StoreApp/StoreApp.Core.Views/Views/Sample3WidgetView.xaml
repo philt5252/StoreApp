@@ -16,6 +16,7 @@
                     </DataTemplate>
                 </ItemsControl.ItemTemplate>
             </ItemsControl>
+                <Border x:Name="overlay" Panel.ZIndex="1"  CornerRadius="15" Background="Transparent" ></Border>
             </StackPanel>
         </Grid>
     </Border>

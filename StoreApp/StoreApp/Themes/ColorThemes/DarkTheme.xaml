@@ -76,7 +76,7 @@ xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
     <SolidColorBrush x:Key="ListBoxItem_BorderHover" Color="#00FFFFFF"/>
     <SolidColorBrush x:Key="ListBoxItem_ForegroundHover" Color="#CC646464"/>
     <SolidColorBrush x:Key="ListBoxItem_Foreground" Color="#FFFFFFFF"/>
-    <SolidColorBrush x:Key="ListBoxItem_BackgroundPressed" Color="#FF0A0A0A"/>
+    <SolidColorBrush x:Key="ListBoxItem_BackgroundPressed" Color="#484848 "/>
     <SolidColorBrush x:Key="ListBoxItem_ForegroundPressed" Color="#00FFFFFF"/>
     <SolidColorBrush x:Key="ListBoxItem_BackgroundHover" Color="#CC646464"/>
     <SolidColorBrush x:Key="ListBoxItem_BorderPressed" Color="#00FFFFFF"/>

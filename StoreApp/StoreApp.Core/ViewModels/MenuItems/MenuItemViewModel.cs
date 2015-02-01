@@ -34,6 +34,11 @@ namespace StoreApp.Core.ViewModels.MenuItems
             MenuCommand = command;
         }
 
+        public void SetImage(BitmapImage image)
+        {
+            Image = image;
+        }
+
         public MenuItemViewModel(IEventAggregator eventAggregator)
         {
             this.eventAggregator = eventAggregator;

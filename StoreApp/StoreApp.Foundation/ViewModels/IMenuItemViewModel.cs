@@ -16,6 +16,7 @@ namespace StoreApp.Foundation.ViewModels
         ObservableCollection<IMenuItemViewModel> SubMenuItems { get; }
 
         void SetMenuCommand(ICommand command);
+        void SetImage(BitmapImage image);
     }
 
 

@@ -28,7 +28,7 @@
         </Setter>
     </Style>
 
-    <Style x:Key="HoverButtonStyle"  TargetType="Button">
+    <!--    <Style x:Key="HoverButtonStyle"  TargetType="Button">
         <Setter Property="Background" Value="Transparent"></Setter>
         <Setter Property="Foreground" Value="{DynamicResource HoverButton_Foreground}"></Setter>
         <Setter Property="BorderBrush" Value="Transparent"></Setter>
@@ -39,7 +39,7 @@
                     <Border x:Name="border" CornerRadius="2" Background="{TemplateBinding Background}"
                                 BorderThickness="0">
 
-                        <Button x:Name="contentButton" Height="50" Width="50" Opacity="0" 
+                        <Button x:Name="contentButton" Height="50" Width="50" Opacity=".6" 
                                 Background="Transparent" Command="{TemplateBinding Command}">
                             <Button.Content>
                                 <ContentPresenter x:Name="content" Content="{TemplateBinding Content}" 
@@ -50,16 +50,89 @@
                     </Border>
                     <ControlTemplate.Triggers>
                         <Trigger Property="Button.IsMouseOver" Value="True" SourceName="border">
-                            <Setter TargetName="contentButton" Property="Opacity" Value=".5"/>
+                            <Setter TargetName="contentButton" Property="Opacity" Value=".8"/>
+                            <Setter Property="Background" Value="Transparent"></Setter>
                         </Trigger>
                         <Trigger Property="Button.IsPressed" Value="True" SourceName="contentButton">
                             <Setter TargetName="contentButton" Property="Opacity"  Value="1"/>
+                            <Setter Property="Background" Value="Transparent"></Setter>
                         </Trigger>
                     </ControlTemplate.Triggers>
                 </ControlTemplate>
 
             </Setter.Value>
         </Setter>
-    </Style>
+    </Style>-->
+
+
+    <ControlTemplate x:Key="HoverTemplate">
+        <Border x:Name="overlay" CornerRadius="15" Background="Red" >
+            <Grid HorizontalAlignment="Right" >
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="30"></RowDefinition>
+                    <RowDefinition Height="*"></RowDefinition>
+                </Grid.RowDefinitions>
+                <StackPanel Grid.Row="0" Orientation="Horizontal">
+                    <Button Content="{Binding Content}"   x:Name="editButton" Margin="2,3,2,3" 
+                             Opacity="0" Width="25" Height="25" ToolTip="Edit Widget">
+                        <Button.Style>
+                            <Style TargetType="Button">
+                                <Setter Property="Background" Value="Transparent"></Setter>
+                                <Setter Property="BorderBrush" Value="Transparent"></Setter>
+                                <!--<Setter Property="Template">
+                                    <Setter.Value>
+                                        <ControlTemplate TargetType="Button">
+                                            <Border x:Name="border" CornerRadius="2"  Background="{TemplateBinding Background}"
+                                BorderThickness="0">
+                                                <TextBlock x:Name="image" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Text="Hello" Foreground="White"></TextBlock>
+                                            </Border>
+
+                                            <ControlTemplate.Triggers>
+                                                <Trigger Property="Border.IsMouseOver" Value="True" SourceName="border">
+                                                    <Setter TargetName="image" Property="Opacity" Value="1"/>
+                                                </Trigger>
+                                            </ControlTemplate.Triggers>
+                                        </ControlTemplate>
+
+                                    </Setter.Value>
+                                </Setter>-->
+                            </Style>
+                        </Button.Style>
+                    </Button>
+
+                </StackPanel>
+            </Grid>
+            <Border.Triggers>
+                    <EventTrigger
+                            SourceName="overlay"
+                                RoutedEvent="Border.MouseEnter">
+                        <EventTrigger.Actions>
+                            <BeginStoryboard>
+                                <Storyboard>
+                                    <DoubleAnimationUsingKeyFrames SpeedRatio="2" Storyboard.TargetProperty="(FrameworkElement.Opacity)" Storyboard.TargetName="editButton">
+                                        <EasingDoubleKeyFrame KeyTime="0:0:1" Value=".6"/>
+                                    </DoubleAnimationUsingKeyFrames>
+                                </Storyboard>
+                            </BeginStoryboard>
+                        </EventTrigger.Actions>
+                    </EventTrigger>
+                    <EventTrigger
+                            SourceName="overlay"
+                                RoutedEvent="Border.MouseLeave">
+                        <EventTrigger.Actions>
+                            <BeginStoryboard>
+                                <Storyboard>
+                                    <DoubleAnimationUsingKeyFrames SpeedRatio="2" Storyboard.TargetProperty="(FrameworkElement.Opacity)" Storyboard.TargetName="editButton">
+                                        <EasingDoubleKeyFrame KeyTime="0:0:1" Value="0"/>
+                                    </DoubleAnimationUsingKeyFrames>
+                                </Storyboard>
+                            </BeginStoryboard>
+                        </EventTrigger.Actions>
+                    </EventTrigger>
+                </Border.Triggers>
+         
+        </Border>
+    </ControlTemplate>
+
 
 </ResourceDictionary>

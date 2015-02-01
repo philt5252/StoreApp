@@ -29,7 +29,73 @@
                 </metroChart:ClusteredColumnChart>
             </Grid>
         </Border>
-        <Border x:Name="overlay" Panel.ZIndex="1"  CornerRadius="15" Background="Pink" BorderBrush="#B25B5B5B">
-        </Border>
+        <!--<Border x:Name="overlay" Panel.ZIndex="1"  CornerRadius="15" Background="Transparent" >
+            <Grid HorizontalAlignment="Right" >
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="30"></RowDefinition>
+                    <RowDefinition Height="*"></RowDefinition>
+                </Grid.RowDefinitions>
+                <StackPanel Grid.Row="0" Orientation="Horizontal">
+                    <Button   x:Name="editButton" Margin="2,3,2,3" 
+                             Opacity="0" Width="25" Height="25" ToolTip="Edit Widget">
+                        <Button.Content>
+                            <Image HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Source="Images/edit.png"></Image>
+                        </Button.Content>
+                        <Button.Style>
+                            <Style TargetType="Button">
+                                <Setter Property="Background" Value="Transparent"></Setter>
+                                <Setter Property="BorderBrush" Value="Transparent"></Setter>
+                                <Setter Property="Template">
+                                    <Setter.Value>
+                                        <ControlTemplate TargetType="Button">
+                                            <Border x:Name="border" CornerRadius="2"  Background="{TemplateBinding Background}"
+                                BorderThickness="0">
+                                                <Image x:Name="image" Opacity=".6"  HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Source="Images/edit.png"></Image>
+                                            </Border>
+
+                                            <ControlTemplate.Triggers>
+                                                <Trigger Property="Border.IsMouseOver" Value="True" SourceName="border">
+                                                    <Setter TargetName="image" Property="Opacity" Value="1"/>
+                                                </Trigger>
+                                            </ControlTemplate.Triggers>
+                                        </ControlTemplate>
+
+                                    </Setter.Value>
+                                </Setter>
+                            </Style>
+                        </Button.Style>
+                    </Button>
+
+                </StackPanel>
+            </Grid>
+            <Border.Triggers>
+                <EventTrigger
+                            SourceName="overlay"
+                                RoutedEvent="Border.MouseEnter">
+                    <EventTrigger.Actions>
+                        <BeginStoryboard>
+                            <Storyboard>
+                                <DoubleAnimationUsingKeyFrames SpeedRatio="2" Storyboard.TargetProperty="(FrameworkElement.Opacity)" Storyboard.TargetName="editButton">
+                                    <EasingDoubleKeyFrame KeyTime="0:0:1" Value=".6"/>
+                                </DoubleAnimationUsingKeyFrames>
+                            </Storyboard>
+                        </BeginStoryboard>
+                    </EventTrigger.Actions>
+                </EventTrigger>
+                <EventTrigger
+                            SourceName="overlay"
+                                RoutedEvent="Border.MouseLeave">
+                    <EventTrigger.Actions>
+                        <BeginStoryboard>
+                            <Storyboard>
+                                <DoubleAnimationUsingKeyFrames SpeedRatio="2" Storyboard.TargetProperty="(FrameworkElement.Opacity)" Storyboard.TargetName="editButton">
+                                    <EasingDoubleKeyFrame KeyTime="0:0:1" Value="0"/>
+                                </DoubleAnimationUsingKeyFrames>
+                            </Storyboard>
+                        </BeginStoryboard>
+                    </EventTrigger.Actions>
+                </EventTrigger>
+            </Border.Triggers>
+        </Border>-->
     </Grid>
 </UserControl>

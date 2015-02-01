@@ -193,5 +193,14 @@ namespace StoreApp.Core.Views.Views
             }
         }
 
+        private void MyButton_OnClick(object sender, RoutedEventArgs e)
+        {
+            Button button = sender as Button;
+            if (button.ToolTip == "Edit Dashboard")
+            {
+                slideWidget();
+            }
+
+        }
     }
 }

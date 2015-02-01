@@ -13,34 +13,34 @@
 
 
         <Storyboard x:Key="MinimizeMenu">
-            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(FrameworkElement.Width)" Storyboard.TargetName="MenuListBox">
+            <DoubleAnimationUsingKeyFrames SpeedRatio="3" Storyboard.TargetProperty="(FrameworkElement.Width)" Storyboard.TargetName="MenuListBox">
                 <EasingDoubleKeyFrame KeyTime="0:0:1" Value="60"/>
             </DoubleAnimationUsingKeyFrames>
-            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(FrameworkElement.MinWidth)" Storyboard.TargetName="MenuListBox">
+            <DoubleAnimationUsingKeyFrames SpeedRatio="3"  Storyboard.TargetProperty="(FrameworkElement.MinWidth)" Storyboard.TargetName="MenuListBox">
                 <EasingDoubleKeyFrame KeyTime="0:0:1" Value="55"/>
             </DoubleAnimationUsingKeyFrames>
         </Storyboard>
         <Storyboard x:Key="MaximizeMenu">
-            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(FrameworkElement.Width)" Storyboard.TargetName="MenuListBox">
+            <DoubleAnimationUsingKeyFrames SpeedRatio="3"  Storyboard.TargetProperty="(FrameworkElement.Width)" Storyboard.TargetName="MenuListBox">
                 <EasingDoubleKeyFrame KeyTime="0:0:1" Value="200"/>
             </DoubleAnimationUsingKeyFrames>
-            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(FrameworkElement.MinWidth)" Storyboard.TargetName="MenuListBox">
+            <DoubleAnimationUsingKeyFrames SpeedRatio="3"  Storyboard.TargetProperty="(FrameworkElement.MinWidth)" Storyboard.TargetName="MenuListBox">
                 <EasingDoubleKeyFrame KeyTime="0:0:1" Value="195"/>
             </DoubleAnimationUsingKeyFrames>
         </Storyboard>
         <Storyboard x:Key="MinimizeWidgetMenu">
-            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(FrameworkElement.Width)" Storyboard.TargetName="WidgetCanvas">
+            <DoubleAnimationUsingKeyFrames SpeedRatio="3"  Storyboard.TargetProperty="(FrameworkElement.Width)" Storyboard.TargetName="WidgetCanvas">
                 <EasingDoubleKeyFrame KeyTime="0:0:1" Value="0"/>
             </DoubleAnimationUsingKeyFrames>
-            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(FrameworkElement.MinWidth)" Storyboard.TargetName="WidgetCanvas">
+            <DoubleAnimationUsingKeyFrames SpeedRatio="3"  Storyboard.TargetProperty="(FrameworkElement.MinWidth)" Storyboard.TargetName="WidgetCanvas">
                 <EasingDoubleKeyFrame KeyTime="0:0:1" Value="0"/>
             </DoubleAnimationUsingKeyFrames>
         </Storyboard>
         <Storyboard x:Key="MaximizeWidgetMenu">
-            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(FrameworkElement.Width)" Storyboard.TargetName="WidgetCanvas">
+            <DoubleAnimationUsingKeyFrames SpeedRatio="3"  Storyboard.TargetProperty="(FrameworkElement.Width)" Storyboard.TargetName="WidgetCanvas">
                 <EasingDoubleKeyFrame KeyTime="0:0:1" Value="210"/>
             </DoubleAnimationUsingKeyFrames>
-            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(FrameworkElement.MinWidth)" Storyboard.TargetName="WidgetCanvas">
+            <DoubleAnimationUsingKeyFrames SpeedRatio="3"  Storyboard.TargetProperty="(FrameworkElement.MinWidth)" Storyboard.TargetName="WidgetCanvas">
                 <EasingDoubleKeyFrame KeyTime="0:0:1" Value="210"/>
             </DoubleAnimationUsingKeyFrames>
         </Storyboard>
@@ -105,7 +105,7 @@
             	     VerticalAlignment="Top" Width="30" RenderTransformOrigin="0.5,0.5" 
                     Click="MenuButton_OnClick">
                     <Button.Content>
-                        <Image Source="Images/menu.png" Width="20" Height="20" OpacityMask="#4CD2ECFB"/>
+                        <Image Source="Images/menu.png" Width="20" Height="20" />
                     </Button.Content>
                 </Button>
                 <ItemsControl ItemsSource="{Binding SubMenuItems, UpdateSourceTrigger=PropertyChanged}" >
@@ -113,13 +113,19 @@
                         <DataTemplate>
                             <DataTemplate.Resources>
                                 <Storyboard x:Key="ItemAnimation" AutoReverse="False">
-                                    <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(FrameworkElement.Height)" Storyboard.TargetName="myButton">
+                                    <DoubleAnimationUsingKeyFrames SpeedRatio="2"  Storyboard.TargetProperty="(FrameworkElement.Height)" Storyboard.TargetName="myButton">
                                         <EasingDoubleKeyFrame KeyTime="0:0:1" Value="30"/>
                                     </DoubleAnimationUsingKeyFrames>
                                 </Storyboard>
                             </DataTemplate.Resources>
-                            <Button x:Name="myButton" Content="{Binding Text}" HorizontalAlignment="Left" Height="0" 
-            	            VerticalAlignment="Top" Width="30" RenderTransformOrigin="0.5,0.5" Command="{Binding MenuCommand}" ></Button>
+                            <Button x:Name="myButton" HorizontalAlignment="Left" Height="0" 
+            	            VerticalAlignment="Top" Width="30" ToolTip="{Binding Text}" 
+                                    RenderTransformOrigin="0.5,0.5" Command="{Binding MenuCommand}" 
+                                    Click="MyButton_OnClick" >
+                                <Button.Content>
+                                    <Image Source="{Binding Image}"></Image>
+                                </Button.Content>
+                            </Button>
                             <DataTemplate.Triggers>
                                 <EventTrigger RoutedEvent="FrameworkElement.Loaded">
                                     <BeginStoryboard Storyboard="{StaticResource ItemAnimation}" />

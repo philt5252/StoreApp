@@ -163,7 +163,9 @@
     <Resource Include="Views\Images\bar-chart.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Resource>
-    <Content Include="Views\Images\delete.png" />
+    <Resource Include="Views\Images\delete.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
     <Resource Include="Views\Images\edit.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Resource>
