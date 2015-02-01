@@ -105,7 +105,7 @@ namespace StoreApp.Core.ViewModels
             Book = book;
 
             Name = Book.Name;
-            Description = Description;
+            Description = Book.Description;
             Price = Book.Price;
             Id = Book.Id;
             Image = Book.Image;
