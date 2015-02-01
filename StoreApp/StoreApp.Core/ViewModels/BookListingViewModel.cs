@@ -113,7 +113,8 @@ namespace StoreApp.Core.ViewModels
         {
             foreach (var bookEditViewModel in Books.Where(b => b.IsDirty))
             {
-                booksController.Save(bookEditViewModel.Book);
+                //booksController.Save(bookEditViewModel.Book);
+                bookEditViewModel.SaveCommand.Execute(null);
             }
         }
     }
