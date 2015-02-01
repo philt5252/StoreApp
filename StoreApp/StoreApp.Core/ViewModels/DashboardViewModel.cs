@@ -34,9 +34,12 @@ namespace StoreApp.Core.ViewModels
             
             menuItemViewModel.Text = "Edit Dashboard";
             menuItemViewModel.SetImage(new BitmapImage(new Uri("Images/home.png", UriKind.Relative)));
-            menuItemViewModel.SetMenuCommand(new DelegateCommand(ExecuteMenuCommand)); 
+            menuItemViewModel.SetMenuCommand(new DelegateCommand(ExecuteMenuCommand));
 
-            eventAggregator.GetEvent<UpdateSubMenuEvent>().Publish(new []{menuItemViewModel});
+            var saveMenuItemViewModel = menuItemViewModelFactory.Create();
+            saveMenuItemViewModel.SetImage(new BitmapImage(new Uri("Images/save.png", UriKind.Relative)));
+
+            eventAggregator.GetEvent<UpdateSubMenuEvent>().Publish(new []{menuItemViewModel, saveMenuItemViewModel});
         }
 
         private void ExecuteMenuCommand()
