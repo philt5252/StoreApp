@@ -16,8 +16,19 @@ namespace StoreApp.Core.ViewModels
         private double price;
         private string description;
         private Bitmap image;
+        private bool isEdit;
 
         public IBook Book { get; protected set; }
+
+        public bool IsEdit
+        {
+            get { return isEdit; }
+            private set
+            {
+                isEdit = value;
+                OnPropertyChanged();
+            }
+        }
 
         public int Id
         {
@@ -73,6 +84,7 @@ namespace StoreApp.Core.ViewModels
         public ICommand CancelCommand { get; protected set; }
 
         public ICommand DeleteCommand { get; protected set; }
+        public ICommand EditCommand { get; private set; }
 
         public BookEditViewModel(IBook book, IBooksController booksController)
         {
@@ -88,6 +100,12 @@ namespace StoreApp.Core.ViewModels
             SaveCommand = new DelegateCommand(ExecuteSaveCommand);
             CancelCommand = new DelegateCommand(ExecuteCancelCommand);
             DeleteCommand = new DelegateCommand(ExecuteDeleteCommand);
+            EditCommand = new DelegateCommand(ExecuteEditCommand);
+        }
+
+        private void ExecuteEditCommand()
+        {
+            IsEdit = !IsEdit;
         }
 
         private void ExecuteDeleteCommand()
