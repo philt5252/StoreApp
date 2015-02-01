@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Drawing;
 using System.Windows.Input;
+using System.Windows.Media.Imaging;
 using Microsoft.Practices.Prism.Commands;
 using StoreApp.Foundation.Controllers;
 using StoreApp.Foundation.Models;
@@ -15,7 +16,7 @@ namespace StoreApp.Core.ViewModels
         private string name;
         private double price;
         private string description;
-        private Bitmap image;
+        private BitmapImage image;
         private bool isEdit;
 
         public IBook Book { get; protected set; }
@@ -48,7 +49,7 @@ namespace StoreApp.Core.ViewModels
             }
         }
 
-        public Bitmap Image
+        public BitmapImage Image
         {
             get { return image; }
             set

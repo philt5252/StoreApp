@@ -8,7 +8,7 @@
              xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
              xmlns:converters="clr-namespace:StoreApp.Core.Views.Converters"
              mc:Ignorable="d" 
-             Height="600" Width="1000">
+             Height="600" Width="1000" Title="Book Store Manager">
     <Window.Resources>
         <Storyboard x:Key="MinimizeMenu">
             <DoubleAnimationUsingKeyFrames SpeedRatio="3" Storyboard.TargetProperty="(FrameworkElement.Width)" Storyboard.TargetName="MenuListBox">
@@ -118,7 +118,7 @@
                                     RenderTransformOrigin="0.5,0.5" Command="{Binding MenuCommand}" 
                                     Click="MyButton_OnClick" >
                                 <Button.Content>
-                                    <Image Source="{Binding Image}"></Image>
+                                    <Image Width="20" Height="20" Source="{Binding Image}"></Image>
                                 </Button.Content>
                             </Button>
                             <DataTemplate.Triggers>

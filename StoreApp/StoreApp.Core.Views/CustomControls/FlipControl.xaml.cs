@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Input;
+using System.Windows.Media.Animation;
 
 namespace StoreApp.Core.Views.CustomControls
 {
@@ -9,9 +11,11 @@ namespace StoreApp.Core.Views.CustomControls
     /// </summary>
     public partial class FlipControl : UserControl
     {
+        
         public FlipControl()
         {
             InitializeComponent();
+
         }
 
         public static readonly DependencyProperty FrontDataTemplateProperty = DependencyProperty.Register(
@@ -49,6 +53,48 @@ namespace StoreApp.Core.Views.CustomControls
             get { return (Object) GetValue(BackSourceProperty); }
             set { SetValue(BackSourceProperty, value); }
         }
+
+        public static readonly DependencyProperty IsEditProperty = DependencyProperty.Register(
+            "IsEdit", typeof (bool), typeof (FlipControl), new PropertyMetadata(default(bool), PropertyChangedCallback));
+
+        private static void PropertyChangedCallback(DependencyObject dependencyObject, DependencyPropertyChangedEventArgs dependencyPropertyChangedEventArgs)
+        {
+            FlipControl flipControl = dependencyObject as FlipControl;
+            if (flipControl.IsEdit)
+            {
+                Storyboard storyBoard = (Storyboard)flipControl.Resources["FlipForward"];
+                storyBoard.Begin();
+            }
+            else
+            {
+                Storyboard storyBoard = (Storyboard)flipControl.Resources["FlipBackward"];
+                storyBoard.Begin();
+            }
+        }
+
+        public bool IsEdit
+        {
+            get { return (bool) GetValue(IsEditProperty); }
+            set { SetValue(IsEditProperty, value); }
+        }
+
+        public static readonly RoutedEvent FlipEvent = EventManager.RegisterRoutedEvent(
+        "Flip", RoutingStrategy.Bubble, typeof(RoutedEventHandler), typeof(FlipControl));
+
+        // Provide CLR accessors for the event 
+        public event RoutedEventHandler Flip
+        {
+            add { AddHandler(FlipEvent, value); }
+            remove { RemoveHandler(FlipEvent, value); }
+        }
+
+        // This method raises the Tap event 
+        void RaiseFlipEvent()
+        {
+            RoutedEventArgs newEventArgs = new RoutedEventArgs(FlipControl.FlipEvent);
+            RaiseEvent(newEventArgs);
+        }
+        // For demonstration purposes we raise the event when the MyButtonSimple is clicked 
     
     }
 }
