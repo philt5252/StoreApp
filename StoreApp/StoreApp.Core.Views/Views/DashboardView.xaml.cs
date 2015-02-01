@@ -27,9 +27,6 @@ namespace StoreApp.Core.Views.Views
             InitializeComponent();
         }
 
-        private void editChk_Click(object sender, RoutedEventArgs e)
-        {
-            gridSystem.IsEdit = editChk.IsChecked.Value;
-        }
+
     }
 }
