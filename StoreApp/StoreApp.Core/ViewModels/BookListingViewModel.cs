@@ -31,6 +31,8 @@ namespace StoreApp.Core.ViewModels
         public ICommand SaveAllCommand { get; protected set; }
         public ICommand AddCommmand { get; protected set; }
 
+        public ICommand EditAllCommand { get; protected set; }
+
         public BookListingViewModel(IBook[] books, IBookEditViewModelFactory bookEditViewModelFactory,
             IBooksController booksController, IBookFactory bookFactory, IEventAggregator eventAggregator,
             IMenuItemViewModelFactory menuItemViewModelFactory)
@@ -41,15 +43,21 @@ namespace StoreApp.Core.ViewModels
             this.eventAggregator = eventAggregator;
             this.menuItemViewModelFactory = menuItemViewModelFactory;
 
+            SaveAllCommand = new DelegateCommand(ExecuteSaveAllCommand);
+            AddCommmand = new DelegateCommand(ExecuteAddCommand);
+            EditAllCommand = new DelegateCommand(ExecuteEditAllCommand);
+
             updateSubMenuEvent = eventAggregator.GetEvent<UpdateSubMenuEvent>();
             editMenuItemViewModel = menuItemViewModelFactory.Create();
 
             editMenuItemViewModel.Text = "Edit";
             editMenuItemViewModel.SetImage(new BitmapImage(new Uri("Images/Edit.png", UriKind.Relative)));
+            saveAllMenuItemViewModel.SetMenuCommand(EditAllCommand);
 
             saveAllMenuItemViewModel = menuItemViewModelFactory.Create();
             saveAllMenuItemViewModel.Text = "Save All";
             saveAllMenuItemViewModel.SetImage(new BitmapImage(new Uri("Images/Save.png", UriKind.Relative)));
+            saveAllMenuItemViewModel.SetMenuCommand(SaveAllCommand);
 
             updateSubMenuEvent.Publish(new []{editMenuItemViewModel});
 
@@ -62,8 +70,15 @@ namespace StoreApp.Core.ViewModels
                 bookEditViewModel.PropertyChanged += BookEditViewModelOnPropertyChanged;
             }
 
-            SaveAllCommand = new DelegateCommand(ExecuteSaveAllCommand);
-            AddCommmand = new DelegateCommand(ExecuteAddCommand);
+            
+        }
+
+        private void ExecuteEditAllCommand()
+        {
+            foreach (var bookEditViewModel in Books)
+            {
+                bookEditViewModel.EditCommand.Execute(null);
+            }
         }
 
         private void BookEditViewModelOnPropertyChanged(object sender, PropertyChangedEventArgs args)
