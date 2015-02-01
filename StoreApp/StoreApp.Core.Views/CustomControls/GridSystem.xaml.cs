@@ -35,14 +35,6 @@ namespace DashboardTest
         public static readonly DependencyProperty IsEditProperty = DependencyProperty.Register(
             "IsEdit", typeof (bool), typeof (GridSystem), new PropertyMetadata(default(bool)));
 
-        public static readonly DependencyProperty IsEdit2Property = DependencyProperty.Register(
-            "IsEdit2", typeof (bool), typeof (GridSystem), new PropertyMetadata(default(bool)));
-
-        public bool IsEdit2
-        {
-            get { return (bool) GetValue(IsEdit2Property); }
-            set { SetValue(IsEdit2Property, value); }
-        }
 
         public bool IsEdit
         {

@@ -2,6 +2,6 @@
 {
     public interface IDashboardViewModel
     {
-         
+        bool IsEdit { get; }
     }
 }
