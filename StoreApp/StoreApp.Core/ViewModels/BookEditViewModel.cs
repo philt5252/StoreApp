@@ -44,6 +44,7 @@ namespace StoreApp.Core.ViewModels
                 name = value;
 
                 SetIsDirty();
+                OnPropertyChanged();
             }
         }
 
@@ -55,6 +56,7 @@ namespace StoreApp.Core.ViewModels
                 image = value;
 
                 SetIsDirty();
+                OnPropertyChanged();
             }
         }
 
@@ -66,6 +68,7 @@ namespace StoreApp.Core.ViewModels
                 description = value;
 
                 SetIsDirty();
+                OnPropertyChanged();
             }
         }
 
@@ -77,6 +80,7 @@ namespace StoreApp.Core.ViewModels
                 price = value;
 
                 SetIsDirty();
+                OnPropertyChanged();
             }
         }
 
