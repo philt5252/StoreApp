@@ -1,4 +1,5 @@
-﻿using System.Drawing;
+﻿using System;
+using System.Drawing;
 using System.Windows.Input;
 using System.Windows.Media.Imaging;
 using StoreApp.Foundation.Models;
@@ -19,5 +20,6 @@ namespace StoreApp.Foundation.ViewModels
         ICommand DeleteCommand { get; }
 
         ICommand EditCommand { get; }
+        event EventHandler Deleted;
     }
 }
