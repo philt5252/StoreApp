@@ -28,6 +28,11 @@ namespace StoreApp.Core.ViewModels.MenuItems
             }
         }
 
+        public void SetMenuCommand(ICommand command)
+        {
+            MenuCommand = command;
+        }
+
         public MenuItemViewModel(IEventAggregator eventAggregator)
         {
             this.eventAggregator = eventAggregator;
