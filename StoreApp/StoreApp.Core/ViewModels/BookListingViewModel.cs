@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.ObjectModel;
 using System.Collections.Specialized;
+using System.ComponentModel;
 using System.Linq;
 using System.Windows.Input;
 using System.Windows.Media.Imaging;
@@ -23,6 +24,8 @@ namespace StoreApp.Core.ViewModels
         private readonly IEventAggregator eventAggregator;
         private readonly IMenuItemViewModelFactory menuItemViewModelFactory;
         private IMenuItemViewModel editMenuItemViewModel;
+        private IMenuItemViewModel saveAllMenuItemViewModel;
+        private UpdateSubMenuEvent updateSubMenuEvent;
         public ObservableCollection<IBookEditViewModel> Books { get; protected set; }
 
         public ICommand SaveAllCommand { get; protected set; }
@@ -38,13 +41,13 @@ namespace StoreApp.Core.ViewModels
             this.eventAggregator = eventAggregator;
             this.menuItemViewModelFactory = menuItemViewModelFactory;
 
-            var updateSubMenuEvent = eventAggregator.GetEvent<UpdateSubMenuEvent>();
+            updateSubMenuEvent = eventAggregator.GetEvent<UpdateSubMenuEvent>();
             editMenuItemViewModel = menuItemViewModelFactory.Create();
 
             editMenuItemViewModel.Text = "Edit";
             editMenuItemViewModel.SetImage(new BitmapImage(new Uri("Images/Edit.png", UriKind.Relative)));
 
-            var saveAllMenuItemViewModel = menuItemViewModelFactory.Create();
+            saveAllMenuItemViewModel = menuItemViewModelFactory.Create();
             saveAllMenuItemViewModel.Text = "Save All";
             saveAllMenuItemViewModel.SetImage(new BitmapImage(new Uri("Images/Edit.png", UriKind.Relative)));
 
@@ -56,10 +59,26 @@ namespace StoreApp.Core.ViewModels
             foreach (var bookEditViewModel in Books)
             {
                 bookEditViewModel.Deleted += BookEditViewModelOnDeleted;
+                bookEditViewModel.PropertyChanged += BookEditViewModelOnPropertyChanged;
             }
 
             SaveAllCommand = new DelegateCommand(ExecuteSaveAllCommand);
             AddCommmand = new DelegateCommand(ExecuteAddCommand);
+        }
+
+        private void BookEditViewModelOnPropertyChanged(object sender, PropertyChangedEventArgs args)
+        {
+            if (args.PropertyName == "IsEdit")
+            {
+                if (Books.Any(b => b.IsEdit))
+                {
+                    updateSubMenuEvent.Publish(new[] { editMenuItemViewModel, saveAllMenuItemViewModel });
+                }
+                else
+                {
+                    updateSubMenuEvent.Publish(new[] { editMenuItemViewModel });
+                }
+            }
         }
 
         private void BookEditViewModelOnDeleted(object sender, EventArgs eventArgs)
