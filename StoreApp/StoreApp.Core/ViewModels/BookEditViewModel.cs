@@ -98,6 +98,8 @@ namespace StoreApp.Core.ViewModels
         public ICommand DeleteCommand { get; protected set; }
         public ICommand EditCommand { get; private set; }
 
+        public event EventHandler Deleted;
+
         public BookEditViewModel(IBook book, IBooksController booksController)
         {
             Book = book;
@@ -108,7 +110,7 @@ namespace StoreApp.Core.ViewModels
             Image = Book.Image;
 
             this.booksController = booksController;
-
+            
             SaveCommand = new DelegateCommand(ExecuteSaveCommand);
             CancelCommand = new DelegateCommand(ExecuteCancelCommand);
             DeleteCommand = new DelegateCommand(ExecuteDeleteCommand);
@@ -123,6 +125,7 @@ namespace StoreApp.Core.ViewModels
         private void ExecuteDeleteCommand()
         {
             booksController.Delete(Book);
+            OnDeleted();
         }
 
         protected virtual void ExecuteCancelCommand()
@@ -154,6 +157,11 @@ namespace StoreApp.Core.ViewModels
             IsDirty = true;
         }
 
-       
+
+        protected virtual void OnDeleted()
+        {
+            var handler = Deleted;
+            if (handler != null) handler(this, EventArgs.Empty);
+        }
     }
 }

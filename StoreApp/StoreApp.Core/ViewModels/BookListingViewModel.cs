@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.ObjectModel;
+using System.Collections.Specialized;
 using System.Linq;
 using System.Windows.Input;
 using System.Windows.Media.Imaging;
@@ -43,11 +44,42 @@ namespace StoreApp.Core.ViewModels
             editMenuItemViewModel.Text = "Edit";
             editMenuItemViewModel.SetImage(new BitmapImage(new Uri("Images/Edit.png", UriKind.Relative)));
 
+            var saveAllMenuItemViewModel = menuItemViewModelFactory.Create();
+            saveAllMenuItemViewModel.Text = "Save All";
+            saveAllMenuItemViewModel.SetImage(new BitmapImage(new Uri("Images/Edit.png", UriKind.Relative)));
+
             updateSubMenuEvent.Publish(new []{editMenuItemViewModel});
 
             Books = new ObservableCollection<IBookEditViewModel>(books.Select(bookEditViewModelFactory.Create));
+            Books.CollectionChanged+= BooksOnCollectionChanged;
+
+            foreach (var bookEditViewModel in Books)
+            {
+                bookEditViewModel.Deleted += BookEditViewModelOnDeleted;
+            }
+
             SaveAllCommand = new DelegateCommand(ExecuteSaveAllCommand);
             AddCommmand = new DelegateCommand(ExecuteAddCommand);
+        }
+
+        private void BookEditViewModelOnDeleted(object sender, EventArgs eventArgs)
+        {
+            var bookEditViewModel = (sender as IBookEditViewModel);
+
+            Books.Remove(bookEditViewModel);
+        }
+
+        private void BooksOnCollectionChanged(object sender, NotifyCollectionChangedEventArgs args)
+        {
+            foreach (IBookEditViewModel book in args.NewItems)
+            {
+                book.Deleted += BookEditViewModelOnDeleted;
+            }
+
+            foreach (IBookEditViewModel book in args.OldItems)
+            {
+                book.Deleted -= BookEditViewModelOnDeleted;
+            }
         }
 
         private void ExecuteAddCommand()
