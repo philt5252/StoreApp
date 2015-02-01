@@ -17,13 +17,26 @@ namespace StoreApp.Core.DataAccess
         public BooksRepository(IBookFactory bookFactory)
         {
             this.bookFactory = bookFactory;
-
+            int j = 1;
             for (int i = 0; i < 20; i++)
             {
                 var book = bookFactory.Create();
 
                 book.Id = i;
-                book.Image = new BitmapImage(new Uri("Images/pridePrejudice.jpg", UriKind.Relative));
+                if(j == 1)
+                    book.Image = new BitmapImage(new Uri("Images/Books/pridePrejudice.jpg", UriKind.Relative));
+                else  if(j==2)
+                    book.Image = new BitmapImage(new Uri("Images/Books/lotr.jpg", UriKind.Relative));
+                else if (j == 3)
+                    book.Image = new BitmapImage(new Uri("Images/Books/scottish.jpg", UriKind.Relative));
+                else if (j == 4)
+                    book.Image = new BitmapImage(new Uri("Images/Books/inferno.jpg", UriKind.Relative));
+                else if (j == 5)
+                {
+                    book.Image = new BitmapImage(new Uri("Images/Books/crimePunish.jpg", UriKind.Relative));
+                    j = 0;
+                }
+                j++;
                 book.Name = "Book" + i;
                 book.Description = "Description!!!!! " + i;
                 book.Price = i;
