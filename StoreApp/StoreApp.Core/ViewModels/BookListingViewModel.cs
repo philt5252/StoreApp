@@ -2,6 +2,7 @@
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Windows.Input;
+using System.Windows.Media.Imaging;
 using Microsoft.Practices.Prism.Commands;
 using Microsoft.Practices.Prism.Events;
 using StoreApp.Foundation.Controllers;
@@ -39,6 +40,7 @@ namespace StoreApp.Core.ViewModels
             var menuItemViewModel = menuItemViewModelFactory.Create();
 
             menuItemViewModel.Text = "TestText";
+            menuItemViewModel.SetImage(new BitmapImage(new Uri("Images/book.png", UriKind.Relative)));
 
             updateSubMenuEvent.Publish(new []{menuItemViewModel});
 

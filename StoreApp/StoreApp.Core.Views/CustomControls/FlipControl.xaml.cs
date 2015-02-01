@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Input;
 
 namespace StoreApp.Core.Views.CustomControls
 {
@@ -12,6 +13,13 @@ namespace StoreApp.Core.Views.CustomControls
         public FlipControl()
         {
             InitializeComponent();
+
+            PreviewMouseDown += OnPreviewMouseDown;
+        }
+
+        private void OnPreviewMouseDown(object sender, MouseButtonEventArgs mouseButtonEventArgs)
+        {
+            RaiseFlipEvent();
         }
 
         public static readonly DependencyProperty FrontDataTemplateProperty = DependencyProperty.Register(
@@ -49,6 +57,37 @@ namespace StoreApp.Core.Views.CustomControls
             get { return (Object) GetValue(BackSourceProperty); }
             set { SetValue(BackSourceProperty, value); }
         }
+
+        public static readonly DependencyProperty IsEditProperty = DependencyProperty.Register(
+            "IsEdit", typeof (bool), typeof (FlipControl), new PropertyMetadata(default(bool)));
+
+        public bool IsEdit
+        {
+            get { return (bool) GetValue(IsEditProperty); }
+            set
+            {
+                SetValue(IsEditProperty, value);
+                RaiseFlipEvent();
+            }
+        }
+
+        public static readonly RoutedEvent FlipEvent = EventManager.RegisterRoutedEvent(
+        "Flip", RoutingStrategy.Bubble, typeof(RoutedEventHandler), typeof(FlipControl));
+
+        // Provide CLR accessors for the event 
+        public event RoutedEventHandler Flip
+        {
+            add { AddHandler(FlipEvent, value); }
+            remove { RemoveHandler(FlipEvent, value); }
+        }
+
+        // This method raises the Tap event 
+        void RaiseFlipEvent()
+        {
+            RoutedEventArgs newEventArgs = new RoutedEventArgs(FlipControl.FlipEvent);
+            RaiseEvent(newEventArgs);
+        }
+        // For demonstration purposes we raise the event when the MyButtonSimple is clicked 
     
     }
 }
