@@ -1,4 +1,5 @@
 ﻿using System.Windows;
+using System.Windows.Controls;
 using Microsoft.Practices.Prism.Regions;
 using StoreApp.Foundation.Controllers;
 using StoreApp.Foundation.Factories.ViewModels;
@@ -30,6 +31,7 @@ namespace StoreApp.Core.Controllers
             if (view != null)
             {
                 regionManager.Regions[Regions.MainRegion].Activate(view);
+                ((view as Control).DataContext as IDashboardViewModel).RefreshMenuItems();
                 return;
             }
 

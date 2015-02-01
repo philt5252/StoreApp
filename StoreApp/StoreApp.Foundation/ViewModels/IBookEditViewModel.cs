@@ -7,6 +7,7 @@ namespace StoreApp.Foundation.ViewModels
     public interface IBookEditViewModel : IViewModelBase
     {
         IBook Book { get; }
+        bool IsEdit { get; }
         int Id { get; }
         string Name { get; set; }
         Bitmap Image { get; set; }
@@ -15,5 +16,7 @@ namespace StoreApp.Foundation.ViewModels
         ICommand SaveCommand { get; }
         ICommand CancelCommand { get; }
         ICommand DeleteCommand { get; }
+
+        ICommand EditCommand { get; }
     }
 }

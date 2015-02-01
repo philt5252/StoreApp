@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
+using StoreApp.Core.ViewModels.MenuItems;
 using StoreApp.Foundation.Factories.ViewModels;
 using StoreApp.Foundation.ViewModels;
 
@@ -24,14 +25,14 @@ namespace StoreApp.Core.ViewModels
             get { return subMenuItems; }
             set
             {
-                subMenuItems = value; 
+                subMenuItems = value;
                 OnPropertyChanged("SubMenuItems");
             }
         }
 
         public IWidgetViewModel[] Widgets { get; protected set; }
 
-        public MainWindowViewModel(IEnumerable<IMenuItemViewModel> menuItems, 
+        public MainWindowViewModel(IEnumerable<IMenuItemViewModel> menuItems,
             IEnumerable<IWidgetViewModel> widgets, IMenuViewModelFactory menuViewModelFactory)
         {
             var itemViewModel = menuItems.First(m => m.Text == "Home");
@@ -52,13 +53,28 @@ namespace StoreApp.Core.ViewModels
             {
                 menuItemViewModel.PropertyChanged += MenuItemViewModelOnPropertyChanged;
             }
+
+            SubMenuItems = new ObservableCollection<IMenuItemViewModel>();
         }
 
         private void MenuItemViewModelOnPropertyChanged(object sender, PropertyChangedEventArgs propertyChangedEventArgs)
         {
+            IMenuItemViewModel menuItemViewModel = (sender as IMenuItemViewModel);
+
             if (propertyChangedEventArgs.PropertyName == "SubMenuItems")
             {
-                SubMenuItems = ((IMenuItemViewModel) sender).SubMenuItems;
+                var removeMenuItems = SubMenuItems.Except(menuItemViewModel.SubMenuItems).ToArray();
+                var newMenuItems = menuItemViewModel.SubMenuItems.Except(SubMenuItems).ToArray();
+
+                foreach (var removeMenuItem in removeMenuItems)
+                {
+                    SubMenuItems.Remove(removeMenuItem);
+                }
+
+                foreach (var itemViewModel in newMenuItems)
+                {
+                    SubMenuItems.Add(itemViewModel);
+                }
             }
         }
     }

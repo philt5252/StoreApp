@@ -3,5 +3,6 @@
     public interface IDashboardViewModel
     {
         bool IsEdit { get; }
+        void RefreshMenuItems();
     }
 }
