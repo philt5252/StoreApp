@@ -46,5 +46,10 @@ namespace StoreApp.Core.Controllers
         {
             booksRepository.Save(book);
         }
+
+        public void Delete(IBook book)
+        {
+            booksRepository.Delete(book);
+        }
     }
 }

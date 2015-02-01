@@ -72,6 +72,8 @@ namespace StoreApp.Core.ViewModels
         public ICommand SaveCommand { get; protected set; }
         public ICommand CancelCommand { get; protected set; }
 
+        public ICommand DeleteCommand { get; protected set; }
+
         public BookEditViewModel(IBook book, IBooksController booksController)
         {
             Book = book;
@@ -85,11 +87,17 @@ namespace StoreApp.Core.ViewModels
 
             SaveCommand = new DelegateCommand(ExecuteSaveCommand);
             CancelCommand = new DelegateCommand(ExecuteCancelCommand);
+            DeleteCommand = new DelegateCommand(ExecuteDeleteCommand);
+        }
+
+        private void ExecuteDeleteCommand()
+        {
+            booksController.Delete(Book);
         }
 
         protected virtual void ExecuteCancelCommand()
         {
-            throw new NotImplementedException();
+            
         }
 
         protected virtual void ExecuteSaveCommand()

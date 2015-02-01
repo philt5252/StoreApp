@@ -14,5 +14,6 @@ namespace StoreApp.Foundation.ViewModels
         double Price { get; set; }
         ICommand SaveCommand { get; }
         ICommand CancelCommand { get; }
+        ICommand DeleteCommand { get; }
     }
 }

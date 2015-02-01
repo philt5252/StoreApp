@@ -6,5 +6,6 @@ namespace StoreApp.Foundation.Controllers
     {
         void Listing();
         void Save(IBook book);
+        void Delete(IBook book);
     }
 }

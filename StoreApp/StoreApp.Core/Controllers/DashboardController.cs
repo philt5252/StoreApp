@@ -25,12 +25,20 @@ namespace StoreApp.Core.Controllers
 
         public void Show()
         {
+            var view = regionManager.Regions[Regions.MainRegion].GetView("dashboardView");
+
+            if (view != null)
+            {
+                regionManager.Regions[Regions.MainRegion].Activate(view);
+                return;
+            }
+
             var dashboardView = dashboardViewFactory.Create();
             var dashboardViewModel = dashboardViewModelFactory.Create();
 
             dashboardView.DataContext = dashboardViewModel;
 
-            regionManager.Regions[Regions.MainRegion].Add(dashboardView);
+            regionManager.Regions[Regions.MainRegion].Add(dashboardView, "dashboardView");
             regionManager.Regions[Regions.MainRegion].Activate(dashboardView);
         }
     }
