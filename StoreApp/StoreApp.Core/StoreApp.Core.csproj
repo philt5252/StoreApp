@@ -69,6 +69,7 @@
     <Compile Include="Factories\Models\BookFactory.cs" />
     <Compile Include="Factories\ViewModels\BookEditViewModelFactory.cs" />
     <Compile Include="Factories\ViewModels\BookListingViewModelFactory.cs" />
+    <Compile Include="Factories\ViewModels\DashboardViewModelFactory.cs" />
     <Compile Include="Factories\ViewModels\GameListingViewModelFactory.cs" />
     <Compile Include="Factories\ViewModels\MainWindowViewModelFactory.cs" />
     <Compile Include="Factories\ViewModels\MenuItemViewModelFactory.cs" />
@@ -80,6 +81,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ViewModels\BookListingViewModel.cs" />
     <Compile Include="ViewModels\BookEditViewModel.cs" />
+    <Compile Include="ViewModels\DashboardViewModel.cs" />
     <Compile Include="ViewModels\GameEditViewModel.cs" />
     <Compile Include="ViewModels\GameListingViewModel.cs" />
     <Compile Include="ViewModels\MainWindowViewModel.cs" />
