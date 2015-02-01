@@ -105,6 +105,7 @@ namespace StoreApp.Core.ViewModels
             Book = book;
 
             Name = Book.Name;
+            Description = Description;
             Price = Book.Price;
             Id = Book.Id;
             Image = Book.Image;
@@ -137,6 +138,7 @@ namespace StoreApp.Core.ViewModels
         {
             Book.Name = Name;
             Book.Price = Price;
+            Book.Description = Description;
 
             booksController.Save(Book);
 
