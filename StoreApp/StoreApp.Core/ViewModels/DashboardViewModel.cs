@@ -13,6 +13,9 @@ namespace StoreApp.Core.ViewModels
         private readonly IEventAggregator eventAggregator;
         private readonly IMenuItemViewModelFactory menuItemViewModelFactory;
         private bool isEdit;
+        private IMenuItemViewModel menuItemViewModel;
+        private IMenuItemViewModel itemViewModel;
+        private UpdateSubMenuEvent subMenuEvent;
 
         public bool IsEdit
         {
@@ -22,6 +25,28 @@ namespace StoreApp.Core.ViewModels
                 isEdit = value;
 
                 OnPropertyChanged("IsEdit");
+
+                if (!isEdit)
+                {
+                    subMenuEvent.Publish(new[] { menuItemViewModel });
+                }
+                else
+                {
+                    subMenuEvent.Publish(new[] { menuItemViewModel, itemViewModel });
+                }
+                
+            }
+        }
+
+        public void RefreshMenuItems()
+        {
+            if (isEdit)
+            {
+                subMenuEvent.Publish(new[] { menuItemViewModel, itemViewModel });
+            }
+            else
+            {
+                subMenuEvent.Publish(new[] { menuItemViewModel });
             }
         }
 
@@ -30,16 +55,17 @@ namespace StoreApp.Core.ViewModels
             this.eventAggregator = eventAggregator;
             this.menuItemViewModelFactory = menuItemViewModelFactory;
 
-            var menuItemViewModel = menuItemViewModelFactory.Create();
+            menuItemViewModel = menuItemViewModelFactory.Create();
             
             menuItemViewModel.Text = "Edit Dashboard";
             menuItemViewModel.SetImage(new BitmapImage(new Uri("Images/home.png", UriKind.Relative)));
             menuItemViewModel.SetMenuCommand(new DelegateCommand(ExecuteMenuCommand));
 
-            var saveMenuItemViewModel = menuItemViewModelFactory.Create();
-            saveMenuItemViewModel.SetImage(new BitmapImage(new Uri("Images/save.png", UriKind.Relative)));
+            itemViewModel = menuItemViewModelFactory.Create();
+            itemViewModel.SetImage(new BitmapImage(new Uri("Images/save.png", UriKind.Relative)));
 
-            eventAggregator.GetEvent<UpdateSubMenuEvent>().Publish(new []{menuItemViewModel, saveMenuItemViewModel});
+            subMenuEvent = eventAggregator.GetEvent<UpdateSubMenuEvent>();
+            subMenuEvent.Publish(new []{menuItemViewModel});
         }
 
         private void ExecuteMenuCommand()
