@@ -52,7 +52,7 @@ namespace StoreApp.Core.ViewModels
 
             editMenuItemViewModel.Text = "Edit";
             editMenuItemViewModel.SetImage(new BitmapImage(new Uri("Images/Edit.png", UriKind.Relative)));
-            saveAllMenuItemViewModel.SetMenuCommand(EditAllCommand);
+            editMenuItemViewModel.SetMenuCommand(EditAllCommand);
 
             saveAllMenuItemViewModel = menuItemViewModelFactory.Create();
             saveAllMenuItemViewModel.Text = "Save All";

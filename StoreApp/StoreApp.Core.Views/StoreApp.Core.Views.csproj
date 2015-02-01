@@ -235,9 +235,15 @@
     </Resource>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Views\Images\Books\lotr.jpg" />
-    <Content Include="Views\Images\Books\inferno.jpg" />
-    <Content Include="Views\Images\Books\scottish.jpg" />
+    <Resource Include="Views\Images\Books\lotr.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Views\Images\Books\inferno.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Views\Images\Books\scottish.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\Expression\Blend\.NETFramework\v4.5\Microsoft.Expression.Blend.WPF.targets" />
