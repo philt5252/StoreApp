@@ -49,7 +49,7 @@ namespace StoreApp.Core.ViewModels
 
             saveAllMenuItemViewModel = menuItemViewModelFactory.Create();
             saveAllMenuItemViewModel.Text = "Save All";
-            saveAllMenuItemViewModel.SetImage(new BitmapImage(new Uri("Images/Edit.png", UriKind.Relative)));
+            saveAllMenuItemViewModel.SetImage(new BitmapImage(new Uri("Images/Save.png", UriKind.Relative)));
 
             updateSubMenuEvent.Publish(new []{editMenuItemViewModel});
 
@@ -113,7 +113,8 @@ namespace StoreApp.Core.ViewModels
         {
             foreach (var bookEditViewModel in Books.Where(b => b.IsDirty))
             {
-                booksController.Save(bookEditViewModel.Book);
+                //booksController.Save(bookEditViewModel.Book);
+                bookEditViewModel.SaveCommand.Execute(null);
             }
         }
     }
