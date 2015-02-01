@@ -10,8 +10,6 @@
              mc:Ignorable="d" 
              Height="600" Width="1000">
     <Window.Resources>
-
-
         <Storyboard x:Key="MinimizeMenu">
             <DoubleAnimationUsingKeyFrames SpeedRatio="3" Storyboard.TargetProperty="(FrameworkElement.Width)" Storyboard.TargetName="MenuListBox">
                 <EasingDoubleKeyFrame KeyTime="0:0:1" Value="60"/>
@@ -44,12 +42,9 @@
                 <EasingDoubleKeyFrame KeyTime="0:0:1" Value="210"/>
             </DoubleAnimationUsingKeyFrames>
         </Storyboard>
-
-
         <DataTemplate x:Key="TileImageBackground">
             <views:TileCanvas ImageSource="Images/dark_wood.png" />
-        </DataTemplate>
-        
+        </DataTemplate> 
     </Window.Resources>
 
     <Grid x:Name="mainGrid" Background="{DynamicResource Grid_Background}" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" >
