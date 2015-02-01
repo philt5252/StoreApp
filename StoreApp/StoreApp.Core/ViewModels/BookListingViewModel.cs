@@ -21,6 +21,7 @@ namespace StoreApp.Core.ViewModels
         private readonly IBookFactory bookFactory;
         private readonly IEventAggregator eventAggregator;
         private readonly IMenuItemViewModelFactory menuItemViewModelFactory;
+        private IMenuItemViewModel editMenuItemViewModel;
         public ObservableCollection<IBookEditViewModel> Books { get; protected set; }
 
         public ICommand SaveAllCommand { get; protected set; }
@@ -37,12 +38,12 @@ namespace StoreApp.Core.ViewModels
             this.menuItemViewModelFactory = menuItemViewModelFactory;
 
             var updateSubMenuEvent = eventAggregator.GetEvent<UpdateSubMenuEvent>();
-            var menuItemViewModel = menuItemViewModelFactory.Create();
+            editMenuItemViewModel = menuItemViewModelFactory.Create();
 
-            menuItemViewModel.Text = "TestText";
-            menuItemViewModel.SetImage(new BitmapImage(new Uri("Images/book.png", UriKind.Relative)));
+            editMenuItemViewModel.Text = "Edit";
+            editMenuItemViewModel.SetImage(new BitmapImage(new Uri("Images/Edit.png", UriKind.Relative)));
 
-            updateSubMenuEvent.Publish(new []{menuItemViewModel});
+            updateSubMenuEvent.Publish(new []{editMenuItemViewModel});
 
             Books = new ObservableCollection<IBookEditViewModel>(books.Select(bookEditViewModelFactory.Create));
             SaveAllCommand = new DelegateCommand(ExecuteSaveAllCommand);

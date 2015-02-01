@@ -18,6 +18,7 @@ namespace StoreApp.Core.ViewModels
         private string description;
         private BitmapImage image;
         private bool isEdit;
+        private bool isReadOnly;
 
         public IBook Book { get; protected set; }
 
@@ -28,7 +29,13 @@ namespace StoreApp.Core.ViewModels
             {
                 isEdit = value;
                 OnPropertyChanged();
+                OnPropertyChanged("IsReadOnly");
             }
+        }
+
+        public bool IsReadOnly
+        {
+            get { return !IsEdit; }
         }
 
         public int Id
@@ -110,7 +117,7 @@ namespace StoreApp.Core.ViewModels
 
         private void ExecuteEditCommand()
         {
-            IsEdit = !IsEdit;
+            IsEdit = true;
         }
 
         private void ExecuteDeleteCommand()
@@ -129,6 +136,8 @@ namespace StoreApp.Core.ViewModels
             Book.Price = Price;
 
             booksController.Save(Book);
+
+            IsEdit = false;
         }
 
         protected virtual void SetIsDirty()
