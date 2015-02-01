@@ -31,7 +31,7 @@ namespace StoreApp.Core.ViewModels
 
             var menuItemViewModel = menuItemViewModelFactory.Create();
             
-            menuItemViewModel.Text = "Edit";
+            menuItemViewModel.Text = "Edit Dashboard";
             menuItemViewModel.SetMenuCommand(new DelegateCommand(ExecuteMenuCommand)); 
 
             eventAggregator.GetEvent<UpdateSubMenuEvent>().Publish(new []{menuItemViewModel});
